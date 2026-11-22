@@ -120,9 +120,30 @@
         "company": "Founder, Birdzo Parcel"
       },
       {
+        "name": "Sathiakumar",
+        "role": "Co-founder, Birdzo Parcel",
+        "company": "",
+        "bio": "Co-founder of Birdzo Parcel, the parcel forwarding and distribution business that partners with Kasi Transport.",
+        "photo": ""
+      },
+      {
         "name": "Nazia",
         "role": "Operations",
         "bio": "Looks after day-to-day operations, liaising with drivers and coordinating schedules.",
+        "photo": ""
+      },
+      {
+        "name": "Elavarasi",
+        "role": "Finance",
+        "company": "",
+        "bio": "Looks after Kasi Transport’s finance, including invoicing, payments and accounts.",
+        "photo": ""
+      },
+      {
+        "name": "Moly",
+        "role": "Human Resources",
+        "company": "",
+        "bio": "Looks after people matters, including hiring and support for our staff and drivers.",
         "photo": ""
       },
       {

@@ -7,6 +7,7 @@ import QuoteDialog from '../components/QuoteDialog.astro';
 import d from '../data/home.json';
 import map from '../data/map-peninsular.json';
 import fleetData from '../data/fleet.json';
+import sharp from 'sharp';
 
 const fleetAll = fleetData.groups.flatMap((g) => g.items.map((v) => ({ ...v, group: g.label })));
 const aboutParts = d.about.text.split(/(1996|2005)/);
@@ -15,7 +16,10 @@ const aboutWords = aboutParts.flatMap((t, i) => t.split(/(\s+)/).filter(Boolean)
 const titleWords = d.about.title.split(' ');
 let sIdx = 0;
 const subTokens = d.hero.subtitle.split(/(\s+)/).filter(Boolean).map((t) => (/^\s+$/.test(t) ? { sp: t } : { w: t, i: sIdx++ }));
-const posters = d.record.posters.filter((p) => p.image);
+// Real image sizes, so every poster reserves its space before it loads (no empty or jumping carousel)
+const posters = await Promise.all(d.record.posters.filter((p) => p.image).map(async (p) => {
+  try { const m = await sharp('public' + p.image).metadata(); return { ...p, w: m.width, h: m.height }; } catch { return { ...p, w: 480, h: 640 }; }
+}));
 const hub = (id) => map.hubs.find((h) => h.id === id);
 const hq = hub('hq');
 const curve = (a, b, k = 0.2) => { const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, dx = b.x - a.x, dy = b.y - a.y; return `M${a.x} ${a.y} Q${(mx - dy * k).toFixed(1)} ${(my + dx * k).toFixed(1)} ${b.x} ${b.y}`; };
@@ -421,7 +425,7 @@ const crossBorder = ['Singapore', 'Thailand'];
         <div class="marquee-track items-center" style={`animation-duration:${Math.max(60, posters.length * 8)}s`}>
           {[0, 1].map((c) => posters.map((e) => (
             <figure class="group relative mx-2 shrink-0 overflow-hidden rounded-lg border border-neutral-200 bg-soft" aria-hidden={c > 0 ? 'true' : undefined}>
-              <img src={e.image} alt={c === 0 ? `${e.name}${e.year ? ' ' + e.year : ''}` : ''} loading="lazy" class="block h-64 w-auto max-w-none transition-transform duration-700 group-hover:scale-[1.03] lg:h-72" />
+              <img src={e.image} width={e.w} height={e.h} alt={c === 0 ? `${e.name}${e.year ? ' ' + e.year : ''}` : ''} loading="eager" decoding="async" fetchpriority="low" class="block h-64 w-auto max-w-none transition-transform duration-700 group-hover:scale-[1.03] lg:h-72" />
               {e.year && <span class="absolute left-2.5 top-2.5 rounded-sm bg-black/60 px-2.5 py-1 font-display text-[10px] font-semibold tracking-wider text-white">{e.year}</span>}
             </figure>
           )))}
