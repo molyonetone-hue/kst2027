@@ -62,8 +62,10 @@ const ld = {
       <div class="pre-bg"></div>
       <div class="pre-ui">
         <img src="/images/logo.webp" alt="" class="pre-logo" />
-        <div class="pre-bar"><div class="pre-fill" id="pre-fill"></div></div>
-        <div class="pre-num"><span id="pre-num">000</span><span class="pre-pct">%</span></div>
+        <div class="pre-road">
+          <div class="pre-line"><div class="pre-fill" id="pre-fill"></div><span id="pre-truck" class="pre-truck"><Icon name="truck" size={28} /></span></div>
+          <div class="pre-row"><span>Petaling Jaya</span><span class="pre-count"><span id="pre-num">000</span>%</span></div>
+        </div>
       </div>
       <span class="pre-since">Since 1996</span>
     </div>
@@ -73,7 +75,7 @@ const ld = {
         var html = document.documentElement, pre = document.getElementById('preloader');
         if (!html.classList.contains('is-loading')) { pre.remove(); return; }
         scrollTo(0, 0);
-        var num = document.getElementById('pre-num'), fill = document.getElementById('pre-fill');
+        var num = document.getElementById('pre-num'), fill = document.getElementById('pre-fill'), truck = document.getElementById('pre-truck');
         pre.style.setProperty('--p', '0');
         var DURATION = 4200, start = performance.now(), last = start, p = 0, loaded = document.readyState === 'complete';
         window.addEventListener('load', function () { loaded = true; });
@@ -96,6 +98,7 @@ const ld = {
           if (p > 99.85) p = 100;
           num.textContent = ('00' + Math.round(p)).slice(-3);
           fill.style.transform = 'scaleX(' + p / 100 + ')';
+          truck.style.left = p + '%';
           if (p >= 100) { setTimeout(leave, 500); return; }
           requestAnimationFrame(tick);
         }
