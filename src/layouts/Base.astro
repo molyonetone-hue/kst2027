@@ -59,12 +59,18 @@ const ld = {
   </head>
   <body>
     <div id="preloader" aria-hidden="true">
+      <div class="pre-bg"></div>
       <div class="pre-ui">
-        <img src="/images/logo.webp" alt="" class="pre-logo" />
-        <div class="pre-bar"><div class="pre-fill" id="pre-fill"></div></div>
-        <div class="pre-num"><span id="pre-num">000</span></div>
+        <div class="pre-top"><img src="/images/logo.webp" alt="" class="pre-logo" /><span class="pre-label">Petaling Jaya, Malaysia</span></div>
+        <div class="pre-bottom">
+          <div class="pre-odo" id="pre-odo"><span class="pre-col"><span class="pre-strip" id="pre-d2"><span>0</span><span>1</span></span></span><span class="pre-col"><span class="pre-strip" id="pre-d1"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span></span></span><span class="pre-col"><span class="pre-strip" id="pre-d0"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span></span></span><span class="pre-pct">%</span></div>
+          <div class="pre-meta">
+            <p class="pre-tag"><span class="pre-w"><span style="--i:0">Moving</span></span> <span class="pre-w"><span style="--i:1">businesses</span></span> <span class="pre-w"><span style="--i:2">forward.</span></span></p>
+            <span class="pre-label">Since 1996</span>
+          </div>
+        </div>
+        <div class="pre-line"><div class="pre-fill" id="pre-fill"></div></div>
       </div>
-      <span class="pre-since">Since 1996</span>
     </div>
     <slot />
     <script is:inline>
@@ -72,9 +78,9 @@ const ld = {
         var html = document.documentElement, pre = document.getElementById('preloader');
         if (!html.classList.contains('is-loading')) { pre.remove(); return; }
         scrollTo(0, 0);
-        var num = document.getElementById('pre-num'), fill = document.getElementById('pre-fill');
+        var d0 = document.getElementById('pre-d0'), d1 = document.getElementById('pre-d1'), d2 = document.getElementById('pre-d2'), fill = document.getElementById('pre-fill');
         pre.style.setProperty('--p', '0');
-        var DURATION = 3600, start = performance.now(), last = start, p = 0, loaded = document.readyState === 'complete';
+        var DURATION = 4200, start = performance.now(), last = start, p = 0, loaded = document.readyState === 'complete';
         window.addEventListener('load', function () { loaded = true; });
         function ease(t) { return 0.5 - Math.cos(Math.PI * t) / 2; }
         function leave() {
@@ -85,7 +91,7 @@ const ld = {
             scrollTo(0, 0);
             html.classList.remove('is-loading');
             setTimeout(function () { pre.remove(); }, 1800);
-          }, 550);
+          }, 600);
         }
         function tick(t) {
           var dt = Math.min(t - last, 64); last = t;
@@ -93,7 +99,11 @@ const ld = {
           var target = loaded ? timed : Math.min(timed, 92);
           p += (target - p) * (1 - Math.exp(-dt / 70));
           if (p > 99.85) p = 100;
-          num.textContent = ('00' + Math.round(p)).slice(-3); pre.style.setProperty('--p', p.toFixed(1));
+          // odometer: each digit column scrolls continuously, tens/hundreds only move as the digit below them rolls over
+          var c = Math.min(1, Math.max(0, p % 10 - 9)), c2 = Math.min(1, Math.max(0, p % 100 - 99));
+          d0.style.setProperty('--o', (p >= 100 ? 0 : p % 10).toFixed(3));
+          d1.style.setProperty('--o', (p >= 100 ? 0 : Math.floor(p / 10) % 10 + c).toFixed(3));
+          d2.style.setProperty('--o', (p >= 100 ? 1 : Math.floor(p / 100) + c2).toFixed(3));
           fill.style.transform = 'scaleX(' + p / 100 + ')';
           if (p >= 100) { setTimeout(leave, 500); return; }
           requestAnimationFrame(tick);
