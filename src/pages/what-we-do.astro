@@ -1,0 +1,112 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteClosing from '../components/SiteClosing.astro';
+import QuoteDialog from '../components/QuoteDialog.astro';
+import s from '../data/services.json';
+
+const eyebrow = 'flex items-center gap-3 font-display text-[12px] font-semibold uppercase tracking-[0.2em]';
+const total = s.solutions.items.length;
+---
+<Base title={s.seo.title} description={s.seo.description} path="/what-we-do">
+  <SiteNav />
+
+  <!-- INTRO -->
+  <section data-reveal data-nav-dark class="relative isolate flex min-h-[88svh] items-end overflow-hidden bg-[#050b1f] text-white">
+    <img src={s.intro.image} alt="" fetchpriority="high" class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_55%]" />
+    <div aria-hidden="true" class="absolute inset-0 -z-10" style="background:linear-gradient(180deg,rgba(5,11,31,.72) 0%,rgba(5,11,31,.5) 40%,rgba(5,11,31,.9) 100%),radial-gradient(ellipse 70% 60% at 0% 100%,rgba(5,11,31,.8),transparent 70%)"></div>
+    <div class="container-x w-full pb-16 pt-40 lg:pb-24">
+      <span class:list={[eyebrow, 'text-white/75']}><span class="h-2 w-2 bg-white"></span>{s.intro.tag}</span>
+      <h1 class="mt-6 max-w-[15ch] font-display text-[clamp(2.8rem,7vw,6.6rem)] font-medium leading-[1] tracking-tight">{s.intro.title}</h1>
+      <p class="mt-7 max-w-xl text-[15px] leading-relaxed text-white/80 lg:text-lg">{s.intro.text}</p>
+    </div>
+  </section>
+
+  <main id="main" class="relative z-10 bg-white">
+    <!-- FOUR SOLUTIONS: cards stack over each other as you scroll -->
+    <section data-reveal class="pb-24 pt-24 lg:pb-36 lg:pt-36">
+      <div class="container-x">
+        <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>{s.solutions.tag}</span>
+        <h2 class="mt-6 max-w-[14ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">{s.solutions.title}</h2>
+
+        <div data-no-reveal class="mt-14 grid gap-6 lg:mt-24 lg:gap-0">
+          {s.solutions.items.map((it, i) => (
+            <article class:list={['svc-stack sticky relative overflow-hidden rounded-2xl lg:min-h-[74svh]', i % 2 === 0 ? 'bg-[#0b0d12] text-white' : 'bg-[#eef1f8] text-neutral-950']} style={`top:${6 + i * 0.9}rem;${i > 0 ? 'margin-top:2rem;' : ''}`}>
+              <div class="grid h-full lg:min-h-[74svh] lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
+                <div class="flex flex-col justify-between gap-5 p-6 lg:gap-10 lg:p-14">
+                  <div class="flex items-center justify-between">
+                    <span class:list={['grid h-14 w-14 place-items-center rounded-lg border', i % 2 === 0 ? 'border-white/30 text-white' : 'border-neutral-400 text-brand']}><Icon name={it.icon} size={26} /></span>
+                    <span class:list={['font-display text-[12px] font-semibold tabular-nums tracking-[0.18em]', i % 2 === 0 ? 'text-white/50' : 'text-neutral-500']}>{String(i + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
+                  </div>
+                  <div>
+                    <h3 class="font-display text-[clamp(2rem,3.6vw,3.4rem)] font-medium leading-[1.04] tracking-tight">{it.title}</h3>
+                    <p class:list={['mt-4 font-display text-[1.05rem] font-medium leading-snug', i % 2 === 0 ? 'text-white/80' : 'text-brand']}>{it.tagline}</p>
+                    <p class:list={['mt-3 max-w-lg text-[14px] leading-relaxed lg:mt-4 lg:text-[15px]', i % 2 === 0 ? 'text-white/60' : 'text-neutral-600']}>{it.text}</p>
+                    <ul class:list={['mt-7 hidden max-w-lg gap-x-6 sm:grid sm:grid-cols-2', i % 2 === 0 ? 'divide-white/10' : '']}>
+                      {it.points.map((pt) => (
+                        <li class:list={['flex items-center gap-3 border-t py-3 text-[14px]', i % 2 === 0 ? 'border-white/15 text-white/85' : 'border-neutral-300 text-neutral-800']}><span class:list={['h-1.5 w-1.5 shrink-0', i % 2 === 0 ? 'bg-white' : 'bg-brand']}></span>{pt}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <a href="#contact" data-quote data-service={it.title} data-cta="service-quote" class:list={['btn group/btn w-fit', i % 2 === 0 ? 'bg-white text-neutral-950 hover:bg-neutral-200' : 'btn-brand']}>{s.solutions.cta} <span class="transition-transform duration-300 group-hover/btn:translate-x-1"><Icon name="arrow" size={18} /></span></a>
+                </div>
+                <figure class="relative order-first overflow-hidden min-h-[11rem] lg:order-none lg:min-h-0">
+                  <img src={it.image} alt={it.title} loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+                  <div aria-hidden="true" class:list={['absolute inset-0', i % 2 === 0 ? 'bg-gradient-to-r from-[#0b0d12]/60 via-transparent to-transparent' : 'bg-gradient-to-r from-[#eef1f8]/40 via-transparent to-transparent']}></div>
+                </figure>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div aria-hidden="true" class="overflow-hidden border-y border-neutral-300 bg-white py-5 lg:hidden"><div data-drift class="flex w-max whitespace-nowrap font-display text-[clamp(2.6rem,13vw,4rem)] font-medium uppercase leading-none tracking-tight text-transparent [-webkit-text-stroke:1.2px_#0f2063]"><span>Linehaul &nbsp;/&nbsp; Commercial &nbsp;/&nbsp; Events &nbsp;/&nbsp; Specialised &nbsp;/&nbsp; Linehaul &nbsp;/&nbsp; Commercial &nbsp;/&nbsp; Events &nbsp;/&nbsp; Specialised &nbsp;/&nbsp; </span></div></div>
+
+    <!-- WHO WE MOVE FOR -->
+    <section data-reveal class="py-24 lg:py-36">
+      <div class="container-x grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)] lg:gap-24">
+        <div class="lg:sticky lg:top-32 lg:self-start">
+          <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>{s.industries.tag}</span>
+          <h2 class="mt-6 max-w-[12ch] font-display text-[clamp(2.2rem,4.4vw,4rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">{s.industries.title}</h2>
+          <p class="mt-6 max-w-sm text-[15px] leading-relaxed text-neutral-600">{s.industries.text}</p>
+        </div>
+        <div class="border-y border-neutral-300">
+          {s.industries.items.map((it, i) => (
+            <div class="ind-row group grid grid-cols-[auto_minmax(0,1fr)] items-center gap-5 border-b border-neutral-300 py-7 transition-colors duration-500 last:border-b-0 hover:bg-white lg:gap-8 lg:py-9">
+              <span class="ind-ic grid h-16 w-16 place-items-center rounded-lg border border-neutral-300 text-brand transition-all duration-500 group-hover:-rotate-6 group-hover:border-brand group-hover:bg-brand group-hover:text-white lg:h-20 lg:w-20"><Icon name={it.icon} size={30} /></span>
+              <div>
+                <h3 class="font-display text-[clamp(1.35rem,2.3vw,2rem)] font-medium leading-tight tracking-tight text-neutral-950 transition-transform duration-500 group-hover:translate-x-1.5">{it.title}</h3>
+                <p class="mt-2 text-[15px] text-neutral-600">{it.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- WAYS TO WORK WITH US -->
+    <section data-reveal class="bg-[#eceff3] py-24 lg:py-36">
+      <div class="container-x">
+        <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>{s.engage.tag}</span>
+        <div class="mt-6 grid items-end gap-6 lg:grid-cols-2 lg:gap-16">
+          <h2 class="max-w-[14ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">{s.engage.title}</h2>
+          <div class="lg:pb-2"><a href="#contact" data-quote data-cta="engage-quote" class="btn btn-brand group/btn">{s.engage.cta} <span class="transition-transform duration-300 group-hover/btn:translate-x-1"><Icon name="arrow" size={18} /></span></a></div>
+        </div>
+        <div class="mt-14 grid border-y border-neutral-300 lg:mt-24 lg:grid-cols-3">
+          {s.engage.items.map((it, i) => (
+            <div class:list={['eng-col group relative px-1 py-10 before:absolute before:inset-x-0 before:-top-px before:h-0.5 before:origin-left before:scale-x-0 before:bg-brand before:transition-transform before:duration-500 group-hover:before:scale-x-100 hover:before:scale-x-100 lg:px-9 lg:py-14', i > 0 && 'border-t border-neutral-300 lg:border-l lg:border-t-0', i === 0 && 'lg:pl-0']}>
+              <span class="grid h-14 w-14 place-items-center rounded-lg border border-neutral-300 text-brand transition-all duration-500 group-hover:-translate-y-1 group-hover:border-brand group-hover:bg-brand group-hover:text-white"><Icon name={it.icon} size={26} /></span>
+              <h3 class="mt-9 font-display text-[clamp(1.6rem,2.6vw,2.3rem)] font-medium leading-none tracking-tight text-neutral-950">{it.title}</h3>
+              <p class="mt-4 max-w-[19rem] text-[15px] leading-relaxed text-neutral-600">{it.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteClosing />
+  <QuoteDialog />
+</Base>

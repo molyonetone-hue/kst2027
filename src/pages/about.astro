@@ -1,0 +1,261 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteClosing from '../components/SiteClosing.astro';
+import QuoteDialog from '../components/QuoteDialog.astro';
+import d from '../data/home.json';
+import a from '../data/about.json';
+
+const wa = (text: string) => `https://wa.me/${d.site.phoneHref.replace('+', '')}?text=${encodeURIComponent(text)}`;
+const eyebrow = 'flex items-center gap-3 font-display text-[12px] font-semibold uppercase tracking-[0.2em]';
+---
+<Base title={a.seo.title} description={a.seo.description} path="/about">
+  <SiteNav />
+
+  <!-- INTRO -->
+  <section data-reveal data-nav-dark class="relative isolate flex min-h-[88svh] items-end overflow-hidden bg-[#050b1f] text-white">
+    <img src={a.intro.image} alt="" fetchpriority="high" class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_65%]" />
+    <div aria-hidden="true" class="absolute inset-0 -z-10" style="background:linear-gradient(180deg,rgba(5,11,31,.7) 0%,rgba(5,11,31,.45) 40%,rgba(5,11,31,.88) 100%),radial-gradient(ellipse 70% 60% at 0% 100%,rgba(5,11,31,.75),transparent 70%)"></div>
+    <div class="container-x w-full pb-16 pt-40 lg:pb-24">
+      <span class:list={[eyebrow, 'text-white/75']}><span class="h-2 w-2 bg-white"></span>{a.intro.tag}</span>
+      <h1 class="mt-6 max-w-[14ch] font-display text-[clamp(2.8rem,7.4vw,7rem)] font-medium leading-[1] tracking-tight">{a.intro.title}</h1>
+      <p class="mt-7 max-w-xl text-[15px] leading-relaxed text-white/80 lg:text-lg">{a.intro.text}</p>
+    </div>
+  </section>
+
+  <main id="main" class="relative z-10 bg-white">
+    <!-- BELIEF (words darken as you scroll) -->
+    <section data-reveal class="py-28 lg:py-44">
+      <div class="container-x">
+        <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>{a.manifesto.tag}</span>
+        <p id="manifesto" data-no-reveal class="mt-10 max-w-[58rem] font-display text-[clamp(1.8rem,4.2vw,3.8rem)] font-medium leading-[1.14] tracking-tight text-neutral-950" data-text={a.manifesto.text}>{a.manifesto.text}</p>
+      </div>
+    </section>
+
+    <!-- JOURNEY: full-screen pinned stage -->
+    <section data-reveal class="bg-[#0b0d12] pt-24 text-white lg:pt-36">
+      <div class="container-x">
+        <span class:list={[eyebrow, 'text-white/70']}><span class="h-2 w-2 bg-white"></span>{a.journey.tag}</span>
+        <div class="mt-6 grid items-end gap-6 lg:grid-cols-2 lg:gap-16">
+          <h2 class="max-w-[14ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] font-medium leading-[1.02] tracking-tight">{a.journey.title}</h2>
+          <p class="max-w-md text-[15px] leading-relaxed text-white/50 lg:pb-2">{a.journey.text}</p>
+        </div>
+      </div>
+
+      <!-- desktop: the whole screen changes with each milestone -->
+      <div id="jt-track" class="mt-12 lg:mt-24" style={`height:calc(100svh * ${1 + (a.journey.steps.length - 1) * 0.75})`}>
+        <div id="jt-sticky" data-nav-dark class="sticky top-0 h-[100svh] overflow-hidden bg-[#050b1f]">
+          {a.journey.steps.map((s, i) => (
+            <figure data-i={i} class:list={['jt-img absolute inset-0', i === 0 && 'is-on']}>
+              <img src={s.image} alt="" loading={i === 0 ? 'eager' : 'lazy'} class="h-full w-full object-cover" />
+            </figure>
+          ))}
+          <div aria-hidden="true" class="absolute inset-0 z-10" style="background:linear-gradient(180deg,rgba(5,11,31,.55) 0%,rgba(5,11,31,.1) 30%,rgba(5,11,31,.55) 65%,rgba(5,11,31,.9) 100%),linear-gradient(90deg,rgba(5,11,31,.7) 0%,rgba(5,11,31,0) 65%)"></div>
+          <div class="container-x absolute inset-x-0 bottom-0 z-20 flex h-full flex-col justify-end pb-9 pt-28">
+            <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
+              <div class="relative h-[1.02em] w-full min-w-0 flex-none font-display text-[clamp(3.6rem,19vw,5rem)] lg:flex-1 lg:text-[clamp(4.5rem,13vw,12rem)] font-medium leading-none tracking-tighter">
+                {a.journey.steps.map((s, i) => (
+                  <div data-i={i} class:list={['jt-y absolute bottom-0 left-0 flex overflow-hidden whitespace-nowrap pb-[0.04em]', i === 0 && 'is-on']} aria-label={s.year}>
+                    {s.year.split('').map((ch, k) => <span class="jt-c inline-block" style={`--k:${k}`}>{ch}</span>)}
+                  </div>
+                ))}
+              </div>
+              <div class="relative h-[11.5rem] w-full shrink-0 lg:mb-3 lg:h-[13rem] lg:w-[22rem]">
+                {a.journey.steps.map((s, i) => (
+                  <div data-i={i} class:list={['jt-txt absolute inset-x-0 bottom-0', i === 0 && 'is-on']}>
+                    <h3 class="font-display text-[1.7rem] font-medium leading-tight tracking-tight">{s.title}</h3>
+                    <p class="mt-3 text-[14px] leading-relaxed text-white/75">{s.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="relative mt-6 flex items-start justify-between lg:mt-9">
+              <span class="absolute left-[6px] right-[6px] top-[6px] h-px bg-white/25"><span id="jt-fill" class="block h-full w-full origin-left bg-white" style="transform:scaleX(0);transition:transform 1s cubic-bezier(.4,0,.2,1)"></span></span>
+              {a.journey.steps.map((s, i) => (
+                <button type="button" data-i={i} class:list={['jt-item relative flex flex-col items-start gap-2 text-left', i === 0 && 'is-on']}>
+                  <span class="jt-dot relative h-[13px] w-[13px] rounded-sm border border-white/70 bg-[#050b1f]"></span>
+                  <span class="font-display text-[12px] font-semibold uppercase tracking-[0.16em]">{s.year}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- OUR VALUES: four icon columns that light up in turn (and on hover) -->
+    <section data-reveal class="py-24 lg:py-36">
+      <div class="container-x">
+        <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>{a.principles.tag}</span>
+        <h2 class="mt-6 max-w-[14ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">{a.principles.title}</h2>
+        <div id="vals" class="mt-14 grid grid-cols-2 border-y border-neutral-300 lg:mt-24 lg:grid-cols-4">
+          {a.principles.items.map((p, i) => (
+            <div data-i={i} class:list={['val-col relative px-1 py-9 lg:px-8 lg:py-14', i > 0 && 'lg:border-l lg:border-neutral-300', i % 2 === 1 && 'border-l border-neutral-300 pl-5 lg:pl-8', i > 1 && 'border-t border-neutral-300 lg:border-t-0', i === 0 && 'is-on lg:pl-0', i === 2 && 'max-lg:border-l-0 max-lg:pl-1']}>
+              <div class="flex items-start justify-between">
+                <span class="val-ic grid h-[4.5rem] w-[4.5rem] place-items-center rounded-lg border border-neutral-300 text-brand lg:h-[5.5rem] lg:w-[5.5rem]"><Icon name={p.icon} size={36} /></span>
+                <span class="font-display text-[12px] font-semibold tabular-nums tracking-wider text-neutral-400">{String(i + 1).padStart(2, '0')}</span>
+              </div>
+              <h3 class="val-name mt-10 font-display text-[clamp(1.5rem,2.3vw,2.2rem)] font-medium leading-none tracking-tight text-neutral-950 lg:mt-14">{p.title}</h3>
+              <p class="mt-4 max-w-[16rem] text-[14px] leading-relaxed text-neutral-600 lg:text-[15px]">{p.text}</p>
+              <span class="val-line absolute bottom-0 left-0 right-0 h-[2px] origin-left bg-brand"></span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- IN THE FIELD (photo mosaic) -->
+    <div aria-hidden="true" class="overflow-hidden border-y border-neutral-300 bg-white py-5 lg:hidden"><div data-drift class="flex w-max whitespace-nowrap font-display text-[clamp(2.6rem,13vw,4rem)] font-medium uppercase leading-none tracking-tight text-transparent [-webkit-text-stroke:1.2px_#0f2063]"><span>Since 1996 &nbsp;/&nbsp; Established 2005 &nbsp;/&nbsp; Petaling Jaya &nbsp;/&nbsp; Since 1996 &nbsp;/&nbsp; Established 2005 &nbsp;/&nbsp; Petaling Jaya &nbsp;/&nbsp; </span></div></div>
+    <section data-reveal class="bg-[#eceff3] py-24 lg:py-36">
+      <div class="container-x">
+        <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>{a.gallery.tag}</span>
+        <h2 class="mt-6 max-w-[14ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">{a.gallery.title}</h2>
+        <div class="gal mt-14 grid auto-rows-[12rem] grid-cols-2 gap-3 lg:mt-20 lg:auto-rows-[15rem] lg:grid-cols-4 lg:gap-4">
+          {a.gallery.images.map((g) => (
+            <figure class:list={['group relative overflow-hidden rounded-xl bg-neutral-200', g.span]}>
+              <img src={g.src} alt={g.alt} loading="lazy" class="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05]" />
+              <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#050b1f]/80 to-transparent px-4 pb-3 pt-10 font-display text-[12px] font-medium text-white opacity-0 transition-opacity duration-500 group-hover:opacity-100">{g.alt}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PEOPLE -->
+    <section data-reveal class="py-24 lg:py-36">
+      <div class="container-x">
+        <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>{a.team.tag}</span>
+        <div class="mt-6 grid items-end gap-6 lg:grid-cols-2 lg:gap-16">
+          <h2 class="max-w-[14ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">{a.team.title}</h2>
+          <p class="max-w-md text-[15px] leading-relaxed text-neutral-600 lg:pb-2">{a.team.text}</p>
+        </div>
+        <div class="mt-14 grid grid-cols-2 items-start gap-x-4 gap-y-10 lg:mt-20 lg:grid-cols-4 lg:gap-x-6">
+          {a.team.people.map((p) => (
+            <div class="group">
+              <div class="relative aspect-[4/5] overflow-hidden rounded-xl bg-[#e9ecf4]">
+                {p.photo
+                  ? <img src={p.photo} alt={p.name} loading="lazy" class="h-full w-full object-cover object-[50%_20%] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]" />
+                  : <div class="grid h-full w-full place-items-center bg-[linear-gradient(160deg,#eef1f8,#dfe4f0)] text-neutral-400"><Icon name="users" size={44} /></div>}
+              </div>
+              <div class="mt-4 font-display text-[1.1rem] font-medium leading-tight text-neutral-950">{p.name}</div>
+              <div class="mt-1 text-[11px] font-semibold uppercase leading-[1.45] tracking-[0.14em] text-brand lg:min-h-[2.9em]">{p.role}</div>
+              <div class="mt-1 min-h-[1.25rem] font-display text-[13px] font-medium text-neutral-800">{p.company}</div>
+              <p class="mt-3 max-w-[16rem] whitespace-pre-line text-[13px] leading-relaxed text-neutral-600">{p.bio}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- START TO FINISH -->
+    <section data-reveal class="bg-[#eceff3] py-24 lg:py-36">
+      <div class="container-x">
+        <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>{a.process.tag}</span>
+        <h2 class="mt-6 max-w-[16ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">{a.process.title}</h2>
+        <div class="mt-14 grid border-y border-neutral-300 sm:grid-cols-2 lg:mt-24 lg:grid-cols-5">
+          {a.process.steps.map((s, i) => (
+            <div class:list={['group px-1 py-8 transition-colors duration-500 hover:bg-white lg:px-6 lg:py-12', i > 0 && 'border-t border-neutral-300 sm:border-t-0 lg:border-l lg:border-neutral-300', i % 2 === 1 && 'sm:border-l sm:border-neutral-300', i > 1 && 'sm:border-t', i === 0 && 'lg:pl-0']}>
+              <span class="font-display text-[12px] font-semibold tabular-nums tracking-wider text-neutral-400 transition-colors group-hover:text-brand">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="mt-8 font-display text-[1.5rem] font-medium leading-none tracking-tight text-neutral-950">{s.title}</h3>
+              <p class="mt-3 max-w-[14rem] text-[14px] leading-relaxed text-neutral-600">{s.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- DRIVE WITH US (drivers only; partners are covered by the closing call to action) -->
+    <section data-reveal class="py-24 lg:py-36">
+      <div class="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-24">
+        <div>
+          <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>{a.drive.tag}</span>
+          <h2 class="mt-6 max-w-[11ch] font-display text-[clamp(2.4rem,5vw,4.6rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">{a.drive.title}</h2>
+          <p class="mt-6 max-w-md text-[15px] leading-relaxed text-neutral-600 lg:text-base">{a.drive.text}</p>
+          <a href="/join-our-network#drivers" data-cta="about-driver" class="btn btn-brand group/btn mt-9">{a.drive.cta} <span class="transition-transform duration-300 group-hover/btn:translate-x-1"><Icon name="arrow" size={18} /></span></a>
+        </div>
+        <figure class="overflow-hidden rounded-xl bg-[#0a1748]">
+          <img src={a.drive.image} alt="" loading="lazy" class="aspect-[5/4] w-full object-cover" />
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <SiteClosing />
+  <QuoteDialog />
+
+  <script is:inline>
+    (function () {
+      var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      // Belief: words go from grey to black as the paragraph moves up the screen
+      var p = document.getElementById('manifesto');
+      if (p) {
+        var words = p.getAttribute('data-text').trim().split(/\s+/);
+        p.innerHTML = words.map(function (w) { return '<span class="mf-w">' + w + '</span>'; }).join(' ');
+        var ws = [].slice.call(p.querySelectorAll('.mf-w')), tk = false;
+        var paint = function () {
+          tk = false;
+          if (reduce) { ws.forEach(function (w) { w.style.color = '#0a0a0c'; }); return; }
+          var r = p.getBoundingClientRect(), vh = innerHeight;
+          var t = Math.min(1, Math.max(0, (vh * 0.82 - r.top) / (vh * 0.5 + r.height * 0.55)));
+          for (var i = 0; i < ws.length; i++) {
+            var q = Math.min(1, Math.max(0, t * (ws.length + 6) - i));
+            var c = Math.round(205 - q * 195);
+            ws[i].style.color = 'rgb(' + c + ',' + c + ',' + Math.min(255, c + 2) + ')';
+          }
+        };
+        addEventListener('scroll', function () { if (!tk) { tk = true; requestAnimationFrame(paint); } }, { passive: true });
+        addEventListener('resize', paint); paint();
+      }
+      // Values: the columns light up one after another; hovering takes over
+      var vals = document.getElementById('vals');
+      if (vals) {
+        var vc = [].slice.call(vals.querySelectorAll('.val-col')), vcur = 0, vhover = false, vvis = false, vtimer = null;
+        var vset = function (i) { vcur = i; vc.forEach(function (c, k) { c.classList.toggle('is-on', k === i); }); };
+        var vplay = function () { if (reduce || vtimer) return; vtimer = setInterval(function () { if (!vhover && vvis) vset((vcur + 1) % vc.length); }, 2600); };
+        vc.forEach(function (c, k) {
+          c.addEventListener('mouseenter', function () { vhover = true; vset(k); });
+          c.addEventListener('click', function () { vset(k); });
+        });
+        vals.addEventListener('mouseleave', function () { vhover = false; });
+        new IntersectionObserver(function (es) { vvis = es[0].isIntersecting; }, { threshold: 0.35 }).observe(vals);
+        vplay();
+      }
+      // Journey: full-screen pinned stage, the milestone follows scroll position
+      var track = document.getElementById('jt-track');
+      if (track) {
+        var items = [].slice.call(track.querySelectorAll('.jt-item')), imgs = [].slice.call(track.querySelectorAll('.jt-img')), txts = [].slice.call(track.querySelectorAll('.jt-txt')), yrs = [].slice.call(track.querySelectorAll('.jt-y'));
+        var fill = document.getElementById('jt-fill'), sticky = document.getElementById('jt-sticky'), n = items.length, cur = 0, tk2 = false, wasT;
+        var show = function (i) {
+          if (i === cur) return;
+          var prev = cur; cur = i;
+          items.forEach(function (it, k) { it.classList.toggle('is-on', k <= i); it.classList.toggle('is-cur', k === i); });
+          txts.forEach(function (t, k) { t.classList.toggle('is-on', k === i); });
+          imgs.forEach(function (im) { im.classList.remove('was-on'); });
+          imgs[prev].classList.add('was-on'); imgs[prev].classList.remove('is-on');
+          imgs[i].classList.add('is-on');
+          yrs.forEach(function (y) { y.classList.remove('was-off'); });
+          yrs[prev].classList.remove('is-on'); yrs[prev].classList.add('was-off'); yrs[i].classList.add('is-on');
+          clearTimeout(wasT); wasT = setTimeout(function () { imgs.forEach(function (im) { im.classList.remove('was-on'); }); yrs.forEach(function (y) { y.classList.remove('was-off'); }); }, 1500);
+          if (fill) fill.style.transform = 'scaleX(' + (i / (n - 1)) + ')';
+        };
+        items[0].classList.add('is-cur');
+        var span = function () { return Math.max(1, track.offsetHeight - sticky.offsetHeight); };
+        var sync = function () {
+          tk2 = false;
+          var p = Math.min(0.9999, Math.max(0, -track.getBoundingClientRect().top / span()));
+          show(Math.floor(p * n));
+        };
+        addEventListener('scroll', function () { if (!tk2) { tk2 = true; requestAnimationFrame(sync); } }, { passive: true });
+        addEventListener('resize', sync); sync();
+        items.forEach(function (it, i) {
+          it.addEventListener('click', function () {
+            var y = track.getBoundingClientRect().top + scrollY + ((i + 0.5) / n) * span();
+            if (window.__lenis) window.__lenis.scrollTo(y, { duration: 1.4 }); else scrollTo({ top: y, behavior: 'smooth' });
+          });
+        });
+      }
+    })();
+  </script>
+</Base>

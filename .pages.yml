@@ -1,0 +1,79 @@
+media:
+  - name: images
+    input: public/images
+    output: /images
+  - name: videos
+    input: public/videos
+    output: /videos
+    extensions: [mp4, webm]
+content:
+  - name: fleetpage
+    label: Our fleet (page)
+    type: file
+    path: src/data/fleet.json
+    format: json
+    fields:
+      - { name: seo, label: Search / share text, type: object, fields: [ {name: title, type: string}, {name: description, type: text} ] }
+      - { name: intro, label: Top banner, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: image, type: image} ] }
+      - { name: glance, label: Vehicles at a glance, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: help, type: string}, {name: helpText, type: string} ] }
+      - { name: helper, label: What are you moving, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: empty, type: string}, {name: suggest, type: string} ] }
+      - { name: groups, label: Vehicle groups, type: object, list: true, fields: [ {name: id, type: string}, {name: label, type: string}, {name: note, type: string}, {name: items, type: object, list: true, fields: [ {name: id, type: string}, {name: name, type: string}, {name: what, label: What it is (plain words), type: text}, {name: good, label: Good for, type: string, list: true}, {name: capValue, label: Carries (big text), type: string}, {name: capSub, label: Carries (small text), type: string}, {name: short, label: Big outlined word, type: string}, {name: image, type: image} ]} ] }
+      - { name: network, label: Own trucks and partners, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: cards, type: object, list: true, fields: [ {name: title, type: string}, {name: text, type: text} ]} ] }
+      - { name: tell, label: What to tell us, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: cta, type: string}, {name: items, type: object, list: true, fields: [ {name: title, type: string}, {name: text, type: text} ]} ] }
+  - name: network
+    label: Join our network (page)
+    type: file
+    path: src/data/network.json
+    format: json
+    fields:
+      - { name: seo, label: Search / share text, type: object, fields: [ {name: title, type: string}, {name: description, type: text} ] }
+      - { name: intro, label: Top banner, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: image, type: image} ] }
+      - { name: drivers, label: Driver careers, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: lookTitle, type: string}, {name: look, type: string, list: true}, {name: stepsTitle, type: string}, {name: steps, type: object, list: true, fields: [ {name: title, type: string}, {name: text, type: string} ]} ] }
+      - { name: partners, label: Transport partnerships, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: whoTitle, type: string}, {name: who, type: object, list: true, fields: [ {name: title, type: string}, {name: text, type: string}, {name: icon, type: select, options: {values: [truck, box, flow, road, users]}} ]}, {name: gainTitle, type: string}, {name: gain, type: string, list: true} ] }
+
+  - name: whatwedo
+    label: What we do (page)
+    type: file
+    path: src/data/services.json
+    format: json
+    fields:
+      - { name: seo, label: Search / share text, type: object, fields: [ {name: title, type: string}, {name: description, type: text} ] }
+      - { name: intro, label: Top banner, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: image, type: image} ] }
+      - { name: solutions, label: The four solutions, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: cta, type: string}, {name: items, type: object, list: true, fields: [ {name: title, type: string}, {name: tagline, type: string}, {name: text, type: text}, {name: points, type: string, list: true}, {name: image, type: image}, {name: icon, type: select, options: {values: [road, box, music, crane, truck, flow, wrench, snow, lift]}} ]} ] }
+      - { name: industries, label: Who we move for, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: items, type: object, list: true, fields: [ {name: title, type: string}, {name: text, type: string}, {name: icon, type: select, options: {values: [box, store, factory, music, truck, users]}} ]} ] }
+      - { name: engage, label: Ways to work with us, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: cta, type: string}, {name: items, type: object, list: true, fields: [ {name: title, type: string}, {name: text, type: text}, {name: icon, type: select, options: {values: [flow, truck, pin, box, clock]}} ]} ] }
+  - name: about
+    label: Who we are (page)
+    type: file
+    path: src/data/about.json
+    format: json
+    fields:
+      - { name: seo, label: Search / share text, type: object, fields: [ {name: title, type: string}, {name: description, type: text} ] }
+      - { name: intro, label: Top banner, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: image, type: image} ] }
+      - { name: manifesto, label: What we believe, type: object, fields: [ {name: tag, type: string}, {name: text, type: text} ] }
+      - { name: journey, label: Our journey, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: steps, type: object, list: true, fields: [ {name: year, type: string}, {name: title, type: string}, {name: text, type: text}, {name: image, type: image} ]} ] }
+      - { name: principles, label: How we operate, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: items, type: object, list: true, fields: [ {name: title, type: string}, {name: text, type: text}, {name: image, type: image} ]} ] }
+      - { name: gallery, label: In the field, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: images, type: object, list: true, fields: [ {name: src, type: image}, {name: alt, type: string} ]} ] }
+      - { name: team, label: The people, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: people, type: object, list: true, fields: [ {name: name, type: string}, {name: role, type: string}, {name: company, type: string}, {name: bio, type: text}, {name: photo, type: image} ]} ] }
+      - { name: process, label: Start to finish, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: steps, type: object, list: true, fields: [ {name: title, type: string}, {name: text, type: string} ]} ] }
+      - { name: drive, label: Careers banner, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: image, type: image}, {name: cta, type: string}, {name: waText, type: string} ] }
+  - name: home
+    label: Homepage
+    type: file
+    path: src/data/home.json
+    format: json
+    fields:
+      - { name: site, label: Site details, type: object, fields: [ {name: name, type: string}, {name: registration, type: string}, {name: tagline, type: string}, {name: logo, type: image}, {name: phone, type: string}, {name: phoneHref, type: string}, {name: email, type: string}, {name: address, type: string}, {name: profileUrl, label: Company profile PDF - upload to show the download link, type: file}, {name: profileLabel, type: string} ] }
+      - { name: hero, label: Hero, type: object, fields: [ {name: title, type: text}, {name: subtitle, type: text}, {name: eyebrow, type: string}, {name: ctaPrimary, label: Main button label, type: string}, {name: ctaSecondary, label: WhatsApp button label, type: string}, {name: waText, label: WhatsApp pre-filled message, type: string} ] }
+      - { name: nav, label: Navigation, type: object, list: true, fields: [ {name: label, type: string}, {name: href, type: string} ] }
+      - { name: about, label: Who we are, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: clientsTitle, type: string}, {name: clientsMore, label: Text after the logos, type: string}, {name: clients, label: Client logos, type: object, list: true, fields: [ {name: name, type: string}, {name: logo, type: image} ]}, {name: person, type: object, fields: [ {name: name, type: string}, {name: role, type: string}, {name: photo, type: image} ]}, {name: cta, type: string}, {name: ctaHref, type: string} ] }
+      - { name: marquee, label: Brand signature words, type: string, list: true }
+      - { name: services, label: What we do, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: cta, type: string}, {name: items, type: object, list: true, fields: [ {name: title, type: string}, {name: text, type: string}, {name: image, type: image}, {name: pos, label: Image focus (e.g. 70% 50%), type: string}, {name: icon, type: select, options: {values: [road, box, music, crane, truck, flow, wrench, users, snow, lift]}}, {name: flagship, type: boolean} ]} ] }
+      - { name: fleet, label: Fleet and network, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: listTitle, type: string}, {name: selectLabel, type: string}, {name: requestLabel, label: Request button text, type: string}, {name: vehicles, type: object, list: true, fields: [ {name: name, type: string}, {name: short, label: Big background word, type: string}, {name: use, label: One-line description, type: string}, {name: badge, type: string}, {name: image, label: Vehicle photo (replaces the icon), type: image}, {name: icon, label: Icon (used when no photo), type: select, options: {values: [truck, box, lift, road, crane, wrench, snow, flow]}} ]}, {name: more, type: object, fields: [ {name: title, type: string}, {name: text, type: string}, {name: cta, type: string} ]} ] }
+      - { name: coverage, label: Coverage section, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: bigNumber, label: Big number (digits only), type: string}, {name: bigSuffix, type: string}, {name: bigIntro, type: string}, {name: bigUnit, type: string}, {name: bigLabel, type: string}, {name: bigNote, type: string}, {name: regionsLabel, type: string}, {name: crossTag, label: Tag on Singapore / Thailand, type: string}, {name: regionGroups, label: Regions by area, type: object, list: true, fields: [ {name: label, type: string}, {name: items, type: string, list: true} ]}, {name: hqNote, type: string}, {name: crossLabel, type: string}, {name: credit, type: string}, {name: cta, type: string} ] }
+      - { name: float, label: Mobile floating buttons, type: object, fields: [ {name: whatsappLabel, type: string}, {name: callLabel, type: string}, {name: waText, type: string} ] }
+      - { name: stats, label: Key facts, type: object, list: true, fields: [ {name: value, type: string}, {name: suffix, type: string}, {name: label, type: string}, {name: count, label: Count up animation, type: boolean} ] }
+      - { name: record, label: Track record, type: object, fields: [ {name: tag, type: string}, {name: title, type: string}, {name: text, type: text}, {name: note, type: text}, {name: cta, type: string}, {name: ctaHref, type: string}, {name: image, type: image}, {name: listTitle, type: string}, {name: posters, label: Event posters - portrait works best, type: object, list: true, fields: [ {name: name, type: string}, {name: year, label: Year(s) shown on the poster, type: string}, {name: image, type: image} ]}, {name: moreText, type: string} ] }
+      - { name: quote, label: Quote form pop-up, type: object, fields: [ {name: title, type: string}, {name: text, type: text}, {name: waButton, type: string}, {name: mailButton, type: string}, {name: close, type: string}, {name: servicePlaceholder, type: string}, {name: note, type: string}, {name: labels, type: object, fields: [ {name: name, type: string}, {name: company, type: string}, {name: phone, type: string}, {name: service, type: string}, {name: from, type: string}, {name: to, type: string}, {name: details, type: string} ]} ] }
+      - { name: closing, label: Closing cards and footer, type: object, fields: [ {name: cards, type: object, list: true, fields: [ {name: label, type: string}, {name: icon, type: select, options: {values: [truck, users, box, flow, target, globe]}}, {name: title, type: string}, {name: text, type: text}, {name: cta, type: string}, {name: type, label: Button type - mail, wa (WhatsApp) or link, type: string}, {name: href, type: string}, {name: waText, label: WhatsApp pre-filled message, type: string} ]}, {name: tag, type: string}, {name: heading, type: string}, {name: sub, label: Text under the heading, type: text}, {name: question, type: string}, {name: callLabel, type: string}, {name: button, type: string}, {name: aboutTitle, type: string}, {name: careersLabel, type: string}, {name: careersWaText, label: Careers WhatsApp message, type: string}, {name: contactsTitle, type: string}, {name: companyTitle, type: string}, {name: servicesTitle, type: string}, {name: blurb, type: text}, {name: addressLabel, type: string}, {name: phoneLabel, type: string}, {name: emailLabel, type: string} ] }
+      - { name: footer, label: Footer small print, type: object, fields: [ {name: copyright, type: string}, {name: regLabel, type: string} ] }

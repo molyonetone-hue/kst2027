@@ -1,0 +1,102 @@
+---
+import d from '../data/home.json';
+import Icon from './Icon.astro';
+const { home = false } = Astro.props;
+const to = (h: string) => (h.startsWith('#') && h !== '#contact' && !home ? '/' + h : h);
+---
+  <!-- CLOSING CARDS + FOOTER -->
+  <div id="contact">
+    <section id="cta-sec" data-reveal class="relative isolate flex min-h-[80svh] items-center justify-center overflow-hidden bg-[#040b2c] text-white">
+      <img id="cta-img" src="/images/cta-fleet.webp" alt="" loading="lazy" class="absolute inset-x-0 top-[19%] -z-20 h-full w-full object-cover object-bottom brightness-[.85] saturate-[.9] [mask-image:linear-gradient(to_bottom,transparent,#000_22%)] will-change-transform" />
+      <div aria-hidden="true" class="absolute inset-0 -z-10" style="background:radial-gradient(ellipse 55% 42% at 50% 30%,rgba(4,9,30,.55),rgba(4,9,30,0) 100%),linear-gradient(180deg,rgba(4,9,30,.82) 0%,rgba(4,9,30,.6) 36%,rgba(4,9,30,.2) 62%,rgba(4,9,30,.45) 100%)"></div>
+      <div id="cta-body" class="container-x py-16 text-center will-change-transform">
+        <span class="inline-flex items-center gap-3 font-display text-[12px] font-semibold uppercase tracking-[0.24em] text-white/80"><span class="h-px w-8 bg-white/60"></span>{d.closing.tag}<span class="h-px w-8 bg-white/60"></span></span>
+        <h2 class="mx-auto mt-6 max-w-[16ch] font-display text-[clamp(2.6rem,5.4vw,5rem)] font-medium leading-[1.02] tracking-tight">{d.closing.heading}</h2>
+        <p class="mx-auto mt-4 max-w-xl text-[15px] leading-relaxed text-white/80 lg:text-base">{d.closing.sub}</p>
+        <div class="mx-auto mt-7 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          {d.closing.cards.map((c, i) => (
+            <div class="flex flex-col items-center">
+              <a href={c.type === 'mail' ? `mailto:${d.site.email}?subject=Logistics%20enquiry` : c.type === 'wa' ? `https://wa.me/${d.site.phoneHref.replace('+', '')}?text=${encodeURIComponent(c.waText)}` : c.href} data-quote={c.type === 'mail' ? '' : undefined} data-cta={c.type === 'wa' ? 'cta-whatsapp' : c.type === 'mail' ? 'cta-corporate' : 'cta-subcontractor'} target={c.type === 'wa' ? '_blank' : undefined} rel={c.type === 'wa' ? 'noopener' : undefined} class:list={['btn group/btn', i === 0 ? 'bg-white text-neutral-950 shadow-[0_18px_40px_-16px_rgba(0,0,0,.7)] hover:bg-neutral-200' : 'border border-white/70 bg-[#040b2c]/75 text-white backdrop-blur-sm hover:bg-white hover:text-neutral-950']}>
+                <span>{c.cta}</span>
+                <span class="transition-transform duration-300 group-hover/btn:translate-x-1"><Icon name="arrow" size={18} /></span>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-reveal relative bg-[#050b1f] pb-24 pt-20 text-white/75 lg:flex lg:flex-col lg:justify-center lg:pb-8 lg:pt-24">
+      <div class="container-x w-full">
+        <div class="flex flex-wrap items-center justify-between gap-6">
+          <div>
+            <div class="font-display text-3xl font-semibold leading-tight text-white lg:text-5xl">{d.closing.question}</div>
+            <div class="mt-2 font-display text-xl text-white/80 lg:text-3xl">{d.closing.callLabel} <a href={`tel:${d.site.phoneHref}`} class="text-[#6f9bff] transition-colors hover:text-white">{d.site.phone}</a></div>
+          </div>
+          <a href={`mailto:${d.site.email}`} data-quote data-cta="footer-contact" class="btn group/btn bg-white text-black hover:bg-white/90">{d.closing.button} <span class="transition-transform duration-300 group-hover/btn:translate-x-1"><Icon name="arrow" size={18} /></span></a>
+        </div>
+
+        <div class="mt-12 grid gap-x-10 gap-y-10 border-t border-white/15 pt-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:pt-14">
+          <div>
+            <a href="/" aria-label={d.site.name} class="flex h-9 items-center"><img src={d.site.logo} alt={d.site.name} class="h-9 w-auto" /></a>
+            <p class="mt-4 max-w-[17rem] text-[15px] leading-relaxed">{d.closing.blurb}</p>
+            <p class="mt-4 font-display text-xs font-semibold uppercase tracking-[0.2em] text-[#6f9bff]">{d.site.tagline}</p>
+          </div>
+          <div>
+            <h4 class="flex h-9 items-center font-display text-xs font-semibold uppercase tracking-[0.2em] text-white">{d.closing.companyTitle}</h4>
+            <ul class="mt-4 grid gap-3 text-[15px]">{d.nav.filter((n) => n.href !== '/').map((n) => <li><a href={to(n.href)} class="transition-colors hover:text-white">{n.label}</a></li>)}<li><a href="/join-our-network#drivers" data-cta="footer-careers" class="transition-colors hover:text-white">{d.closing.careersLabel}</a></li></ul>
+          </div>
+          <div>
+            <h4 class="flex h-9 items-center font-display text-xs font-semibold uppercase tracking-[0.2em] text-white">{d.closing.servicesTitle}</h4>
+            <ul class="mt-4 grid gap-3 text-[15px]">{d.services.items.map((sv) => <li><a href="/what-we-do" class="transition-colors hover:text-white">{sv.title}</a></li>)}</ul>
+          </div>
+          <div>
+            <h4 class="flex h-9 items-center font-display text-xs font-semibold uppercase tracking-[0.2em] text-white">{d.closing.contactsTitle}</h4>
+            <ul class="mt-4 grid gap-3.5 text-[15px]">
+              <li class="flex items-start gap-3"><span class="mt-0.5 shrink-0 text-[#6f9bff]"><Icon name="pin" size={18} /></span><span class="leading-relaxed">{d.site.address}</span></li>
+              <li class="flex items-center gap-3"><span class="shrink-0 text-[#6f9bff]"><Icon name="phone" size={18} /></span><a href={`tel:${d.site.phoneHref}`} class="transition-colors hover:text-white">{d.site.phone}</a></li>
+              <li class="flex items-center gap-3"><span class="shrink-0 text-[#6f9bff]"><Icon name="mail" size={18} /></span><a href={`mailto:${d.site.email}`} class="break-all transition-colors hover:text-white">{d.site.email}</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-white/15 pt-6 text-sm text-white/50">
+          <span>{d.footer.copyright}</span>
+          <span class="flex flex-wrap items-center gap-x-5 gap-y-1"><a href="/privacy" class="transition-colors hover:text-white">Privacy &amp; terms</a><span>{d.footer.regLabel} {d.site.registration}</span></span>
+        </div>
+      </div>
+    </footer>
+    <div class="footer-spacer" aria-hidden="true"></div>
+    <script is:inline>
+      (function () {
+        // Once the footer area is on screen, lift it above the page so its links can be clicked
+        var sp = document.querySelector('.footer-spacer');
+        if (sp && 'IntersectionObserver' in window) new IntersectionObserver(function (es) { document.documentElement.classList.toggle('footer-live', es[0].isIntersecting); }).observe(sp);
+        var sec = document.getElementById('cta-sec'), img = document.getElementById('cta-img'), body = document.getElementById('cta-body');
+        if (!sec || !img || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var tk = false;
+        function run() {
+          tk = false;
+          var r = sec.getBoundingClientRect(), vh = innerHeight;
+          var inP = Math.min(1, Math.max(0, (vh - r.top) / vh));
+          var outP = Math.min(1, Math.max(0, -r.top / vh));
+          var e = 1 - Math.pow(1 - inP, 3);
+          img.style.transform = 'translate3d(0,' + (-outP * 6).toFixed(2) + '%,0) scale(' + (1.18 - 0.18 * e).toFixed(4) + ')';
+          body.style.transform = 'translate3d(0,' + (-outP * 40).toFixed(1) + 'px,0)';
+        }
+        var fbody = document.querySelector('.footer-reveal > .container-x');
+        function foot() {
+          if (!fbody) return;
+          var amp = innerWidth < 1024 ? 36 : 56;
+          var p = Math.min(1, Math.max(0, 1 - sec.getBoundingClientRect().bottom / innerHeight));
+          var e = 1 - Math.pow(1 - p, 2);
+          fbody.style.transform = 'translate3d(0,' + ((1 - e) * amp).toFixed(1) + 'px,0)';
+        }
+        addEventListener('scroll', function () { if (!tk) { tk = true; requestAnimationFrame(function () { run(); foot(); }); } }, { passive: true });
+        addEventListener('resize', function () { run(); foot(); }); run(); foot();
+      })();
+    </script>
+  </div>
+
+
+

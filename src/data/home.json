@@ -1,0 +1,474 @@
+{
+  "site": {
+    "name": "Kasi Transport",
+    "registration": "003484520-D",
+    "tagline": "North . South . East . West",
+    "phone": "+60 14-233 7977",
+    "phoneHref": "+60142337977",
+    "email": "info@kasitransport.com.my",
+    "address": "No. 237, Jalan Medan 15, Taman Medan, 46000 Petaling Jaya, Selangor",
+    "logo": "/images/logo.webp",
+    "profileUrl": "",
+    "profileLabel": "Download company profile"
+  },
+  "nav": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "About Us",
+      "href": "/about"
+    },
+    {
+      "label": "Services",
+      "href": "/what-we-do"
+    },
+    {
+      "label": "Our Trucks",
+      "href": "/fleet"
+    },
+    {
+      "label": "Drivers & Partners",
+      "href": "/join-our-network"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    },
+    {
+      "label": "WhatsApp Us",
+      "href": "#contact"
+    }
+  ],
+  "hero": {
+    "title": "30 Years of Keeping\nBusinesses Moving.",
+    "subtitle": "Scheduled linehaul, commercial transport and event logistics across\nPeninsular Malaysia, Singapore and Thailand.",
+    "eyebrow": "Transport Roots Since 1996",
+    "ctaPrimary": "WhatsApp us",
+    "ctaSecondary": "Request a quote",
+    "waText": "Hi Kasi Transport, I'd like to enquire about your transport services.",
+    "image": "/images/hero-bg-prev.jpg",
+    "video": "",
+    "videoMobile": ""
+  },
+  "about": {
+    "tag": "Based in Petaling Jaya",
+    "title": "Moving Businesses Forward.",
+    "text": "Kasi Transport’s roots go back to 1996, and the business was established in 2005. Today we support businesses that need road transport for regular routes, individual deliveries and live productions.",
+    "clientsTitle": "Trusted by businesses we move for",
+    "clients": [
+      {
+        "name": "Hitman",
+        "logo": "/images/clients/hitman.webp"
+      },
+      {
+        "name": "D8 Projects",
+        "logo": "/images/clients/d8.webp"
+      },
+      {
+        "name": "PFK Production",
+        "logo": "/images/clients/pfk.webp"
+      }
+    ],
+    "person": {
+      "name": "Anbu Arasu Kasirajan",
+      "role": "Managing Director",
+      "photo": "/images/md-anbu.webp"
+    },
+    "cta": "About Us",
+    "ctaHref": "/about",
+    "clientsMore": "& many more"
+  },
+  "marquee": [
+    "Linehaul",
+    "Commercial Transport",
+    "Event Logistics",
+    "Specialised Transport"
+  ],
+  "services": {
+    "tag": "What We Do",
+    "title": "Transport Solutions for Your Business",
+    "items": [
+      {
+        "title": "Linehaul & Contract Logistics",
+        "text": "Scheduled hub-to-hub transfers and recurring transport.",
+        "flagship": true,
+        "image": "/images/svc-linehaul.jpg",
+        "pos": "42% 50%",
+        "icon": "road"
+      },
+      {
+        "title": "Commercial Transportation",
+        "text": "Cargo deliveries and stock movements between business locations.",
+        "image": "/images/svc-commercial.jpg",
+        "pos": "62% 50%",
+        "icon": "box"
+      },
+      {
+        "title": "Event & Production Logistics",
+        "text": "Equipment transport planned around venue access and production schedules.",
+        "image": "/images/svc-events.jpg",
+        "pos": "38% 50%",
+        "icon": "music"
+      },
+      {
+        "title": "Specialised Transportation",
+        "text": "Transport enquiries for loads with specific vehicle or handling needs.",
+        "image": "/images/svc-specialised.jpg",
+        "pos": "55% 50%",
+        "icon": "crane"
+      }
+    ],
+    "text": "From scheduled linehaul to live production logistics, we move cargo and equipment across Peninsular Malaysia.",
+    "cta": "See All Services"
+  },
+  "fleet": {
+    "tag": "Fleet & Network",
+    "title": "Our Fleet",
+    "text": "We use our own trucks and work with independent transport partners. Tell us what you need to move, where it is going and when, and we will suggest the right vehicle.",
+    "more": {
+      "title": "Not sure which fits?",
+      "text": "Tell us what you’re moving and where.",
+      "cta": "Ask our team"
+    },
+    "vehicles": [
+      {
+        "name": "1-tonne truck",
+        "badge": "Light",
+        "icon": "truck",
+        "image": "/images/fleet/1-tonne.webp",
+        "short": "1-TONNE",
+        "use": "Urgent runs, parcels and light business deliveries."
+      },
+      {
+        "name": "3-tonne truck",
+        "badge": "Light",
+        "icon": "truck",
+        "image": "/images/fleet/3-tonne.webp",
+        "short": "3-TONNE",
+        "use": "Small pallet loads, retail stock and short routes."
+      },
+      {
+        "name": "5-tonne truck",
+        "badge": "Medium",
+        "icon": "truck",
+        "image": "/images/fleet/5-tonne.webp",
+        "short": "5-TONNE",
+        "use": "Regular pallet deliveries and distribution runs."
+      },
+      {
+        "name": "10-tonne truck",
+        "badge": "Heavy",
+        "icon": "truck",
+        "image": "/images/fleet/10-tonne.webp",
+        "short": "10-TONNE",
+        "use": "Larger pallet loads, factory transfers and linehaul."
+      },
+      {
+        "name": "Box truck",
+        "badge": "Enclosed",
+        "icon": "box",
+        "image": "/images/fleet/box-truck.webp",
+        "short": "BOX",
+        "use": "Enclosed, weather-protected cargo and stock."
+      },
+      {
+        "name": "Curtain-sided truck",
+        "badge": "Side-loading",
+        "icon": "truck",
+        "image": "/images/fleet/curtain-sided.webp",
+        "short": "CURTAIN",
+        "use": "Side-loading pallets and production equipment."
+      },
+      {
+        "name": "Tail-lift truck",
+        "badge": "Tail-lift",
+        "icon": "lift",
+        "image": "/images/fleet/tail-lift.webp",
+        "short": "TAIL-LIFT",
+        "use": "Heavy items loaded without a loading dock."
+      },
+      {
+        "name": "40-foot prime mover",
+        "badge": "Long-haul",
+        "icon": "road",
+        "image": "/images/fleet/prime-mover.webp",
+        "short": "PRIME MOVER",
+        "use": "Trailer and container movements, long-haul linehaul."
+      },
+      {
+        "name": "Crane truck",
+        "badge": "Lifting",
+        "icon": "crane",
+        "image": "/images/fleet/crane-truck.webp",
+        "short": "CRANE",
+        "use": "Lifting and placing equipment on site."
+      },
+      {
+        "name": "Towing & vehicle carrier",
+        "badge": "Vehicles",
+        "icon": "wrench",
+        "image": "/images/fleet/towing.webp",
+        "short": "TOWING",
+        "use": "Moving and recovering vehicles."
+      },
+      {
+        "name": "Refrigerated truck",
+        "badge": "Cold chain",
+        "icon": "snow",
+        "image": "/images/fleet/refrigerated.webp",
+        "short": "COLD CHAIN",
+        "use": "Chilled and frozen goods that must stay cold."
+      }
+    ],
+    "listTitle": "Vehicles you can send",
+    "selectLabel": "Select a vehicle",
+    "requestLabel": "Request this truck",
+    "moreCta": "See the full fleet"
+  },
+  "stats": [
+    {
+      "value": 20,
+      "suffix": "+",
+      "label": "Company-operated trucks",
+      "count": true
+    },
+    {
+      "value": 1500,
+      "suffix": "+",
+      "label": "Trips per month",
+      "count": true
+    },
+    {
+      "value": 13,
+      "suffix": "",
+      "label": "Peninsular regions covered",
+      "count": true
+    },
+    {
+      "value": "1996",
+      "suffix": "",
+      "label": "Transport roots since",
+      "count": false
+    }
+  ],
+  "record": {
+    "tag": "Our Track Record",
+    "title": "Behind the Movement",
+    "text": "Explore our experience in commercial linehaul and equipment transport for live events and productions.",
+    "note": "Supporting parcel distribution and commercial linehaul operations.",
+    "image": "/images/record-bg.jpg",
+    "listTitle": "A selection of productions we’ve supported",
+    "moreText": "…and many more.",
+    "posters": [
+      {
+        "name": "Coldplay — Music of the Spheres Live in Malaysia",
+        "year": "2023",
+        "image": "/images/posters/coldplay-2023.webp"
+      },
+      {
+        "name": "BLACKPINK — Born Pink Tour Live in Malaysia",
+        "year": "2023",
+        "image": "/images/posters/blackpink-2023.webp"
+      },
+      {
+        "name": "A.R. Rahman Live in Malaysia",
+        "year": "2023",
+        "image": "/images/posters/ar-rahman-2023.webp"
+      },
+      {
+        "name": "A.R. Rahman Live in Malaysia",
+        "year": "2024",
+        "image": "/images/posters/ar-rahman-2024.webp"
+      },
+      {
+        "name": "Arijit Singh Live in Malaysia",
+        "year": "2024",
+        "image": "/images/posters/arijit-singh.webp"
+      },
+      {
+        "name": "Yuvan Live in Malaysia",
+        "year": "2026",
+        "image": "/images/posters/yuvan-2026.webp"
+      },
+      {
+        "name": "Jana Nayagan Audio Launch and Concert",
+        "year": "2025",
+        "image": "/images/posters/jana-nayagan.webp"
+      },
+      {
+        "name": "Hearts of Harris 1.0 – 5.0",
+        "year": "",
+        "image": "/images/posters/hearts-of-harris.webp"
+      },
+      {
+        "name": "NEON Music Festival",
+        "year": "2024",
+        "image": "/images/posters/neon-2024.webp"
+      },
+      {
+        "name": "NEON Music Festival",
+        "year": "2025",
+        "image": "/images/posters/neon-2025.webp"
+      },
+      {
+        "name": "Sunset by NEON",
+        "year": "2024",
+        "image": "/images/posters/sunset-2024.webp"
+      },
+      {
+        "name": "Sunset by NEON",
+        "year": "2025",
+        "image": "/images/posters/sunset-2025.webp"
+      },
+      {
+        "name": "Sunset by NEON",
+        "year": "2026",
+        "image": "/images/posters/sunset-2026.webp"
+      },
+      {
+        "name": "Good Vibes Festival",
+        "year": "2023",
+        "image": "/images/posters/good-vibes-2023.webp"
+      },
+      {
+        "name": "Good Vibes Festival",
+        "year": "2024",
+        "image": "/images/posters/good-vibes-2024.webp"
+      },
+      {
+        "name": "Pinkfish Festival",
+        "year": "2023",
+        "image": "/images/posters/pinkfish-2023.webp"
+      },
+      {
+        "name": "Pinkfish Festival",
+        "year": "2024",
+        "image": "/images/posters/pinkfish-2024.webp"
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "© 2026 Kasi Transport. All rights reserved.",
+    "regLabel": "Reg. No."
+  },
+  "closing": {
+    "cards": [
+      {
+        "title": "Do business with us",
+        "text": "Looking for a reliable partner for regular routes, one-off moves or live productions? Tell us what you need to move.",
+        "cta": "WhatsApp us",
+        "type": "wa",
+        "waText": "Hi Kasi Transport, I'd like to discuss a transport requirement.",
+        "label": "For corporate clients",
+        "icon": "truck"
+      },
+      {
+        "title": "Subcontract with Kasi",
+        "text": "Own lorries or run a transport company? Register your interest and join the Kasi transport network.",
+        "cta": "Register as a partner",
+        "type": "link",
+        "waText": "Hi Kasi Transport, I'd like to register my vehicles as a transport partner.",
+        "label": "For subcontractors",
+        "icon": "users",
+        "href": "/join-our-network#partners"
+      }
+    ],
+    "question": "Have any questions?",
+    "callLabel": "Call us",
+    "button": "Contact us",
+    "contactsTitle": "Contacts",
+    "companyTitle": "Company",
+    "servicesTitle": "Services",
+    "addressLabel": "Address",
+    "phoneLabel": "Phone / WhatsApp",
+    "emailLabel": "Email",
+    "blurb": "Transportation & logistics solutions from Petaling Jaya, with transport roots since 1996.",
+    "tag": "Partner With Us",
+    "heading": "Let’s grow together.",
+    "aboutTitle": "About Kasi",
+    "careersLabel": "Careers (drivers)",
+    "careersWaText": "Hi Kasi Transport, I'm interested in a driver position.",
+    "sub": "Whether you need a dependable logistics partner or want to bring your vehicles into the Kasi network, tell us how we can work together."
+  },
+  "quote": {
+    "title": "Request a quote",
+    "text": "Tell us what you need to move. We’ll get back to you as soon as we can.",
+    "waButton": "Send on WhatsApp",
+    "mailButton": "Send by email",
+    "close": "Close",
+    "labels": {
+      "name": "Your name",
+      "company": "Company",
+      "phone": "Phone / WhatsApp",
+      "service": "What do you need?",
+      "from": "Pick-up location",
+      "to": "Delivery location",
+      "details": "Load details and timing"
+    },
+    "servicePlaceholder": "Select a service",
+    "note": "Your message opens in WhatsApp or your email app, ready to send."
+  },
+  "coverage": {
+    "tag": "Coverage",
+    "title": "Where we run",
+    "text": "Scheduled and ad-hoc transport to any address across Peninsular Malaysia, from Perlis to Johor, with cross-border enquiries for Singapore and Thailand welcome.",
+    "crossLabel": "Cross-border on request",
+    "cta": "Ask about your route",
+    "note": "13 regions across Peninsular Malaysia",
+    "hubsTitle": "All 13 regions we cover",
+    "mapLabel": "Peninsular Malaysia",
+    "hint": "Hover a state or hub",
+    "credit": "Map data © OpenStreetMap contributors",
+    "hqNote": "Head office: Petaling Jaya, Selangor",
+    "bigNumber": "30000000",
+    "bigLabel": "across Peninsular Malaysia",
+    "bigSuffix": "+",
+    "bigNote": "Approximate total across our company fleet and transport partners, 1996 to date.",
+    "regionsLabel": "All 13 regions we cover, plus cross-border on request",
+    "regionGroups": [
+      {
+        "label": "Northern",
+        "items": [
+          "Perlis",
+          "Kedah",
+          "Penang",
+          "Perak"
+        ]
+      },
+      {
+        "label": "Central",
+        "items": [
+          "Selangor",
+          "Kuala Lumpur",
+          "Putrajaya"
+        ]
+      },
+      {
+        "label": "Southern",
+        "items": [
+          "Negeri Sembilan",
+          "Melaka",
+          "Johor"
+        ]
+      },
+      {
+        "label": "East Coast",
+        "items": [
+          "Kelantan",
+          "Terengganu",
+          "Pahang"
+        ]
+      }
+    ],
+    "bigIntro": "Since 1996, our trucks and transport partners have driven",
+    "bigUnit": "km",
+    "crossTag": "On request"
+  },
+  "float": {
+    "whatsappLabel": "WhatsApp",
+    "callLabel": "Call",
+    "waText": "Hi Kasi Transport, I'd like to enquire about your transport services."
+  }
+}

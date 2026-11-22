@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteClosing from '../components/SiteClosing.astro';
+import QuoteDialog from '../components/QuoteDialog.astro';
+---
+<Base title="Privacy & Website Terms | Kasi Transport" description="How Kasi Transport handles the personal details you send us, and the basic terms for using this website." path="/privacy">
+  <SiteNav />
+  <section data-nav-dark class="bg-[#0b0d12] pb-16 pt-36 text-white lg:pb-24 lg:pt-48">
+    <div class="container-x">
+      <span class="flex items-center gap-3 font-display text-[12px] font-semibold uppercase tracking-[0.2em] text-white/70"><span class="h-2 w-2 bg-white"></span>Legal</span>
+      <h1 class="mt-6 max-w-[14ch] font-display text-[clamp(2.6rem,6vw,5.2rem)] font-medium leading-[1] tracking-tight">Privacy and website terms.</h1>
+      <p class="mt-6 max-w-xl text-[15px] leading-relaxed text-white/70 lg:text-lg">In plain words: what we collect, why, and what we do with it.</p>
+    </div>
+  </section>
+  <main id="main" class="relative z-10 bg-white">
+    <div class="container-x py-16 lg:py-24">
+      <div class="border-b border-neutral-300">
+        <section class="border-t border-neutral-300 py-9 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] lg:gap-16">
+          <h2 class="font-display text-[1.35rem] font-medium leading-tight tracking-tight text-neutral-950">Who we are</h2>
+          <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-neutral-600 lg:mt-0">This website belongs to Kasi Transport (registration no. 003484520-D), No. 237 Jalan Medan 15, Taman Medan, 46000 Petaling Jaya, Selangor, Malaysia. You can reach us at info@kasitransport.com.my or +60 14-233 7977.</p>
+        </section>
+        <section class="border-t border-neutral-300 py-9 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] lg:gap-16">
+          <h2 class="font-display text-[1.35rem] font-medium leading-tight tracking-tight text-neutral-950">What we collect</h2>
+          <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-neutral-600 lg:mt-0">Only what you type into our forms: your name, phone number, email address, company name, and the details of your enquiry (for example what you need to move, where from and to, and when). If you apply as a driver or partner, we also collect the driving licence, vehicle and experience details you choose to give us.</p>
+        </section>
+        <section class="border-t border-neutral-300 py-9 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] lg:gap-16">
+          <h2 class="font-display text-[1.35rem] font-medium leading-tight tracking-tight text-neutral-950">How it reaches us</h2>
+          <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-neutral-600 lg:mt-0">Our forms do not save anything on this website. When you press send, your message opens in WhatsApp or your email app, ready for you to send. We receive it only when you send it. WhatsApp and your email provider handle the message under their own privacy policies.</p>
+        </section>
+        <section class="border-t border-neutral-300 py-9 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] lg:gap-16">
+          <h2 class="font-display text-[1.35rem] font-medium leading-tight tracking-tight text-neutral-950">Why we use it</h2>
+          <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-neutral-600 lg:mt-0">To reply to your enquiry, prepare a quotation, schedule and carry out your job, and, for driver and partner applications, to assess your application and contact you. We do not sell your details or use them for unrelated marketing.</p>
+        </section>
+        <section class="border-t border-neutral-300 py-9 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] lg:gap-16">
+          <h2 class="font-display text-[1.35rem] font-medium leading-tight tracking-tight text-neutral-950">Who we share it with</h2>
+          <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-neutral-600 lg:mt-0">Only people who need it to deal with your request, such as our operations team, drivers and partner transporters assigned to your job, or advisers and authorities where the law requires it.</p>
+        </section>
+        <section class="border-t border-neutral-300 py-9 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] lg:gap-16">
+          <h2 class="font-display text-[1.35rem] font-medium leading-tight tracking-tight text-neutral-950">How long we keep it</h2>
+          <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-neutral-600 lg:mt-0">For as long as we need it to deal with your enquiry or job and to keep proper business and legal records. After that we delete it or make it anonymous.</p>
+        </section>
+        <section class="border-t border-neutral-300 py-9 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] lg:gap-16">
+          <h2 class="font-display text-[1.35rem] font-medium leading-tight tracking-tight text-neutral-950">Your choices</h2>
+          <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-neutral-600 lg:mt-0">You may ask to see the personal data we hold about you, to correct it, or to ask us to stop using it, by emailing info@kasitransport.com.my. We will reply as soon as we reasonably can.</p>
+        </section>
+        <section class="border-t border-neutral-300 py-9 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] lg:gap-16">
+          <h2 class="font-display text-[1.35rem] font-medium leading-tight tracking-tight text-neutral-950">Cookies and tracking</h2>
+          <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-neutral-600 lg:mt-0">This website does not currently set advertising or analytics cookies. If that changes, we will update this page first.</p>
+        </section>
+        <section class="border-t border-neutral-300 py-9 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] lg:gap-16">
+          <h2 class="font-display text-[1.35rem] font-medium leading-tight tracking-tight text-neutral-950">Using this website</h2>
+          <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-neutral-600 lg:mt-0">The information on this website is general. Any quotation we give you is specific to your job and is subject to our written terms for that job. We try to keep the site accurate and up to date, but we cannot promise it is free of errors. Links to other sites are provided for convenience and we are not responsible for their content.</p>
+        </section>
+        <section class="border-t border-neutral-300 py-9 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] lg:gap-16">
+          <h2 class="font-display text-[1.35rem] font-medium leading-tight tracking-tight text-neutral-950">Changes</h2>
+          <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-neutral-600 lg:mt-0">We may update this page from time to time. The date below shows when it was last changed.</p>
+        </section>
+      </div>
+      <p class="mt-8 text-sm text-neutral-500">Last updated: 22 November 2026</p>
+    </div>
+  </main>
+  <SiteClosing />
+  <QuoteDialog />
+</Base>

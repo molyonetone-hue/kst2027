@@ -1,0 +1,105 @@
+{
+  "seo": {
+    "title": "Join Our Network | Kasi Transport",
+    "description": "Drive for Kasi Transport or register your vehicles as a transport partner. Driver careers and transport partnerships with a Petaling Jaya logistics operation."
+  },
+  "intro": {
+    "tag": "Join our network",
+    "title": "Drive with us. Or bring your fleet.",
+    "text": "Kasi Transport grows with the people who move for it. Whether you drive for a living or run vehicles of your own, there is a place for you in our network.",
+    "image": "/images/cta-fleet.webp"
+  },
+  "tabs": [
+    {
+      "id": "drivers",
+      "label": "Driver careers",
+      "hint": "Join our company fleet",
+      "icon": "users"
+    },
+    {
+      "id": "partners",
+      "label": "Transport partnerships",
+      "hint": "Register your vehicles",
+      "icon": "truck"
+    }
+  ],
+  "drivers": {
+    "tag": "Driver careers",
+    "title": "Drive your career forward.",
+    "text": "Join the company-operated fleet and drive with a team that plans schedules properly, assigns work clearly and follows up on every delivery.",
+    "lookTitle": "What we look for",
+    "look": [
+      "A valid driving licence for the vehicle you drive",
+      "Punctuality and reliability",
+      "A safety-first approach on the road",
+      "Honesty and respect in dealing with customers and colleagues",
+      "Willingness to work to schedules, including overnight runs"
+    ],
+    "stepsTitle": "How it works",
+    "steps": [
+      {
+        "title": "Apply",
+        "text": "Send us your details using the form."
+      },
+      {
+        "title": "We call you",
+        "text": "Our team contacts you to talk through your experience."
+      },
+      {
+        "title": "Meet the team",
+        "text": "We discuss the roles available and what suits you."
+      },
+      {
+        "title": "Start driving",
+        "text": "Join the fleet and get your first schedule."
+      }
+    ],
+    "form": {
+      "title": "Driver application",
+      "button": "Send on WhatsApp",
+      "mail": "Send by email",
+      "note": "Your application opens in WhatsApp or your email app, ready to send."
+    }
+  },
+  "partners": {
+    "tag": "Transport partnerships",
+    "title": "Your fleet. More opportunities.",
+    "text": "Own a lorry or run a transport company? Join the Kasi transport network and work alongside our company-operated fleet.",
+    "whoTitle": "Who can join",
+    "who": [
+      {
+        "title": "Owner-drivers",
+        "text": "You own the truck and drive it yourself.",
+        "icon": "truck"
+      },
+      {
+        "title": "Lorry owners",
+        "text": "You own vehicles and have drivers to run them.",
+        "icon": "box"
+      },
+      {
+        "title": "Small transport businesses",
+        "text": "A growing operation looking for steadier work.",
+        "icon": "flow"
+      },
+      {
+        "title": "Fleet operators",
+        "text": "A larger fleet ready for scheduled, recurring jobs.",
+        "icon": "road"
+      }
+    ],
+    "gainTitle": "Why join",
+    "gain": [
+      "Opportunities across linehaul, commercial and event transport",
+      "Coordination by our operations team",
+      "Clear communication on schedules and requirements",
+      "A network that grows with the business"
+    ],
+    "form": {
+      "title": "Partner registration",
+      "button": "Send on WhatsApp",
+      "mail": "Send by email",
+      "note": "Your registration opens in WhatsApp or your email app, ready to send."
+    }
+  }
+}

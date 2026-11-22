@@ -1,0 +1,124 @@
+{
+  "seo": {
+    "title": "What We Do | Kasi Transport",
+    "description": "Linehaul and contract logistics, commercial transportation, event and production logistics and specialised transport across Peninsular Malaysia, from Kasi Transport in Petaling Jaya."
+  },
+  "intro": {
+    "tag": "What we do",
+    "title": "Transport solutions for your business.",
+    "text": "From scheduled linehaul to live production logistics, we move cargo and equipment across Peninsular Malaysia with company-operated vehicles and a network of transport partners.",
+    "image": "/images/svc-linehaul.jpg"
+  },
+  "solutions": {
+    "tag": "Four solutions",
+    "title": "One operation, four ways to move.",
+    "cta": "Request a quote",
+    "items": [
+      {
+        "title": "Linehaul & Contract Logistics",
+        "tagline": "Scheduled hub-to-hub transfers and recurring transport.",
+        "text": "Our flagship service for businesses that need freight moved between hubs on a fixed schedule, week after week, with the same team planning every run.",
+        "points": [
+          "Hub-to-hub transport",
+          "Scheduled routes",
+          "Recurring logistics operations",
+          "Dedicated transportation",
+          "Long-term transport arrangements"
+        ],
+        "image": "/images/svc-linehaul.jpg",
+        "icon": "road"
+      },
+      {
+        "title": "Commercial Transportation",
+        "tagline": "Cargo deliveries and stock movements between business locations.",
+        "text": "Reliable transport for the everyday movement of goods, from stock transfers between sites to deliveries to your customers.",
+        "points": [
+          "Domestic cargo delivery",
+          "Distribution",
+          "Warehouse movements",
+          "Dedicated vehicles",
+          "Business deliveries"
+        ],
+        "image": "/images/svc-commercial.jpg",
+        "icon": "box"
+      },
+      {
+        "title": "Event & Production Logistics",
+        "tagline": "Equipment transport planned around venue access and production schedules.",
+        "text": "Years of experience moving staging, sound, lighting and production equipment for concerts and festivals, where load-in times leave no room for delay.",
+        "points": [
+          "Concerts",
+          "Festivals",
+          "Live productions",
+          "Production equipment movements",
+          "Exhibitions and roadshows"
+        ],
+        "image": "/images/svc-events.jpg",
+        "icon": "music"
+      },
+      {
+        "title": "Specialised Transportation",
+        "tagline": "Transport enquiries for loads with specific vehicle or handling needs.",
+        "text": "When a load needs more than a standard truck, tell us what you are moving and we will discuss the right vehicle and handling.",
+        "points": [
+          "Refrigerated trucks",
+          "Crane trucks",
+          "Towing and vehicle carriers",
+          "Moving and relocation",
+          "Other specialised configurations"
+        ],
+        "image": "/images/svc-specialised.jpg",
+        "icon": "crane"
+      }
+    ]
+  },
+  "industries": {
+    "tag": "Who we move for",
+    "title": "Transport for your industry.",
+    "text": "The kinds of organisations we can support, from parcel networks to production crews.",
+    "items": [
+      {
+        "title": "E-commerce and parcel logistics",
+        "text": "Move freight between hubs.",
+        "icon": "box"
+      },
+      {
+        "title": "Retail and distribution",
+        "text": "Plan stock transfers and deliveries.",
+        "icon": "store"
+      },
+      {
+        "title": "Manufacturing and industrial",
+        "text": "Discuss transport between facilities.",
+        "icon": "factory"
+      },
+      {
+        "title": "Events and entertainment",
+        "text": "Move production equipment around venue schedules.",
+        "icon": "music"
+      }
+    ]
+  },
+  "engage": {
+    "tag": "How we work with you",
+    "title": "Ways to work with us.",
+    "items": [
+      {
+        "title": "Recurring routes",
+        "text": "Fixed schedules and long-term arrangements for freight that moves regularly.",
+        "icon": "flow"
+      },
+      {
+        "title": "Dedicated vehicles",
+        "text": "Vehicles and drivers assigned to your operation, so the same people know your sites.",
+        "icon": "truck"
+      },
+      {
+        "title": "One-off moves",
+        "text": "A single delivery, relocation or production. Share the details and we will quote.",
+        "icon": "pin"
+      }
+    ],
+    "cta": "Request a quote"
+  }
+}

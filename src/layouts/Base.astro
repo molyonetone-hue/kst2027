@@ -1,0 +1,277 @@
+---
+import '../styles/global.css';
+import d from '../data/home.json';
+import Icon from '../components/Icon.astro';
+const { title, description, path = '/' } = Astro.props;
+const site = 'https://kasitransport.com.my';
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': site + '/#business',
+  name: d.site.name,
+  legalName: d.site.name,
+  url: site + '/',
+  logo: site + d.site.logo,
+  image: site + '/images/hero-bg-prev.jpg',
+  telephone: d.site.phone,
+  email: d.site.email,
+  identifier: d.site.registration,
+  foundingDate: '2005',
+  description,
+  address: { '@type': 'PostalAddress', streetAddress: 'No. 237, Jalan Medan 15, Taman Medan', postalCode: '46000', addressLocality: 'Petaling Jaya', addressRegion: 'Selangor', addressCountry: 'MY' },
+  areaServed: [{ '@type': 'Place', name: 'Peninsular Malaysia' }],
+  knowsAbout: ['Linehaul', 'Contract logistics', 'Commercial transportation', 'Event and production logistics', 'Specialised transportation'],
+  hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Transport services', itemListElement: d.services.items.map((i) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: i.title, description: i.text, provider: { '@id': site + '/#business' } } })) },
+};
+
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a1748" />
+    <link rel="canonical" href={site + path} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={d.site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={site + '/images/hero-bg-prev.jpg'} />
+    <meta property="og:url" content={site + path} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" as="image" href={d.hero.image} fetchpriority="high" />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    <script is:inline>
+      try {
+        // Every load or refresh starts at the top, so the hero intro always plays from the beginning
+        history.scrollRestoration = 'manual';
+        if (!location.hash) scrollTo(0, 0);
+        window.addEventListener('pageshow', function (e) { if (e.persisted && !location.hash) scrollTo(0, 0); });
+        var nav0 = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {}, isReload = nav0.type === 'reload';
+        // plays on the first visit of a session and on every refresh, but not when moving between pages
+        if ((!sessionStorage.getItem('kst-pre') || isReload) && !matchMedia('(prefers-reduced-motion: reduce)').matches)
+          { document.documentElement.classList.add('is-loading'); }
+      } catch (e) {}
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <div id="preloader" aria-hidden="true">
+      <div class="pre-half pre-top"></div><div class="pre-half pre-bot"></div>
+      <div class="pre-ui">
+        <div class="pre-row pre-head"><span>Since 1996</span><span>Petaling Jaya, Malaysia</span></div>
+        <div class="pre-mid">
+          <div class="pre-logo-wrap"><img src="/images/logo.webp" alt="" class="pre-logo" /></div>
+          <p class="pre-tag"><span class="pre-w"><span style="--i:0">Moving</span></span> <span class="pre-w"><span style="--i:1">businesses</span></span> <span class="pre-w"><span style="--i:2">forward.</span></span></p>
+        </div>
+        <div class="pre-road">
+          <div class="pre-line"><div class="pre-fill" id="pre-fill"></div>
+            <span id="pre-truck" class="pre-truck"><Icon name="truck" size={30} /></span>
+          </div>
+        </div>
+        <div class="pre-row pre-foot">
+          <div class="pre-count"><span class="pre-n" id="pre-num">000</span><span class="pre-pct">%</span></div>
+          <span class="pre-note">North . South . East . West</span>
+        </div>
+      </div>
+    </div>
+    <slot />
+    <script is:inline>
+      (function () {
+        var html = document.documentElement, pre = document.getElementById('preloader');
+        if (!html.classList.contains('is-loading')) { pre.remove(); return; }
+        scrollTo(0, 0);
+        var num = document.getElementById('pre-num'), fill = document.getElementById('pre-fill'), truck = document.getElementById('pre-truck');
+        pre.style.setProperty('--p', '0');
+        var DURATION = 4600, start = performance.now(), last = start, p = 0, loaded = document.readyState === 'complete';
+        window.addEventListener('load', function () { loaded = true; });
+        function ease(t) { return 0.5 - Math.cos(Math.PI * t) / 2; }
+        function leave() {
+          pre.classList.add('is-leaving');
+          setTimeout(function () {
+            try { sessionStorage.setItem('kst-pre', '1'); } catch (e) {}
+            pre.classList.add('is-done');
+            scrollTo(0, 0);
+            html.classList.remove('is-loading');
+            setTimeout(function () { pre.remove(); }, 1800);
+          }, 650);
+        }
+        function tick(t) {
+          var dt = Math.min(t - last, 64); last = t;
+          var timed = ease(Math.min((t - start) / DURATION, 1)) * 100;
+          var target = loaded ? timed : Math.min(timed, 92);
+          p += (target - p) * (1 - Math.exp(-dt / 70));
+          if (p > 99.85) p = 100;
+          num.textContent = ('00' + Math.round(p)).slice(-3); pre.style.setProperty('--p', p.toFixed(1));
+          fill.style.transform = 'scaleX(' + p / 100 + ')';
+          truck.style.left = p + '%';
+          if (p >= 100) { setTimeout(leave, 800); return; }
+          requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      })();
+    </script>
+    <script is:inline>
+      (function () {
+        // Phones/tablets: soft rise-in for card groups that desktop animates with hover or pinning
+        if (matchMedia('(min-width: 1024px)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var sel = '.svc-card, .gl-tile, .val-col, .eng-col, .ind-row, .sg-card, .footer-reveal .container-x > *';
+        var go = function () {
+          var els = [].slice.call(document.querySelectorAll(sel)).filter(function (e) { return !e.closest('[class*="rv-"]') && !e.className.toString().match(/rv-|lg-anim/); });
+          if (!els.length) return;
+          var io = new IntersectionObserver(function (es) { es.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+          els.forEach(function (e, i) { e.classList.add('m-rise'); e.style.setProperty('--md', ((i % 3) * 0.09) + 's'); io.observe(e); });
+        };
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+      })();
+    </script>
+    <script is:inline>
+      (function () {
+        // Phones/tablets: scroll-scrubbed effects (images drift, curtains open, stacked cards sink back)
+        if (matchMedia('(min-width: 1024px)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var clamp = function (v) { return Math.min(1, Math.max(0, v)); };
+        var par = [], cur = [], stacks = [], bands = [];
+        var init = function () {
+          [].forEach.call(document.querySelectorAll('.svc-stack figure img, .gal figure img, .val-col, .ind-row'), function (e) { if (e.tagName === 'IMG') { e.style.willChange = 'transform'; par.push(e); } });
+          [].forEach.call(document.querySelectorAll('.gal figure, .svc-stack figure, .gl-tile > span:nth-child(2), .lg-stage'), function (e) { e.style.willChange = 'clip-path'; cur.push(e); });
+          stacks = [].slice.call(document.querySelectorAll('.svc-stack'));
+          bands = [].slice.call(document.querySelectorAll('[data-drift]'));
+          tick(); 
+        };
+        var raf = false;
+        function tick() {
+          raf = false; var vh = innerHeight;
+          par.forEach(function (im) {
+            var r = im.parentElement.getBoundingClientRect(); if (r.bottom < -50 || r.top > vh + 50) return;
+            var p = clamp((vh - r.top) / (vh + r.height)); var d = (p - 0.5) * 18;
+            im.style.transform = 'translate3d(0,' + d.toFixed(2) + '%,0) scale(1.22)';
+          });
+          cur.forEach(function (f) {
+            var r = f.getBoundingClientRect(); if (r.bottom < -50 || r.top > vh + 50) return;
+            var p = clamp((vh * 0.96 - r.top) / (vh * 0.5)); var e = 1 - Math.pow(1 - p, 3);
+            var inset = ((1 - e) * 14).toFixed(2);
+            f.style.clipPath = p >= 1 ? 'none' : 'inset(' + inset + '% ' + (inset * 0.5).toFixed(2) + '% round 10px)';
+          });
+          stacks.forEach(function (c, i) {
+            var n = stacks[i + 1]; if (!n) return;
+            var cr = c.getBoundingClientRect(), nr = n.getBoundingClientRect();
+            var p = clamp(1 - (nr.top - cr.top - 14) / Math.max(1, cr.height));
+            c.style.transform = 'scale(' + (1 - p * 0.06).toFixed(4) + ')'; c.style.filter = 'brightness(' + (1 - p * 0.35).toFixed(3) + ')';
+          });
+          bands.forEach(function (b) {
+            var r = b.getBoundingClientRect(); if (r.bottom < 0 || r.top > vh) return;
+            var p = (vh - r.top) / (vh + r.height); b.style.transform = 'translate3d(' + (-p * 38).toFixed(2) + '%,0,0)';
+          });
+        }
+        addEventListener('scroll', function () { if (!raf) { raf = true; requestAnimationFrame(tick); } }, { passive: true });
+        addEventListener('resize', tick);
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+        addEventListener('load', tick);
+      })();
+    </script>
+    <script>
+      import Lenis from 'lenis';
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const html = document.documentElement;
+        const lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 1, touchMultiplier: 1, smoothWheel: true });
+        const sync = () => (html.classList.contains('is-loading') ? lenis.stop() : lenis.start());
+        (window as any).__lenis = lenis;
+        sync();
+        new MutationObserver(sync).observe(html, { attributes: true, attributeFilter: ['class'] });
+        const raf = (t: number) => { lenis.raf(t); requestAnimationFrame(raf); };
+        requestAnimationFrame(raf);
+        document.addEventListener('click', (e) => {
+          const a = (e.target as HTMLElement).closest('a[href^="#"]') as HTMLAnchorElement | null;
+          if (!a || e.defaultPrevented || a.hasAttribute('data-quote')) return;
+          const id = a.getAttribute('href')!;
+          if (id.length < 2) return;
+          const el = document.querySelector(id);
+          if (el) { e.preventDefault(); lenis.scrollTo(el as HTMLElement, { offset: -84, duration: 1.6 }); }
+        });
+      }
+    </script>
+    <script is:inline>
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('[data-cta]'); if (!a) return;
+        var n = a.getAttribute('data-cta');
+        window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: 'cta_click', cta: n });
+        if (typeof window.gtag === 'function') window.gtag('event', 'cta_click', { cta: n });
+        document.dispatchEvent(new CustomEvent('kst:cta', { detail: n }));
+      });
+    </script>
+  <script>
+    // Counters render their true value in the HTML. With motion allowed, each one replays 0 → value once it scrolls into view.
+    const els = document.querySelectorAll<HTMLElement>('[data-count]');
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+      const run = (el: HTMLElement) => {
+        const target = Number(el.dataset.count);
+        const final = el.textContent;
+        const start = performance.now();
+        const tick = (t: number) => {
+          const p = Math.min((t - start) / 1500, 1);
+          el.textContent = p < 1 ? Math.round(target * (1 - Math.pow(1 - p, 3))).toLocaleString('en-US') : final;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+      const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { run(e.target as HTMLElement); io.unobserve(e.target); } }), { threshold: 0.4 });
+      els.forEach((el) => io.observe(el));
+    }
+  </script>
+
+
+  <script>
+    // Entrance system: masked headline rises, blurred paragraph fades, label slides, hairlines draw, blocks float up.
+    // Each element animates once as it scrolls into view; About, hero, service cards and fleet have their own choreography.
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      type Kind = 'h' | 'p' | 'x' | 'b' | 'line' | 'blk' | 'clip';
+      const roots = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+      const skip = '#svc-row, #fleet-index, .poster-wall, [aria-hidden="true"], [data-no-reveal], button, .fx-panel';
+      const items: { el: HTMLElement; kind: Kind }[] = [];
+      const seen = new Set<HTMLElement>();
+      const push = (el: HTMLElement, kind: Kind) => { if (!seen.has(el)) { seen.add(el); items.push({ el, kind }); } };
+      roots.forEach((root) => {
+        root.querySelectorAll<HTMLElement>('.tag, span[class*="uppercase"][class*="tracking"]').forEach((el) => { if (!el.closest(skip) && !el.closest('a')) push(el, 'x'); });
+        root.querySelectorAll<HTMLElement>('h1, h2').forEach((el) => { if (!el.closest(skip)) push(el, 'h'); });
+        root.querySelectorAll<HTMLElement>('p').forEach((el) => { if (!el.closest(skip)) push(el, 'p'); });
+        root.querySelectorAll<HTMLElement>('a.btn').forEach((el) => { if (!el.closest(skip)) push(el, 'b'); });
+        root.querySelectorAll<HTMLElement>('.h-px, .border-t').forEach((el) => { if (!el.closest(skip) && el.children.length === 0 && el.classList.contains('h-px')) push(el, 'line'); });
+      });
+      ['#fleet-index', '.poster-wall', '.gal'].forEach((q) => { const el = document.querySelector<HTMLElement>(q); if (el) push(el, 'blk'); });
+      const num = document.querySelector<HTMLElement>('#coverage [data-count]');
+      const numRow = num?.parentElement?.parentElement as HTMLElement | undefined;
+      if (numRow) push(numRow, 'blk');
+      items.sort((a, b) => (a.el.compareDocumentPosition(b.el) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const el = e.target as HTMLElement;
+          el.classList.add('in');
+          io.unobserve(el);
+          if (!el.classList.contains('rv-h')) setTimeout(() => { el.classList.remove('rv-x', 'rv-p', 'rv-b', 'rv-line', 'rv-blk', 'in'); el.style.removeProperty('--rd'); }, 2800);
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+      const base: Record<Kind, number> = { x: 0, h: 0.06, p: 0.22, b: 0.34, line: 0.1, blk: 0.05, clip: 0 };
+      const cls: Record<Kind, string> = { x: 'rv-x', h: 'rv-h', p: 'rv-p', b: 'rv-b', line: 'rv-line', blk: 'rv-blk', clip: 'rv-clip' };
+      const sib = new Map<Element, number>();
+      items.forEach(({ el, kind }) => {
+        const key = el.parentElement as Element;
+        const i = sib.get(key) ?? 0;
+        sib.set(key, i + 1);
+        el.style.setProperty('--rd', (base[kind] + Math.min(i, 4) * 0.07).toFixed(2) + 's');
+        el.classList.add(cls[kind]);
+        if (kind === 'h') {
+          el.innerHTML = (el.textContent || '').trim().split(/\s+/).map((w, k) => '<span class="mw"><span class="mw-i" style="--i:' + k + '">' + w + '</span></span>').join(' ');
+        }
+        io.observe(el);
+      });
+    }
+  </script>
+
+
+  </body>
+</html>

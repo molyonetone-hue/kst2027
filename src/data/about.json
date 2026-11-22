@@ -1,0 +1,170 @@
+{
+  "seo": {
+    "title": "Who We Are | Kasi Transport",
+    "description": "Kasi Transport has transport roots since 1996 and was established in 2005. Based in Petaling Jaya, we move cargo and equipment for businesses and live productions across Peninsular Malaysia."
+  },
+  "intro": {
+    "tag": "Who we are",
+    "title": "Transport roots since 1996.",
+    "text": "Kasi Transport was established in 2005 and runs from Petaling Jaya, moving cargo and equipment for businesses and live productions across Peninsular Malaysia.",
+    "image": "/images/hero-bg-prev.jpg"
+  },
+  "manifesto": {
+    "tag": "What we believe",
+    "text": "Be on time. Keep the load safe. Do the right thing. We have held to those three rules since our transport roots in 1996, for every client who trusts us with their cargo."
+  },
+  "journey": {
+    "tag": "Our journey",
+    "title": "From transport roots to a growing network.",
+    "text": "Nearly three decades of road experience, and a business built around dependable service.",
+    "steps": [
+      {
+        "year": "1996",
+        "title": "Our transport roots",
+        "text": "The transport experience behind Kasi Transport begins on the road in 1996, well before the company was formally established. Those years shaped the way we plan routes and schedules, and how we look after the drivers who run them.",
+        "image": "/images/svc-linehaul.jpg"
+      },
+      {
+        "year": "2005",
+        "title": "Kasi Transport is established",
+        "text": "Kasirajan officially establishes Kasi Transport in Petaling Jaya, turning years of road experience into a registered transport business. From the start, the focus is on precision, competence and reliability.",
+        "image": "/images/svc-commercial.jpg"
+      },
+      {
+        "year": "2022–23",
+        "title": "Into large-scale live events",
+        "text": "From Yuvan Live in Malaysia in 2022 to Coldplay, BLACKPINK, Jay Chou and A.R. Rahman in 2023, plus festivals such as Pinkfish, Good Vibes and Peakstorm, Kasi Transport moves production equipment around venue access and tight show schedules.",
+        "image": "/images/svc-events.jpg"
+      },
+      {
+        "year": "Today",
+        "title": "Commercial linehaul and a growing network",
+        "text": "Today Kasi Transport supports scheduled linehaul and parcel distribution for corporate customers, alongside commercial transport, event logistics and specialised loads. The work is carried by company-operated trucks and employed drivers, backed by a growing network of independent transport partners.",
+        "image": "/images/cta-fleet.webp"
+      }
+    ]
+  },
+  "principles": {
+    "tag": "Our values",
+    "title": "The values we run on.",
+    "items": [
+      {
+        "title": "Precision",
+        "text": "Routes, schedules and documents are planned and checked, so nothing is left to chance.",
+        "icon": "target"
+      },
+      {
+        "title": "Competence",
+        "text": "Experienced drivers and a team that knows the road, the load and the paperwork.",
+        "icon": "wrench"
+      },
+      {
+        "title": "Reliability",
+        "text": "When we say we will be there, we are. Customers can plan their business around us.",
+        "icon": "shield"
+      },
+      {
+        "title": "Professionalism",
+        "text": "Clear communication, tidy paperwork and respectful dealings with customers, drivers and suppliers.",
+        "icon": "award"
+      }
+    ]
+  },
+  "gallery": {
+    "tag": "In the field",
+    "title": "The work, up close.",
+    "images": [
+      {
+        "src": "/images/cta-fleet.webp",
+        "alt": "Kasi trucks lined up at dusk",
+        "span": "lg:col-span-2 lg:row-span-2"
+      },
+      {
+        "src": "/images/svc-linehaul.jpg",
+        "alt": "Linehaul truck at a loading bay",
+        "span": ""
+      },
+      {
+        "src": "/images/svc-events.jpg",
+        "alt": "Loading production equipment",
+        "span": ""
+      },
+      {
+        "src": "/images/svc-commercial.jpg",
+        "alt": "Unloading at a warehouse",
+        "span": ""
+      },
+      {
+        "src": "/images/svc-specialised.jpg",
+        "alt": "Specialised transport",
+        "span": ""
+      }
+    ]
+  },
+  "team": {
+    "tag": "The people",
+    "title": "The people behind the wheel.",
+    "text": "Our operations team coordinates schedules and driver assignments, follows up on deliveries and helps resolve issues as they arise.",
+    "people": [
+      {
+        "name": "Anbu Arasu Kasirajan",
+        "role": "Managing Director",
+        "bio": "Leads Kasi Transport and guides its growth: long-term corporate contracts, a larger fleet and a stronger network of drivers and transport partners.",
+        "photo": "/images/md-anbu.webp"
+      },
+      {
+        "name": "Saravinraj",
+        "role": "Strategic Partner, Parcel & Distribution",
+        "bio": "Works with Kasi Transport as a strategic business partner, bringing parcel forwarding and distribution experience from his own business, Birdzo Parcel.",
+        "photo": "",
+        "company": "Founder, Birdzo Parcel"
+      },
+      {
+        "name": "Nazia",
+        "role": "Operations",
+        "bio": "Looks after day-to-day operations, liaising with drivers and coordinating schedules.",
+        "photo": ""
+      },
+      {
+        "name": "Kovindran",
+        "role": "Assistant Coordinator",
+        "bio": "Supports the daily coordination of drivers and deliveries.",
+        "photo": ""
+      }
+    ]
+  },
+  "process": {
+    "tag": "One job, start to finish",
+    "title": "From first call to signed delivery.",
+    "steps": [
+      {
+        "title": "Enquiry",
+        "text": "You share the route, timing and load details."
+      },
+      {
+        "title": "Quotation",
+        "text": "We prepare a quotation for your move."
+      },
+      {
+        "title": "Scheduling",
+        "text": "A vehicle and driver are assigned to the job."
+      },
+      {
+        "title": "Delivery",
+        "text": "The load moves and the journey is monitored."
+      },
+      {
+        "title": "Paperwork",
+        "text": "Delivery orders and invoices are closed out."
+      }
+    ]
+  },
+  "drive": {
+    "tag": "Grow with Kasi",
+    "title": "Drive your career forward.",
+    "text": "Interested in driving for Kasi Transport? Tell us about your licence and experience, and our team will be in touch. Own or operate vehicles? You can register as a transport partner just below.",
+    "image": "/images/svc-commercial.jpg",
+    "cta": "Apply as a driver",
+    "waText": "Hi Kasi Transport, I'm interested in a driver position."
+  }
+}

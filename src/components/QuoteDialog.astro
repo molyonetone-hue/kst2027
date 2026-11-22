@@ -1,0 +1,81 @@
+---
+import d from '../data/home.json';
+import Icon from './Icon.astro';
+---
+  <!-- FLOATING CONTACT WIDGETS (bottom right) -->
+  <div class="float-widgets fixed bottom-4 right-4 z-40 flex flex-col items-end gap-3 lg:bottom-6 lg:right-6" style="margin-bottom:env(safe-area-inset-bottom)">
+    <a href={`https://wa.me/${d.site.phoneHref.replace('+', '')}?text=${encodeURIComponent(d.float.waText)}`} target="_blank" rel="noopener" data-cta="float-whatsapp" aria-label={d.float.whatsappLabel} class="fw-btn fw-wa relative grid h-[4.25rem] w-[4.25rem] place-items-center transition-transform duration-300 hover:-translate-y-0.5 hover:scale-105 lg:h-[5rem] lg:w-[5rem]"><img src="/images/whatsapp-3d.webp" alt="" width="160" height="160" class="h-full w-full object-contain drop-shadow-[0_10px_14px_rgba(5,40,15,.4)]" /></a>
+  </div>
+
+  <!-- QUOTE DIALOG -->
+  <dialog id="quote-dialog" aria-labelledby="quote-title" class="quote-dialog m-auto w-[min(92vw,38rem)] max-w-none rounded-2xl border-0 bg-white p-0 text-neutral-900 shadow-[0_40px_80px_-20px_rgba(5,11,31,0.6)]">
+    <form id="quote-form" method="dialog" class="p-6 lg:p-8" novalidate>
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h2 id="quote-title" class="font-display text-2xl font-bold lg:text-3xl">{d.quote.title}</h2>
+          <p class="mt-2 text-sm text-neutral-600">{d.quote.text}</p>
+          <p id="quote-vehicle" class="mt-3 hidden w-fit rounded-sm bg-[#eef2fb] px-3 py-1 font-display text-xs font-semibold text-brand"></p>
+        </div>
+        <button type="button" data-close aria-label={d.quote.close} class="grid h-10 w-10 shrink-0 place-items-center rounded-md border border-neutral-200 text-neutral-600 transition hover:border-brand hover:text-brand">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>
+        </button>
+      </div>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <label class="grid gap-1.5 text-sm font-medium"><span>{d.quote.labels.name} <b class="text-brand">*</b></span><input name="name" required autocomplete="name" class="qf" /></label>
+        <label class="grid gap-1.5 text-sm font-medium"><span>{d.quote.labels.company}</span><input name="company" autocomplete="organization" class="qf" /></label>
+        <label class="grid gap-1.5 text-sm font-medium"><span>{d.quote.labels.phone} <b class="text-brand">*</b></span><input name="phone" type="tel" required autocomplete="tel" inputmode="tel" class="qf" /></label>
+        <label class="grid gap-1.5 text-sm font-medium"><span>{d.quote.labels.service}</span>
+          <select name="service" class="qf"><option value="">{d.quote.servicePlaceholder}</option>{d.services.items.map((sv) => <option>{sv.title}</option>)}</select>
+        </label>
+        <label class="grid gap-1.5 text-sm font-medium"><span>{d.quote.labels.from}</span><input name="from" class="qf" /></label>
+        <label class="grid gap-1.5 text-sm font-medium"><span>{d.quote.labels.to}</span><input name="to" class="qf" /></label>
+        <label class="grid gap-1.5 text-sm font-medium sm:col-span-2"><span>{d.quote.labels.details}</span><textarea name="details" rows="3" class="qf resize-none"></textarea></label>
+      </div>
+      <p id="quote-err" class="mt-3 hidden text-sm font-medium text-red-600"></p>
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <button type="button" data-send="wa" class="btn btn-brand group/btn"><Icon name="whatsapp" size={18} /> {d.quote.waButton}</button>
+        <button type="button" data-send="mail" class="btn border border-neutral-300 bg-white text-neutral-800 hover:border-brand hover:text-brand"><Icon name="mail" size={18} /> {d.quote.mailButton}</button>
+      </div>
+      <p class="mt-3 text-xs text-neutral-500">We read every enquiry and reply as soon as we can, by WhatsApp or email.</p>
+      <p class="mt-2 text-xs text-neutral-500">By sending this you agree to our <a href="/privacy" class="underline underline-offset-2 hover:text-brand">Privacy policy</a>.</p>
+      <p class="mt-4 text-xs text-neutral-500">{d.quote.note}</p>
+    </form>
+  </dialog>
+
+
+  <script is:inline define:vars={{ wa: d.site.phoneHref.replace('+', ''), mail: d.site.email, errMsg: 'Please add your name and phone number.' }}>
+    (function () {
+      var dlg = document.getElementById('quote-dialog'), form = document.getElementById('quote-form'), err = document.getElementById('quote-err');
+      if (!dlg || !form) return;
+      var vEl = document.getElementById('quote-vehicle');
+      function open(v, sv) { var sel = form.elements.service; if (sel) sel.value = sv || ''; err.classList.add('hidden'); dlg.dataset.vehicle = v || ''; vEl.textContent = v ? 'Vehicle: ' + v : ''; vEl.classList.toggle('hidden', !v); if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', ''); document.documentElement.style.overflow = 'hidden'; if (window.__lenis) window.__lenis.stop(); }
+      function close() { dlg.close(); }
+      dlg.addEventListener('close', function () { document.documentElement.style.overflow = ''; if (window.__lenis) window.__lenis.start(); });
+      document.querySelectorAll('[data-quote]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); open(a.dataset.vehicle, a.dataset.service); }); });
+      dlg.querySelector('[data-close]').addEventListener('click', close);
+      dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+      function text() {
+        var f = new FormData(form), g = function (k) { return (f.get(k) || '').toString().trim(); };
+        var lines = ['Hi Kasi Transport, I would like a quote.', '', 'Name: ' + g('name')];
+        if (g('company')) lines.push('Company: ' + g('company'));
+        lines.push('Phone: ' + g('phone'));
+        if (dlg.dataset.vehicle) lines.push('Vehicle: ' + dlg.dataset.vehicle);
+        if (g('service')) lines.push('Service: ' + g('service'));
+        if (g('from')) lines.push('From: ' + g('from'));
+        if (g('to')) lines.push('To: ' + g('to'));
+        if (g('details')) lines.push('', 'Details: ' + g('details'));
+        return lines.join('\n');
+      }
+      form.querySelectorAll('[data-send]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var f = new FormData(form);
+          if (!(f.get('name') || '').toString().trim() || !(f.get('phone') || '').toString().trim()) { err.textContent = errMsg; err.classList.remove('hidden'); form.querySelector(':invalid, [name=name]').focus(); return; }
+          err.classList.add('hidden');
+          var t = text();
+          if (b.dataset.send === 'wa') window.open('https://wa.me/' + wa + '?text=' + encodeURIComponent(t), '_blank', 'noopener');
+          else window.location.href = 'mailto:' + mail + '?subject=' + encodeURIComponent('Quote request') + '&body=' + encodeURIComponent(t);
+        });
+      });
+    })();
+  </script>
+

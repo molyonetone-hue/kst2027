@@ -1,0 +1,347 @@
+{
+  "seo": {
+    "title": "Our Fleet | Kasi Transport",
+    "description": "The trucks and vehicles Kasi Transport uses, explained in plain language: small trucks, pallet trucks, container movers, cranes, towing and refrigerated vehicles, across Peninsular Malaysia."
+  },
+  "intro": {
+    "tag": "Our fleet",
+    "title": "The right vehicle for every load.",
+    "text": "From a small truck for urgent parcels to a prime mover for shipping containers, here is what we can send, and what each one is best for.",
+    "image": "/images/svc-linehaul.jpg"
+  },
+  "helper": {
+    "tag": "Not sure which one?",
+    "title": "What are you moving?",
+    "text": "Pick the closest match and we will show the vehicles that usually suit.",
+    "empty": "Choose what you are moving to see our suggestions.",
+    "suggest": "We would suggest",
+    "options": [
+      {
+        "label": "Parcels and boxes",
+        "ids": [
+          "1-tonne",
+          "3-tonne",
+          "box-truck"
+        ],
+        "icon": "box"
+      },
+      {
+        "label": "A few pallets of stock",
+        "ids": [
+          "3-tonne",
+          "5-tonne",
+          "box-truck"
+        ],
+        "icon": "store"
+      },
+      {
+        "label": "Lots of pallets, regularly",
+        "ids": [
+          "5-tonne",
+          "10-tonne",
+          "curtain-sided"
+        ],
+        "icon": "flow"
+      },
+      {
+        "label": "Heavy items, no loading dock",
+        "ids": [
+          "tail-lift",
+          "crane-truck"
+        ],
+        "icon": "lift"
+      },
+      {
+        "label": "Machinery that needs lifting",
+        "ids": [
+          "crane-truck",
+          "tail-lift"
+        ],
+        "icon": "crane"
+      },
+      {
+        "label": "Event or production equipment",
+        "ids": [
+          "curtain-sided",
+          "10-tonne"
+        ],
+        "icon": "music"
+      },
+      {
+        "label": "A shipping container or a very long load",
+        "ids": [
+          "prime-mover"
+        ],
+        "icon": "ship"
+      },
+      {
+        "label": "Food or goods that must stay cold",
+        "ids": [
+          "refrigerated"
+        ],
+        "icon": "snow"
+      },
+      {
+        "label": "A car or another vehicle",
+        "ids": [
+          "towing"
+        ],
+        "icon": "wrench"
+      }
+    ]
+  },
+  "groups": [
+    {
+      "id": "light",
+      "label": "Small trucks",
+      "note": "For parcels, small loads and quick deliveries.",
+      "items": [
+        {
+          "id": "1-tonne",
+          "image": "/images/fleet/1-tonne.webp",
+          "name": "1-tonne truck",
+          "what": "A small truck for quick, light deliveries.",
+          "good": [
+            "Parcels and boxes",
+            "Urgent same-day runs",
+            "Small business deliveries"
+          ],
+          "carries": "Up to about 1 tonne (1,000 kg)",
+          "short": "1-TONNE",
+          "capValue": "1 tonne",
+          "capSub": "about 1,000 kg"
+        },
+        {
+          "id": "3-tonne",
+          "image": "/images/fleet/3-tonne.webp",
+          "name": "3-tonne truck",
+          "what": "A mid-size truck for small pallet loads.",
+          "good": [
+            "A few pallets of stock",
+            "Shop and retail deliveries",
+            "Short routes in and around towns"
+          ],
+          "carries": "Up to about 3 tonnes (3,000 kg)",
+          "short": "3-TONNE",
+          "capValue": "3 tonnes",
+          "capSub": "about 3,000 kg"
+        }
+      ]
+    },
+    {
+      "id": "medium",
+      "label": "Medium trucks",
+      "note": "For regular deliveries of stock and pallets.",
+      "items": [
+        {
+          "id": "5-tonne",
+          "image": "/images/fleet/5-tonne.webp",
+          "name": "5-tonne truck",
+          "what": "Our everyday delivery truck for regular, medium-sized loads.",
+          "good": [
+            "Regular pallet deliveries",
+            "Supplying shops and warehouses",
+            "Planned distribution runs"
+          ],
+          "carries": "Up to about 5 tonnes (5,000 kg)",
+          "short": "5-TONNE",
+          "capValue": "5 tonnes",
+          "capSub": "about 5,000 kg"
+        }
+      ]
+    },
+    {
+      "id": "heavy",
+      "label": "Large trucks",
+      "note": "For big loads and long routes.",
+      "items": [
+        {
+          "id": "10-tonne",
+          "image": "/images/fleet/10-tonne.webp",
+          "name": "10-tonne truck",
+          "what": "A large truck for bigger, heavier loads.",
+          "good": [
+            "Many pallets at once",
+            "Moving goods between factories and warehouses",
+            "Longer routes between cities"
+          ],
+          "carries": "Up to about 10 tonnes (10,000 kg)",
+          "short": "10-TONNE",
+          "capValue": "10 tonnes",
+          "capSub": "about 10,000 kg"
+        },
+        {
+          "id": "prime-mover",
+          "image": "/images/fleet/prime-mover.webp",
+          "name": "40-foot prime mover",
+          "what": "A truck cab that pulls a long trailer or a shipping container.",
+          "good": [
+            "Shipping containers",
+            "Very large loads",
+            "Long-distance runs between hubs"
+          ],
+          "carries": "Depends on the trailer used",
+          "short": "PRIME MOVER",
+          "capValue": "Trailer or container",
+          "capSub": "depends on the trailer used"
+        }
+      ]
+    },
+    {
+      "id": "body",
+      "label": "By truck body",
+      "note": "Different ways of carrying and loading your goods.",
+      "items": [
+        {
+          "id": "box-truck",
+          "image": "/images/fleet/box-truck.webp",
+          "name": "Box truck",
+          "what": "A truck with a closed, boxed-in cargo area.",
+          "good": [
+            "Goods that must stay dry and secure",
+            "Boxes and stock",
+            "Anything you don't want exposed to rain or dust"
+          ],
+          "carries": "Available in different sizes",
+          "short": "BOX",
+          "capValue": "Different sizes",
+          "capSub": "ask for the size you need"
+        },
+        {
+          "id": "curtain-sided",
+          "image": "/images/fleet/curtain-sided.webp",
+          "name": "Curtain-sided truck",
+          "what": "A truck with strong canvas curtains on the sides that slide open.",
+          "good": [
+            "Pallets loaded from the side by forklift",
+            "Production and event equipment",
+            "Wide or awkward loads"
+          ],
+          "carries": "Available in different sizes",
+          "short": "CURTAIN",
+          "capValue": "Different sizes",
+          "capSub": "ask for the size you need"
+        },
+        {
+          "id": "tail-lift",
+          "image": "/images/fleet/tail-lift.webp",
+          "name": "Tail-lift truck",
+          "what": "A truck with a lifting platform at the back that raises and lowers goods.",
+          "good": [
+            "Heavy items with no loading dock",
+            "Machines and equipment",
+            "Deliveries where there is no forklift"
+          ],
+          "carries": "Available in different sizes",
+          "short": "TAIL-LIFT",
+          "capValue": "Different sizes",
+          "capSub": "ask for the size you need"
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "label": "Special-purpose vehicles",
+      "note": "For lifting, moving vehicles and keeping things cold.",
+      "items": [
+        {
+          "id": "crane-truck",
+          "image": "/images/fleet/crane-truck.webp",
+          "name": "Crane truck",
+          "what": "A truck with its own crane to lift and place heavy items.",
+          "good": [
+            "Lifting equipment on site",
+            "Machinery that needs placing, not just dropping off",
+            "Loads with no other way to lift them"
+          ],
+          "carries": "Depends on the crane",
+          "short": "CRANE",
+          "capValue": "Depends on the crane",
+          "capSub": "tell us the item and its weight"
+        },
+        {
+          "id": "towing",
+          "image": "/images/fleet/towing.webp",
+          "name": "Towing and vehicle carrier",
+          "what": "Trucks made for moving and recovering vehicles.",
+          "good": [
+            "Breakdown recovery",
+            "Moving cars and other vehicles",
+            "Delivering a vehicle from one place to another"
+          ],
+          "carries": "One or more vehicles, by type",
+          "short": "TOWING",
+          "capValue": "Vehicles",
+          "capSub": "one or more, by type"
+        },
+        {
+          "id": "refrigerated",
+          "image": "/images/fleet/refrigerated.webp",
+          "name": "Refrigerated truck",
+          "what": "A truck that keeps goods cold for the whole journey.",
+          "good": [
+            "Chilled and frozen food",
+            "Goods that spoil in the heat",
+            "Temperature-sensitive items"
+          ],
+          "carries": "Available in different sizes",
+          "short": "COLD CHAIN",
+          "capValue": "Different sizes",
+          "capSub": "ask for the size you need"
+        }
+      ]
+    }
+  ],
+  "ask": "Ask about this vehicle",
+  "network": {
+    "tag": "Our trucks and our partners",
+    "title": "Our own trucks, plus trusted partners.",
+    "text": "Some jobs are done by our own trucks and drivers. For others, we work with independent transport partners, so we can find the right vehicle when you need it.",
+    "cards": [
+      {
+        "title": "Our own trucks",
+        "text": "Company-operated vehicles with employed drivers, planned and coordinated by our operations team."
+      },
+      {
+        "title": "Partner trucks",
+        "text": "Vehicles owned by independent drivers and transport companies in our network, used to add capacity where it is needed."
+      }
+    ]
+  },
+  "tell": {
+    "tag": "Getting a quote",
+    "title": "What to tell us.",
+    "text": "You do not need to know which vehicle you need. Just tell us these four things and we will suggest one.",
+    "items": [
+      {
+        "title": "What you are moving",
+        "text": "For example boxes, pallets, a machine or equipment."
+      },
+      {
+        "title": "How much",
+        "text": "The rough size or weight, and how many items."
+      },
+      {
+        "title": "Where from and to",
+        "text": "The pick-up and delivery places."
+      },
+      {
+        "title": "When",
+        "text": "The date and time it needs to arrive."
+      }
+    ],
+    "cta": "Request a quote"
+  },
+  "glance": {
+    "tag": "Our vehicles",
+    "title": "Every vehicle we have.",
+    "text": "What each one is, what it is good for and what it carries.",
+    "help": "Not sure which one?",
+    "helpText": "Tell us what you are moving and we will suggest one.",
+    "count": "Vehicle types ready for your load"
+  },
+  "capLabel": "Carries",
+  "goodLabel": "Good for",
+  "infoLabel": "Vehicle info",
+  "typeLabel": "Type"
+}

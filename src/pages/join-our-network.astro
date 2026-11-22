@@ -1,0 +1,204 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteClosing from '../components/SiteClosing.astro';
+import QuoteDialog from '../components/QuoteDialog.astro';
+import d from '../data/home.json';
+import n from '../data/network.json';
+
+const eyebrow = 'flex items-center gap-3 font-display text-[12px] font-semibold uppercase tracking-[0.2em]';
+const vehicles = d.fleet.vehicles.map((v) => v.name);
+const wa = d.site.phoneHref.replace('+', '');
+const labelCls = 'grid gap-1.5 text-sm font-medium';
+---
+<Base title={n.seo.title} description={n.seo.description} path="/join-our-network">
+  <SiteNav />
+
+  <!-- INTRO -->
+  <section data-reveal data-nav-dark class="relative isolate flex min-h-[84svh] items-end overflow-hidden bg-[#050b1f] text-white">
+    <img src={n.intro.image} alt="" fetchpriority="high" class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_60%]" />
+    <div aria-hidden="true" class="absolute inset-0 -z-10" style="background:linear-gradient(180deg,rgba(4,9,30,.82) 0%,rgba(4,9,30,.55) 45%,rgba(4,9,30,.92) 100%),radial-gradient(ellipse 70% 60% at 0% 100%,rgba(4,9,30,.8),transparent 70%)"></div>
+    <div class="container-x w-full pb-16 pt-40 lg:pb-24">
+      <span class:list={[eyebrow, 'text-white/75']}><span class="h-2 w-2 bg-white"></span>{n.intro.tag}</span>
+      <h1 class="mt-6 max-w-[15ch] font-display text-[clamp(2.8rem,7vw,6.6rem)] font-medium leading-[1] tracking-tight">{n.intro.title}</h1>
+      <p class="mt-7 max-w-xl text-[15px] leading-relaxed text-white/80 lg:text-lg">{n.intro.text}</p>
+      <div class="mt-9 flex flex-wrap gap-3 sm:gap-4">
+        {n.tabs.map((t, i) => (
+          <a href={`#${t.id}`} data-jump={t.id} class:list={['btn group/btn', i === 0 ? 'bg-white text-neutral-950 hover:bg-neutral-200' : 'border border-white/60 bg-[#040b2c]/55 text-white backdrop-blur-sm hover:bg-white hover:text-neutral-950']}>{t.label} <span class="transition-transform duration-300 group-hover/btn:translate-x-1"><Icon name="arrow" size={18} /></span></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <main id="main" class="relative z-10 bg-white">
+    <section id="network" data-reveal class="py-20 lg:py-32">
+      <div class="container-x">
+        <!-- which path -->
+        <div role="tablist" aria-label="Choose how to join" class="grid gap-3 sm:grid-cols-2 sm:gap-4">
+          {n.tabs.map((t, i) => (
+            <button type="button" role="tab" data-tab={t.id} aria-selected={i === 0 ? 'true' : 'false'} class="net-tab group flex items-center gap-5 rounded-xl border border-neutral-300 px-5 py-5 text-left lg:px-7 lg:py-6">
+              <span class="net-tab-ic grid h-14 w-14 shrink-0 place-items-center rounded-lg border border-neutral-300 text-brand"><Icon name={t.icon} size={26} /></span>
+              <span>
+                <span class="block font-display text-[1.35rem] font-medium leading-tight tracking-tight lg:text-[1.6rem]">{t.label}</span>
+                <span class="mt-1 block text-[13px] text-neutral-500">{t.hint}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+
+        <!-- DRIVERS -->
+        <div id="drivers" data-panel="drivers" class="net-panel mt-16 grid gap-14 lg:mt-24 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-24">
+          <div>
+            <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>{n.drivers.tag}</span>
+            <h2 class="mt-6 max-w-[12ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">{n.drivers.title}</h2>
+            <p class="mt-6 max-w-md text-[15px] leading-relaxed text-neutral-600 lg:text-base">{n.drivers.text}</p>
+            <div class="mt-12">
+              <div class="font-display text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500">{n.drivers.lookTitle}</div>
+              <ul class="mt-4 border-y border-neutral-300">
+                {n.drivers.look.map((l) => <li class="flex items-start gap-3 border-b border-neutral-200 py-3.5 text-[15px] text-neutral-800 last:border-b-0"><span class="mt-[0.55rem] h-1.5 w-1.5 shrink-0 bg-brand"></span>{l}</li>)}
+              </ul>
+            </div>
+            <div class="mt-12">
+              <div class="font-display text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500">{n.drivers.stepsTitle}</div>
+              <ol class="mt-4 grid gap-5 sm:grid-cols-2">
+                {n.drivers.steps.map((s, i) => (
+                  <li class="border-t border-neutral-300 pt-4">
+                    <span class="font-display text-[12px] font-semibold tabular-nums tracking-wider text-brand">{String(i + 1).padStart(2, '0')}</span>
+                    <div class="mt-2 font-display text-[1.1rem] font-medium leading-tight text-neutral-950">{s.title}</div>
+                    <p class="mt-1.5 text-[14px] leading-relaxed text-neutral-600">{s.text}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+          <form data-form="driver" novalidate class="net-form h-fit rounded-xl border border-neutral-200 bg-[#fafafa] p-6 lg:sticky lg:top-28 lg:p-9">
+            <h3 class="font-display text-[1.6rem] font-medium tracking-tight text-neutral-950">{n.drivers.form.title}</h3>
+            <div class="mt-6 grid gap-4 sm:grid-cols-2">
+              <label class:list={[labelCls, 'sm:col-span-2']}><span>Full name <b class="text-brand">*</b></span><input name="name" data-label="Name" required autocomplete="name" class="qf" /></label>
+              <label class={labelCls}><span>Phone / WhatsApp <b class="text-brand">*</b></span><input name="phone" data-label="Phone" type="tel" required autocomplete="tel" inputmode="tel" class="qf" /></label>
+              <label class={labelCls}><span>Location</span><input name="location" data-label="Location" placeholder="Town or state" class="qf" /></label>
+              <label class={labelCls}><span>Licence category</span><input name="licence" data-label="Licence category" class="qf" /></label>
+              <label class={labelCls}><span>Years of experience</span><input name="experience" data-label="Experience" inputmode="numeric" class="qf" /></label>
+              <label class={labelCls}><span>Preferred vehicle</span>
+                <select name="vehicle" data-label="Preferred vehicle" class="qf"><option value="">Any</option>{vehicles.map((v) => <option>{v}</option>)}</select>
+              </label>
+              <label class={labelCls}><span>Availability</span><input name="availability" data-label="Availability" placeholder="e.g. immediately" class="qf" /></label>
+            </div>
+            <p class="net-err mt-3 hidden text-sm font-medium text-red-600"></p>
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <button type="button" data-send="wa" class="btn btn-brand group/btn"><Icon name="whatsapp" size={18} /> {n.drivers.form.button}</button>
+              <button type="button" data-send="mail" class="btn border border-neutral-300 bg-white text-neutral-800 hover:border-brand hover:text-brand"><Icon name="mail" size={18} /> {n.drivers.form.mail}</button>
+            </div>
+            <p class="mt-4 text-xs text-neutral-500">{n.drivers.form.note}</p>
+            <p class="mt-3 text-xs text-neutral-500">We read every enquiry and reply as soon as we can, by WhatsApp or email.</p>
+            <p class="mt-2 text-xs text-neutral-500">By sending this you agree to our <a href="/privacy" class="underline underline-offset-2 hover:text-brand">Privacy policy</a>.</p>
+          </form>
+        </div>
+
+        <!-- PARTNERS -->
+        <div id="partners" data-panel="partners" hidden class="net-panel mt-16 grid gap-14 lg:mt-24 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-24">
+          <div>
+            <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>{n.partners.tag}</span>
+            <h2 class="mt-6 max-w-[12ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">{n.partners.title}</h2>
+            <p class="mt-6 max-w-md text-[15px] leading-relaxed text-neutral-600 lg:text-base">{n.partners.text}</p>
+            <div class="mt-12">
+              <div class="font-display text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500">{n.partners.whoTitle}</div>
+              <div class="mt-4 border-y border-neutral-300">
+                {n.partners.who.map((w) => (
+                  <div class="who-row group grid grid-cols-[auto_minmax(0,1fr)] items-center gap-5 border-b border-neutral-200 py-5 transition-colors duration-500 last:border-b-0 hover:bg-[#f4f6fb]">
+                    <span class="grid h-14 w-14 place-items-center rounded-lg border border-neutral-300 text-brand transition-all duration-500 group-hover:-rotate-6 group-hover:border-brand group-hover:bg-brand group-hover:text-white"><Icon name={w.icon} size={24} /></span>
+                    <div>
+                      <div class="font-display text-[1.15rem] font-medium leading-tight text-neutral-950">{w.title}</div>
+                      <p class="mt-1 text-[14px] text-neutral-600">{w.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="mt-12">
+              <div class="font-display text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500">{n.partners.gainTitle}</div>
+              <ul class="mt-4 border-y border-neutral-300">
+                {n.partners.gain.map((g) => <li class="flex items-start gap-3 border-b border-neutral-200 py-3.5 text-[15px] text-neutral-800 last:border-b-0"><span class="mt-[0.55rem] h-1.5 w-1.5 shrink-0 bg-brand"></span>{g}</li>)}
+              </ul>
+            </div>
+          </div>
+          <form data-form="partner" novalidate class="net-form h-fit rounded-xl border border-neutral-200 bg-[#fafafa] p-6 lg:sticky lg:top-28 lg:p-9">
+            <h3 class="font-display text-[1.6rem] font-medium tracking-tight text-neutral-950">{n.partners.form.title}</h3>
+            <div class="mt-6 grid gap-4 sm:grid-cols-2">
+              <label class:list={[labelCls, 'sm:col-span-2']}><span>Individual or company name <b class="text-brand">*</b></span><input name="name" data-label="Name" required autocomplete="name" class="qf" /></label>
+              <label class={labelCls}><span>Phone / WhatsApp <b class="text-brand">*</b></span><input name="phone" data-label="Phone" type="tel" required autocomplete="tel" inputmode="tel" class="qf" /></label>
+              <label class={labelCls}><span>Operating region</span><input name="region" data-label="Operating region" class="qf" /></label>
+              <label class={labelCls}><span>Vehicle type</span>
+                <select name="vehicle" data-label="Vehicle type" class="qf"><option value="">Select</option>{vehicles.map((v) => <option>{v}</option>)}</select>
+              </label>
+              <label class={labelCls}><span>Fleet size</span><input name="fleet" data-label="Fleet size" inputmode="numeric" class="qf" /></label>
+              <label class={labelCls}><span>Ownership</span>
+                <select name="ownership" data-label="Ownership" class="qf"><option value="">Select</option><option>Owner-driver</option><option>Lorry owner</option><option>Transport company</option><option>Fleet operator</option></select>
+              </label>
+              <label class={labelCls}><span>Years of experience</span><input name="experience" data-label="Experience" inputmode="numeric" class="qf" /></label>
+              <label class:list={[labelCls, 'sm:col-span-2']}><span>Licence information</span><input name="licence" data-label="Licence information" class="qf" /></label>
+              <label class:list={[labelCls, 'sm:col-span-2']}><span>Routes or areas covered</span><textarea name="routes" data-label="Routes / areas" rows="3" class="qf resize-none"></textarea></label>
+            </div>
+            <p class="net-err mt-3 hidden text-sm font-medium text-red-600"></p>
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <button type="button" data-send="wa" class="btn btn-brand group/btn"><Icon name="whatsapp" size={18} /> {n.partners.form.button}</button>
+              <button type="button" data-send="mail" class="btn border border-neutral-300 bg-white text-neutral-800 hover:border-brand hover:text-brand"><Icon name="mail" size={18} /> {n.partners.form.mail}</button>
+            </div>
+            <p class="mt-4 text-xs text-neutral-500">{n.partners.form.note}</p>
+            <p class="mt-3 text-xs text-neutral-500">We read every enquiry and reply as soon as we can, by WhatsApp or email.</p>
+            <p class="mt-2 text-xs text-neutral-500">By sending this you agree to our <a href="/privacy" class="underline underline-offset-2 hover:text-brand">Privacy policy</a>.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteClosing />
+  <QuoteDialog />
+
+  <script is:inline define:vars={{ wa, mail: d.site.email }}>
+    (function () {
+      var tabs = [].slice.call(document.querySelectorAll('[data-tab]')), panels = [].slice.call(document.querySelectorAll('[data-panel]'));
+      function show(id, scroll) {
+        if (!id) id = 'drivers';
+        tabs.forEach(function (t) { t.setAttribute('aria-selected', t.getAttribute('data-tab') === id ? 'true' : 'false'); });
+        panels.forEach(function (p) {
+          var on = p.getAttribute('data-panel') === id;
+          if (on) { p.hidden = false; p.classList.remove('is-in'); void p.offsetWidth; p.classList.add('is-in'); } else { p.hidden = true; p.classList.remove('is-in'); }
+        });
+        if (scroll) {
+          var el = document.getElementById('network'); var y = el.getBoundingClientRect().top + scrollY - 10;
+          if (window.__lenis) window.__lenis.scrollTo(y, { duration: 1.2 }); else scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }
+      tabs.forEach(function (t) { t.addEventListener('click', function () { show(t.getAttribute('data-tab'), false); history.replaceState(null, '', '#' + t.getAttribute('data-tab')); }); });
+      [].forEach.call(document.querySelectorAll('[data-jump]'), function (a) {
+        a.addEventListener('click', function (e) { e.preventDefault(); var id = a.getAttribute('data-jump'); show(id, true); history.replaceState(null, '', '#' + id); });
+      });
+      function fromHash() { var h = location.hash.replace('#', ''); if (h === 'drivers' || h === 'partners') show(h, true); else show('drivers', false); }
+      fromHash(); addEventListener('hashchange', fromHash);
+
+      // forms: compose a WhatsApp or email message, no backend needed
+      [].forEach.call(document.querySelectorAll('form[data-form]'), function (form) {
+        var kind = form.getAttribute('data-form'), err = form.querySelector('.net-err');
+        var head = kind === 'driver' ? "Hi Kasi Transport, I'd like to apply as a driver." : "Hi Kasi Transport, I'd like to register as a transport partner.";
+        function text() {
+          var lines = [head, ''];
+          [].forEach.call(form.querySelectorAll('[data-label]'), function (f) { var v = (f.value || '').trim(); if (v) lines.push(f.getAttribute('data-label') + ': ' + v); });
+          return lines.join('\n');
+        }
+        [].forEach.call(form.querySelectorAll('[data-send]'), function (b) {
+          b.addEventListener('click', function () {
+            var nm = form.elements.name.value.trim(), ph = form.elements.phone.value.trim();
+            if (!nm || !ph) { err.textContent = 'Please add your name and phone number.'; err.classList.remove('hidden'); (nm ? form.elements.phone : form.elements.name).focus(); return; }
+            err.classList.add('hidden');
+            var t = text();
+            if (b.getAttribute('data-send') === 'wa') window.open('https://wa.me/' + wa + '?text=' + encodeURIComponent(t), '_blank', 'noopener');
+            else window.location.href = 'mailto:' + mail + '?subject=' + encodeURIComponent(kind === 'driver' ? 'Driver application' : 'Transport partner registration') + '&body=' + encodeURIComponent(t);
+          });
+        });
+      });
+    })();
+  </script>
+</Base>

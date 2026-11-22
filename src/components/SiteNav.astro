@@ -1,0 +1,87 @@
+---
+import d from '../data/home.json';
+import Icon from './Icon.astro';
+const { home = false } = Astro.props;
+const wa = `https://wa.me/${d.site.phoneHref.replace('+', '')}?text=${encodeURIComponent(d.float.waText)}`;
+const to = (h: string) => (h.startsWith('#') && h !== '#contact' && !home ? '/' + h : h);
+---
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header id="site-nav" class="site-nav fixed inset-x-0 top-0 z-50">
+    <div class="site-nav-bg" aria-hidden="true"></div>
+    <div class="relative z-10 flex h-[72px] items-center justify-between px-6 lg:h-[84px] lg:px-20">
+      <a href="/" aria-label={d.site.name} class="hero-in relative block flex-none" style="--d:0.2s">
+        <img src={d.site.logo} alt={d.site.name} class="nav-logo-light h-9 w-auto transition-opacity duration-300 lg:h-10" />
+        <img src="/images/logo-dark.webp" alt="" aria-hidden="true" class="nav-logo-dark absolute inset-0 h-9 w-auto opacity-0 transition-opacity duration-300 lg:h-10" />
+      </a>
+      <nav class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex" aria-label="Main">
+        {d.nav.slice(0, -1).map((n, i) => (
+          <a href={to(n.href)} style={`--d:${0.3 + i * 0.08}s`} aria-current={n.href === Astro.url.pathname ? 'page' : undefined} class="nav-pill hero-in rounded-full px-3 py-2 font-display text-[14px] xl:px-4 xl:text-[15px] font-medium tracking-tight">{n.label}</a>
+        ))}
+      </nav>
+      <div class="hidden items-center lg:flex">
+      <a href={wa} target="_blank" rel="noopener" data-cta="nav-whatsapp" aria-label={d.nav[d.nav.length - 1].label} style="--d:0.8s" class="nav-cta hero-in inline-flex items-center gap-2 py-2 pl-3 pr-2 xl:gap-3 xl:pl-4 font-display text-[15px] font-medium tracking-tight lg:inline-flex"><Icon name="whatsapp" size={17} /><span class="hidden xl:inline">{d.nav[d.nav.length - 1].label}</span><span class="nav-cta-chip"><Icon name="arrowUpRight" size={16} /></span></a>
+      </div>
+      <button id="menu-btn" style="--d:0.35s" class="nav-menu hero-in grid h-10 w-10 place-items-center rounded-lg lg:hidden" aria-label="Menu" aria-expanded="false"><Icon name="menu" size={30} /></button>
+    </div>
+    <nav id="mobile-nav" class="mnav lg:hidden" aria-label="Mobile" aria-hidden="true">
+      <div class="mnav-links">
+        {d.nav.slice(0, -1).map((n, i) => (
+          <a href={to(n.href)} style={`--i:${i}`} aria-current={n.href === Astro.url.pathname ? 'page' : undefined} class="mnav-l" tabindex="-1"><span class="mnav-in"><span class="mnav-n">{String(i + 1).padStart(2, '0')}</span>{n.label}</span></a>
+        ))}
+      </div>
+      <div class="mnav-foot" style={`--i:${d.nav.length}`}>
+        <a href={wa} target="_blank" rel="noopener" data-cta="menu-whatsapp" class="group/wa flex items-center gap-4 rounded-lg border border-white/20 bg-white/[0.06] p-3 pr-4 transition-colors duration-300 hover:bg-white/[0.12]" tabindex="-1">
+          <span class="grid h-14 w-14 shrink-0 place-items-center text-white"><Icon name="whatsapp" size={46} /></span>
+          <span class="min-w-0 flex-1"><span class="block font-display text-[1.15rem] font-medium leading-tight tracking-tight text-white">{d.nav[d.nav.length - 1].label}</span><span class="mt-0.5 block text-[13px] text-white/60">Chat with our team</span></span>
+          <span class="text-white/70 transition-transform duration-300 group-hover/wa:translate-x-1"><Icon name="arrow" size={20} /></span>
+        </a>
+        <div class="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-1 text-[13px] text-white/60">
+          <a href={`tel:${d.site.phoneHref}`} tabindex="-1">{d.site.phone}</a>
+          <a href={`mailto:${d.site.email}`} tabindex="-1">{d.site.email}</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('menu-btn'), nav = document.getElementById('mobile-nav'), hd = document.getElementById('site-nav');
+    if (!btn || !nav) return;
+    var ico = btn.innerHTML, closeIco = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>';
+    function set(open) {
+      hd.classList.toggle('menu-open', open);
+      document.documentElement.classList.toggle('menu-locked', open);
+      btn.setAttribute('aria-expanded', String(open)); btn.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+      nav.setAttribute('aria-hidden', String(!open));
+      [].forEach.call(nav.querySelectorAll('a'), function (a) { a.tabIndex = open ? 0 : -1; });
+      btn.innerHTML = open ? closeIco : ico;
+      if (window.__lenis) open ? window.__lenis.stop() : window.__lenis.start();
+    }
+    btn.addEventListener('click', function () { set(!hd.classList.contains('menu-open')); });
+    nav.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+    addEventListener('keydown', function (e) { if (e.key === 'Escape' && hd.classList.contains('menu-open')) { set(false); btn.focus(); } });
+    addEventListener('resize', function () { if (innerWidth >= 1024 && hd.classList.contains('menu-open')) set(false); });
+  })();
+</script>
+  <script>
+    (function () {
+      var nav = document.getElementById('site-nav'); if (!nav) return;
+      function lum(c) { var m = c.match(/[\d.]+/g); if (!m) return null; if (m.length > 3 && +m[3] < 0.5) return null; return (0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2]) / 255; }
+      function check() {
+        var els = document.elementsFromPoint(innerWidth / 2, 42), L = null;
+        for (var i = 0; i < els.length && L === null; i++) {
+          if (nav.contains(els[i]) || els[i].parentElement === document.body) continue;
+          if (els[i].classList.contains('footer-spacer') || els[i].closest('#preloader')) { L = 0; break; }
+          if (els[i].closest('#hero, [data-nav-dark]')) { L = 0; break; }
+          for (var e = els[i]; e && L === null; e = e.parentElement) L = lum(getComputedStyle(e).backgroundColor);
+        }
+        nav.classList.toggle('is-light', L !== null && L > 0.55);
+      }
+      var t = false;
+      var last = 0, tt; addEventListener('scroll', function () { if (t) return; t = true; requestAnimationFrame(function () { t = false; var n = performance.now(); if (n - last > 90) { last = n; check(); } clearTimeout(tt); tt = setTimeout(check, 130); }); }, { passive: true });
+      addEventListener('resize', check); check();
+      // re-check the moment the loading screen or page curtain clears, so the bar never keeps a stale colour
+      new MutationObserver(function () { check(); setTimeout(check, 200); setTimeout(check, 1200); }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    })();
+  </script>

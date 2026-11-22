@@ -1,0 +1,241 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteClosing from '../components/SiteClosing.astro';
+import QuoteDialog from '../components/QuoteDialog.astro';
+import f from '../data/fleet.json';
+
+const eyebrow = 'flex items-center gap-3 font-display text-[12px] font-semibold uppercase tracking-[0.2em]';
+const infoOf: Record<string, { name: string; what: string; image: string }> = {};
+const groupOf: Record<string, string> = {};
+f.groups.forEach((g) => g.items.forEach((v) => { infoOf[v.id] = { name: v.name, what: v.what, image: v.image }; groupOf[v.id] = g.id; }));
+let n = 0;
+const all = f.groups.flatMap((g) => g.items.map((v) => ({ ...v, group: g.label })));
+const rows = [all.slice(0, 4), all.slice(4, 8), all.slice(8)];
+---
+<Base title={f.seo.title} description={f.seo.description} path="/fleet">
+  <SiteNav />
+
+  <!-- INTRO -->
+  <section data-reveal data-nav-dark class="relative isolate flex min-h-[80svh] items-end overflow-hidden bg-[#050b1f] text-white">
+    <img src={f.intro.image} alt="" fetchpriority="high" class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_55%]" />
+    <div aria-hidden="true" class="absolute inset-0 -z-10" style="background:linear-gradient(180deg,rgba(5,11,31,.75) 0%,rgba(5,11,31,.5) 40%,rgba(5,11,31,.92) 100%),radial-gradient(ellipse 70% 60% at 0% 100%,rgba(5,11,31,.8),transparent 70%)"></div>
+    <div class="container-x w-full pb-16 pt-40 lg:pb-24">
+      <span class:list={[eyebrow, 'text-white/75']}><span class="h-2 w-2 bg-white"></span>{f.intro.tag}</span>
+      <h1 class="mt-6 max-w-[13ch] font-display text-[clamp(2.8rem,7.2vw,6.8rem)] font-medium leading-[1] tracking-tight">{f.intro.title}</h1>
+      <p class="mt-7 max-w-xl text-[15px] leading-relaxed text-white/80 lg:text-lg">{f.intro.text}</p>
+    </div>
+  </section>
+
+  <main id="main" class="relative z-10 bg-white">
+    <!-- ALL VEHICLES: choose one on the left, see everything about it on the right -->
+    <section id="list" data-reveal class="py-20 lg:py-28">
+      <div class="container-x">
+        <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>{f.glance.tag}</span>
+        <div class="mt-6 grid items-end gap-6 lg:grid-cols-2 lg:gap-16">
+          <h2 class="max-w-[14ch] font-display text-[clamp(2.4rem,5vw,4.6rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">{f.glance.title}</h2>
+          <p class="max-w-md text-[1.05rem] leading-relaxed text-neutral-700 lg:pb-2">{f.glance.text}</p>
+        </div>
+
+        <div id="vgrid" data-no-reveal class="mt-12 lg:mt-16">
+          {rows.map((row, ri) => (
+            <div class="lg-row">
+              <div class="grid grid-cols-2 lg:grid-cols-4">
+                {row.map((v) => {
+                  n += 1;
+                  return (
+                    <button type="button" data-v={v.id} data-row={ri} aria-expanded="false" aria-controls={`lp-${ri}`} class="lg-cell group">
+                      <span class="flex items-start justify-between">
+                        <span class="lg-grp">{v.group}</span>
+                        <span class="lg-no" aria-hidden="true">{String(n).padStart(2, '0')}</span>
+                      </span>
+                      <span class="lg-stage"><img src={v.image} alt="" loading="lazy" class="lg-img" /></span>
+                      <span>
+                        <span class="lg-name">{v.name}</span>
+                        <span class="lg-desc">{v.what}</span>
+                        <span class="lg-cue"><span class="lg-cue-t">View details</span><span class="lg-plus" aria-hidden="true"></span></span>
+                      </span>
+                    </button>
+                  );
+                })}
+                {ri === rows.length - 1 && (
+                  <a href="#helper" class="lg-cell lg-help group">
+                    <span class="flex items-start justify-between"><span class="lg-grp">{f.glance.help}</span><span class="lg-no" aria-hidden="true">?</span></span>
+                    <span class="lg-help-t">{f.glance.helpText}</span>
+                    <span><span class="lg-name">Find my vehicle</span><span class="lg-cue"><span class="lg-cue-t">Answer a few quick questions</span></span></span>
+                  </a>
+                )}
+              </div>
+              <div id={`lp-${ri}`} role="region" aria-label="Vehicle details" class="lg-panel" inert>
+                <div class="lg-in">
+                  {row.map((v) => (
+                    <article data-d={v.id} aria-labelledby={`d-${v.id}`} class="lg-detail" hidden>
+                      <div class="relative grid gap-8 px-5 py-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16 lg:px-10 lg:py-14">
+                        <button type="button" class="lg-close" aria-label={`Close details for ${v.name}`}><span>Close</span><span class="lg-x" aria-hidden="true"></span></button>
+                        <div class="lg-pstage relative grid min-h-[15rem] place-items-center overflow-hidden px-6 py-8">
+                          <span aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-[14%] overflow-hidden whitespace-nowrap text-center font-display text-[clamp(2.8rem,7vw,6.4rem)] font-bold leading-none tracking-tight text-transparent [-webkit-text-stroke:1.5px_rgba(15,32,99,.13)]">{v.short}</span>
+                          <img src={v.image} alt={v.name} loading="lazy" class="lg-ptruck relative h-[12rem] w-full max-w-[30rem] object-contain lg:h-[15rem]" />
+                        </div>
+                        <div class="lg-ptext flex flex-col justify-center">
+                          <h3 id={`d-${v.id}`} class="font-display text-[clamp(1.9rem,3vw,2.8rem)] font-medium leading-[1.05] tracking-tight text-neutral-950">{v.name}</h3>
+                          <p class="mt-3 max-w-md text-[1.1rem] leading-snug text-neutral-700">{v.what}</p>
+                          <div class="mt-7 grid gap-7 sm:grid-cols-[1.3fr_1fr] sm:gap-10">
+                            <div>
+                              <h4 class="font-display text-[12px] font-semibold uppercase tracking-[0.18em] text-neutral-500">{f.goodLabel}</h4>
+                              <ul class="mt-3 grid gap-2">
+                                {v.good.map((x) => <li class="flex items-start gap-3 text-[1rem] leading-snug text-neutral-900"><span class="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-sm bg-brand"></span>{x}</li>)}
+                              </ul>
+                            </div>
+                            <div>
+                              <h4 class="font-display text-[12px] font-semibold uppercase tracking-[0.18em] text-neutral-500">{f.capLabel}</h4>
+                              <p class="mt-3 font-display text-[1.5rem] font-medium leading-tight tracking-tight text-brand">{v.capValue}</p>
+                              <p class="mt-1 text-[0.92rem] text-neutral-600">{v.capSub}</p>
+                            </div>
+                          </div>
+                          <a href="#contact" data-quote data-vehicle={v.name} data-cta="fleet-ask" class="btn btn-brand group/btn mt-8 min-h-[3.25rem] w-fit">{f.ask} <span class="transition-transform duration-300 group-hover/btn:translate-x-1"><Icon name="arrow" size={18} /></span></a>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT ARE YOU MOVING? -->
+    <section data-reveal class="bg-[#0b0d12] py-20 text-white lg:py-32">
+      <div class="container-x grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-24">
+        <div class="lg:sticky lg:top-28 lg:self-start">
+          <span class:list={[eyebrow, 'text-white/70']}><span class="h-2 w-2 bg-white"></span>{f.helper.tag}</span>
+          <h2 class="mt-6 max-w-[11ch] font-display text-[clamp(2.4rem,5vw,4.4rem)] font-medium leading-[1.02] tracking-tight text-white">{f.helper.title}</h2>
+          <p class="mt-5 max-w-sm text-[1.05rem] leading-relaxed text-white/70">{f.helper.text}</p>
+          <div id="helper-out" class="mt-9 rounded-lg bg-white/[0.07] p-5 lg:p-7" aria-live="polite">
+            <p id="helper-empty" class="flex items-center justify-between gap-4 text-[1.02rem] text-white/70"><span>{f.helper.empty}</span><span class="shrink-0 text-white/40"><Icon name="arrow" size={20} /></span></p>
+            <div id="helper-res" hidden>
+              <div class="font-display text-[12px] font-semibold uppercase tracking-[0.2em] text-white/60">{f.helper.suggest}</div>
+              <div id="helper-pills" class="mt-4 grid gap-2"></div>
+            </div>
+          </div>
+        </div>
+        <div>
+        <div class="flex items-center gap-3 pb-3 font-display text-[11px] font-semibold uppercase tracking-[0.22em] text-white/45"><span class="h-px w-8 bg-white/30"></span>Pick one<Icon name="arrow" size={14} /></div>
+        <div id="helper" data-no-reveal role="radiogroup" aria-label={f.helper.title}>
+          {f.helper.options.map((o) => (
+            <button type="button" role="radio" aria-checked="false" data-ids={o.ids.join(',')} class="hq-opt">
+              <span class="hq-mark" aria-hidden="true"></span>
+              <span class="hq-text">{o.label}</span>
+              <span class="hq-arrow" aria-hidden="true"><Icon name="arrow" size={22} /></span>
+            </button>
+          ))}
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OWN TRUCKS AND PARTNERS -->
+    <section data-reveal class="py-24 lg:py-36">
+      <div class="container-x">
+        <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>{f.network.tag}</span>
+        <div class="mt-6 grid items-end gap-6 lg:grid-cols-2 lg:gap-16">
+          <h2 class="max-w-[15ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">{f.network.title}</h2>
+          <p class="max-w-md text-[15px] leading-relaxed text-neutral-600 lg:pb-2">{f.network.text}</p>
+        </div>
+        <div class="mt-14 grid border-y border-neutral-300 lg:mt-24 lg:grid-cols-2">
+          {f.network.cards.map((c, i) => (
+            <div class:list={['px-1 py-10 lg:px-10 lg:py-14', i === 0 ? 'lg:pl-0' : 'border-t border-neutral-300 lg:border-l lg:border-t-0']}>
+              <span class="grid h-14 w-14 place-items-center rounded-lg border border-neutral-300 text-brand"><Icon name={i === 0 ? 'truck' : 'users'} size={26} /></span>
+              <h3 class="mt-8 font-display text-[clamp(1.6rem,2.6vw,2.3rem)] font-medium leading-none tracking-tight text-neutral-950">{c.title}</h3>
+              <p class="mt-4 max-w-sm text-[15px] leading-relaxed text-neutral-600">{c.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT TO TELL US -->
+    <section data-reveal class="bg-[#eceff3] py-24 lg:py-36">
+      <div class="container-x">
+        <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>{f.tell.tag}</span>
+        <div class="mt-6 grid items-end gap-6 lg:grid-cols-2 lg:gap-16">
+          <h2 class="max-w-[12ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">{f.tell.title}</h2>
+          <div class="lg:pb-2">
+            <p class="max-w-md text-[15px] leading-relaxed text-neutral-600">{f.tell.text}</p>
+            <a href="#contact" data-quote data-cta="fleet-quote" class="btn btn-brand group/btn mt-7">{f.tell.cta} <span class="transition-transform duration-300 group-hover/btn:translate-x-1"><Icon name="arrow" size={18} /></span></a>
+          </div>
+        </div>
+        <div class="mt-14 grid border-y border-neutral-300 sm:grid-cols-2 lg:mt-24 lg:grid-cols-4">
+          {f.tell.items.map((it, i) => (
+            <div class:list={['px-1 py-9 lg:px-8 lg:py-12', i > 0 && 'border-t border-neutral-300 sm:border-t-0 lg:border-l', i % 2 === 1 && 'sm:border-l sm:border-neutral-300', i > 1 && 'sm:border-t lg:border-t-0', i === 0 && 'lg:pl-0']}>
+              <span class="font-display text-[12px] font-semibold tabular-nums tracking-wider text-brand">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="mt-6 font-display text-[1.4rem] font-medium leading-tight tracking-tight text-neutral-950">{it.title}</h3>
+              <p class="mt-3 max-w-[15rem] text-[14px] leading-relaxed text-neutral-600">{it.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteClosing />
+  <QuoteDialog />
+
+  <script is:inline define:vars={{ info: infoOf }}>
+    (function () {
+      var cells = [].slice.call(document.querySelectorAll('#vgrid .lg-cell[data-v]')), panels = [].slice.call(document.querySelectorAll('#vgrid .lg-panel')), details = [].slice.call(document.querySelectorAll('#vgrid .lg-detail'));
+      function scrollTo2(el, off) { var y = el.getBoundingClientRect().top + scrollY - off; if (window.__lenis) window.__lenis.scrollTo(y, { duration: 1.1 }); else scrollTo({ top: y, behavior: 'smooth' }); }
+      function closeAll(except) {
+        panels.forEach(function (p) { if (p !== except) { p.classList.remove('is-open'); p.setAttribute('inert', ''); } });
+      }
+      function openVehicle(id, scroll) {
+        var cell = cells.filter(function (c) { return c.getAttribute('data-v') === id; })[0]; if (!cell) return;
+        var panel = document.getElementById(cell.getAttribute('aria-controls'));
+        var already = panel.classList.contains('is-open') && !panel.querySelector('[data-d="' + id + '"]').hidden;
+        if (already) { panel.classList.remove('is-open'); panel.setAttribute('inert', ''); cells.forEach(function (c) { c.setAttribute('aria-expanded', 'false'); c.classList.remove('is-sel'); }); return; }
+        closeAll(panel);
+        cells.forEach(function (c) { var on = c === cell; c.setAttribute('aria-expanded', on ? 'true' : 'false'); c.classList.toggle('is-sel', on); });
+        details.forEach(function (d) { d.hidden = d.getAttribute('data-d') !== id; });
+        panel.removeAttribute('inert'); panel.classList.add('is-open');
+        if (scroll !== false) setTimeout(function () { var r = cell.getBoundingClientRect(); if (r.top < 100 || r.top > innerHeight * 0.4) scrollTo2(cell, 130); }, 120);
+      }
+      cells.forEach(function (c, i) { c.style.setProperty('--ci', i % 4); c.addEventListener('click', function () { openVehicle(c.getAttribute('data-v')); }); });
+      var vg = document.getElementById('vgrid');
+      if (vg && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        vg.classList.add('lg-anim');
+        [].forEach.call(vg.querySelectorAll('.lg-row'), function (r) {
+          new IntersectionObserver(function (es, o) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); o.unobserve(e.target); } }); }, { threshold: 0.15 }).observe(r);
+        });
+      }
+      function closePanels() { var open = panels.filter(function (p) { return p.classList.contains('is-open'); })[0]; if (!open) return null; open.classList.remove('is-open'); open.setAttribute('inert', ''); var sel = cells.filter(function (c) { return c.classList.contains('is-sel'); })[0]; cells.forEach(function (c) { c.setAttribute('aria-expanded', 'false'); c.classList.remove('is-sel'); }); return sel; }
+      [].forEach.call(document.querySelectorAll('#vgrid .lg-close'), function (b) { b.addEventListener('click', function () { var sel = closePanels(); if (sel) { sel.focus({ preventScroll: true }); scrollTo2(sel, 150); } }); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { var sel = closePanels(); if (sel) sel.focus({ preventScroll: true }); } });
+      function openOnly(id) { openVehicle(id, false); var cell = cells.filter(function (c) { return c.getAttribute('data-v') === id; })[0]; if (cell) setTimeout(function () { scrollTo2(cell, 130); }, 100); }
+
+      // "What are you moving?" helper
+      var chips = [].slice.call(document.querySelectorAll('#helper .hq-opt')), empty = document.getElementById('helper-empty'), res = document.getElementById('helper-res'), pills = document.getElementById('helper-pills'), out = document.getElementById('helper-out');
+      chips.forEach(function (c) {
+        c.addEventListener('click', function () {
+          var on = c.getAttribute('aria-checked') === 'true';
+          chips.forEach(function (x) { x.setAttribute('aria-checked', 'false'); });
+          if (on) { res.hidden = true; empty.hidden = false; return; }
+          c.setAttribute('aria-checked', 'true');
+          pills.innerHTML = '';
+          c.getAttribute('data-ids').split(',').forEach(function (id) {
+            var d = info[id]; if (!d) return;
+            var a = document.createElement('a'); a.href = '#' + id; a.className = 'sg-card';
+            a.innerHTML = '<img src="' + d.image + '" alt="" loading="lazy"><span class="sg-t"><span class="sg-n">' + d.name + '</span><span class="sg-d">' + d.what + '</span><span class="sg-go">See details \u2192</span></span>';
+            a.addEventListener('click', function (e) { e.preventDefault(); openOnly(id); });
+            pills.appendChild(a);
+          });
+          empty.hidden = true; res.hidden = false;
+        });
+      });
+
+      function fromHash() { var h = location.hash.slice(1); if (h && info[h]) openOnly(h); else if (h === 'helper') setTimeout(function () { scrollTo2(document.getElementById('helper'), 200); }, 60); }
+      setTimeout(fromHash, 400);
+    })();
+  </script>
+</Base>
