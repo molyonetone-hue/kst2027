@@ -50,23 +50,19 @@
     "items": [
       {
         "title": "Precision",
-        "text": "Routes, schedules and documents are planned and checked, so nothing is left to chance.",
-        "icon": "target"
+        "text": "Routes, schedules and documents are planned and checked, so nothing is left to chance."
       },
       {
         "title": "Competence",
-        "text": "Experienced drivers and a team that knows the road, the load and the paperwork.",
-        "icon": "wrench"
+        "text": "Experienced drivers and a team that knows the road, the load and the paperwork."
       },
       {
         "title": "Reliability",
-        "text": "When we say we will be there, we are. Customers can plan their business around us.",
-        "icon": "shield"
+        "text": "When we say we will be there, we are. Customers can plan their business around us."
       },
       {
         "title": "Professionalism",
-        "text": "Clear communication, tidy paperwork and respectful dealings with customers, drivers and suppliers.",
-        "icon": "award"
+        "text": "Clear communication, tidy paperwork and respectful dealings with customers, drivers and suppliers."
       }
     ]
   },
@@ -76,28 +72,23 @@
     "images": [
       {
         "src": "/images/cta-fleet.webp",
-        "alt": "Kasi trucks lined up at dusk",
-        "span": "lg:col-span-2 lg:row-span-2"
+        "alt": "Kasi trucks lined up at dusk"
       },
       {
         "src": "/images/svc-linehaul.jpg",
-        "alt": "Linehaul truck at a loading bay",
-        "span": ""
+        "alt": "Linehaul truck at a loading bay"
       },
       {
         "src": "/images/svc-events.jpg",
-        "alt": "Loading production equipment",
-        "span": ""
+        "alt": "Loading production equipment"
       },
       {
         "src": "/images/svc-commercial.jpg",
-        "alt": "Unloading at a warehouse",
-        "span": ""
+        "alt": "Unloading at a warehouse"
       },
       {
         "src": "/images/svc-specialised.jpg",
-        "alt": "Specialised transport",
-        "span": ""
+        "alt": "Specialised transport"
       }
     ]
   },
@@ -115,35 +106,29 @@
       {
         "name": "Saravinraj",
         "role": "Strategic Partner, Parcel & Distribution",
-        "bio": "Works with Kasi Transport as a strategic business partner, bringing parcel forwarding and distribution experience from his own business, Birdzo Parcel.",
-        "photo": "",
-        "company": "Founder, Birdzo Parcel"
+        "company": "Founder, Birdzo Parcel",
+        "bio": "Works with Kasi Transport as a strategic business partner, bringing parcel forwarding and distribution experience from his own business, Birdzo Parcel."
       },
       {
         "name": "Sathiakumar",
-        "role": "Co-founder, Birdzo Parcel",
-        "company": "",
-        "bio": "Co-founder of Birdzo Parcel, the parcel forwarding and distribution business that partners with Kasi Transport.",
-        "photo": ""
+        "role": "Strategic Partner, Parcel & Distribution",
+        "company": "Co-Founder, Birdzo Parcel",
+        "bio": "Works closely with Kasi Transport on parcel forwarding, distribution opportunities and strategic collaborations through Birdzo Parcel."
       },
       {
         "name": "Nazia",
-        "role": "Operations",
-        "bio": "Looks after day-to-day operations, liaising with drivers and coordinating schedules.",
-        "photo": ""
+        "role": "Operations & Driver Coordination",
+        "bio": "Coordinates daily transport operations, driver schedules and job movements to keep deliveries and transport activities running smoothly."
       },
       {
         "name": "Elavarasi",
-        "role": "Finance",
-        "company": "",
-        "bio": "Looks after Kasi Transport’s finance, including invoicing, payments and accounts.",
-        "photo": ""
+        "role": "Finance & Administration",
+        "bio": "Manages financial records, invoicing, payments and day-to-day administrative matters to support smooth business operations."
       },
       {
         "name": "Kovindran",
-        "role": "Assistant Coordinator",
-        "bio": "Supports the daily coordination of drivers and deliveries.",
-        "photo": ""
+        "role": "Logistics Coordinator",
+        "bio": "Coordinates transport schedules, driver assignments and daily job movements while keeping customers, drivers and operations aligned."
       }
     ]
   },
