@@ -43,43 +43,22 @@ h1,h2,h3,h4,.font-display { font-family: var(--font-display); }
 .mask-word-inner { display:inline-block; opacity:0; transform: translate3d(0,60%,0); animation: word-up 1.5s cubic-bezier(.33,.1,.25,1) calc(.55s + var(--i) * .11s) forwards; }
 @media (prefers-reduced-motion: reduce) { .hero-bg { animation:none; } .hero-in { opacity:1; animation:none; } .mask-word-inner { transform:none; animation:none; } }
 
-/* Preloader */
-#preloader { display:none; position:fixed; inset:0; z-index:100; color:#fff; overflow:hidden; }
-html.is-loading #preloader { display:block; }
+/* Preloader: logo, a hairline and a quiet counter */
+#preloader { display:none; position:fixed; inset:0; z-index:100; background:#050b1f; color:#fff; align-items:center; justify-content:center; transition:transform 1.2s cubic-bezier(.76,0,.24,1); will-change:transform; }
+html.is-loading #preloader { display:flex; }
 html.is-loading { overflow:hidden; }
 html.is-loading .hero-bg, html.is-loading .hero-in, html.is-loading .hero-drop, html.is-loading .mask-word-inner { animation-play-state: paused; }
-.pre-half { position:absolute; left:0; right:0; height:50.2%; background:#050b1f; transition:transform 1.5s cubic-bezier(.77,0,.18,1); will-change:transform; }
-.pre-top { top:0; } .pre-bot { bottom:0; }
-#preloader.is-done .pre-top { transform:translate3d(0,-101%,0); }
-#preloader.is-done .pre-bot { transform:translate3d(0,101%,0); }
-#preloader.is-done { pointer-events:none; }
-.pre-ui { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; padding:clamp(1.25rem,3vw,2.5rem); transition:opacity .55s ease, transform .8s cubic-bezier(.65,0,.35,1); }
-.pre-ui::before { content:''; position:absolute; inset:0; z-index:-1; pointer-events:none; background:radial-gradient(ellipse 60% 45% at 50% 48%,rgba(47,107,255,.28),transparent 70%),radial-gradient(ellipse 70% 40% at 0% 100%,rgba(15,32,99,.65),transparent 70%); opacity:0; animation:pre-glow 1.6s ease .1s forwards; }
-#preloader.is-leaving .pre-ui { opacity:0; transform:scale(1.04) translate3d(0,-10px,0); }
-.pre-row { display:flex; justify-content:space-between; align-items:flex-end; gap:1rem; font-family:var(--font-display); font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.6); }
-.pre-head span { opacity:0; transform:translate3d(0,-10px,0); animation:pre-in .9s cubic-bezier(.16,1,.3,1) .35s forwards; }
-.pre-head span + span { animation-delay:.5s; }
-.pre-mid { text-align:center; }
-.pre-logo-wrap { display:inline-block; overflow:hidden; clip-path:inset(0 100% 0 0); animation:pre-wipe 1.8s cubic-bezier(.77,0,.18,1) .4s forwards; }
-.pre-logo { display:block; height:clamp(46px,9vw,84px); width:auto; transform:scale(1.25); animation:pre-settle 2.4s cubic-bezier(.16,1,.3,1) .4s forwards; }
-.pre-tag { margin-top:1.4rem; font-family:var(--font-display); font-size:clamp(.95rem,2vw,1.25rem); font-weight:500; letter-spacing:.02em; color:rgba(255,255,255,.8); }
-.pre-w { display:inline-block; overflow:hidden; vertical-align:top; padding-bottom:.2em; margin-bottom:-.2em; }
-.pre-w > span { display:inline-block; transform:translate3d(0,115%,0); animation:pre-rise 1.3s cubic-bezier(.16,1,.3,1) calc(1.5s + var(--i) * .18s) forwards; }
-.pre-road { position:absolute; left:clamp(1.25rem,3vw,2.5rem); right:clamp(1.25rem,3vw,2.5rem); top:50%; margin-top:clamp(4.5rem,11vw,7rem); }
-.pre-line { position:relative; height:1px; background:repeating-linear-gradient(90deg,rgba(255,255,255,.28) 0 10px,transparent 10px 20px); }
-.pre-fill { position:absolute; inset:0; height:2px; top:-.5px; background:#fff; transform-origin:left; transform:scaleX(0); box-shadow:0 0 14px rgba(111,155,255,.9); }
-.pre-truck { position:absolute; bottom:7px; left:0; transform:translateX(-100%); color:#fff; display:block; line-height:0; filter:drop-shadow(0 0 10px rgba(111,155,255,.8)); }
-.pre-count { display:flex; align-items:flex-end; font-family:var(--font-display); font-weight:600; line-height:.82; }
-.pre-n { font-size:clamp(5.5rem,24vw,15rem); letter-spacing:-.04em; font-variant-numeric:tabular-nums; color:transparent; -webkit-text-stroke:1.5px rgba(255,255,255,.5);
-  background:linear-gradient(90deg,#fff calc(var(--p,0) * 1%),transparent calc(var(--p,0) * 1%)); -webkit-background-clip:text; background-clip:text; }
-.pre-pct { margin:0 0 .35em .2em; font-size:clamp(1.2rem,3vw,2.2rem); color:rgba(255,255,255,.55); }
-.pre-note { padding-bottom:.5rem; text-align:right; }
-@keyframes pre-in { to { opacity:1; transform:none; } }
-@keyframes pre-wipe { to { clip-path:inset(0 0 0 0); } }
-@keyframes pre-settle { to { transform:scale(1); } }
-@keyframes pre-rise { to { transform:none; } }
-@keyframes pre-glow { to { opacity:1; } }
-@keyframes pre-ping { 0% { transform:scale(1); opacity:.9; } 100% { transform:scale(4.2); opacity:0; } }
+#preloader.is-done { transform:translate3d(0,-100%,0); pointer-events:none; }
+.pre-ui { display:flex; flex-direction:column; align-items:center; gap:1.75rem; transition:opacity .45s ease, transform .7s cubic-bezier(.65,0,.35,1); }
+#preloader.is-leaving .pre-ui { opacity:0; transform:translate3d(0,-10px,0); }
+.pre-logo { height:clamp(40px,6vw,52px); width:auto; opacity:0; transform:translate3d(0,14px,0); filter:blur(8px); animation:pre-logo 1.3s cubic-bezier(.16,1,.3,1) .2s forwards; }
+.pre-bar { position:relative; width:min(200px,52vw); height:1px; background:rgba(255,255,255,.14); overflow:hidden; opacity:0; animation:pre-fade .8s ease .7s forwards; }
+.pre-fill { position:absolute; inset:0; background:#fff; transform-origin:left; transform:scaleX(0); }
+.pre-num { font-family:var(--font-display); font-size:11px; font-weight:500; letter-spacing:.32em; text-indent:.32em; color:rgba(255,255,255,.5); font-variant-numeric:tabular-nums; opacity:0; animation:pre-fade .8s ease .9s forwards; }
+.pre-since { position:absolute; left:0; right:0; bottom:clamp(1.5rem,4vw,2.5rem); text-align:center; font-family:var(--font-display); font-size:10px; font-weight:500; letter-spacing:.36em; text-indent:.36em; text-transform:uppercase; color:rgba(255,255,255,.32); opacity:0; animation:pre-fade 1s ease 1.2s forwards; transition:opacity .4s ease; }
+#preloader.is-leaving .pre-since { opacity:0 !important; animation:none; }
+@keyframes pre-logo { to { opacity:1; transform:none; filter:blur(0); } }
+@keyframes pre-fade { to { opacity:1; } }
 
 /* Transform-only entrance: an opacity animation on an ancestor would break the nav's backdrop blur */
 @keyframes hero-drop { from { transform: translate3d(0,-26px,0); } to { transform: none; } }

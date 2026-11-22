@@ -59,23 +59,12 @@ const ld = {
   </head>
   <body>
     <div id="preloader" aria-hidden="true">
-      <div class="pre-half pre-top"></div><div class="pre-half pre-bot"></div>
       <div class="pre-ui">
-        <div class="pre-row pre-head"><span>Since 1996</span><span>Petaling Jaya, Malaysia</span></div>
-        <div class="pre-mid">
-          <div class="pre-logo-wrap"><img src="/images/logo.webp" alt="" class="pre-logo" /></div>
-          <p class="pre-tag"><span class="pre-w"><span style="--i:0">Moving</span></span> <span class="pre-w"><span style="--i:1">businesses</span></span> <span class="pre-w"><span style="--i:2">forward.</span></span></p>
-        </div>
-        <div class="pre-road">
-          <div class="pre-line"><div class="pre-fill" id="pre-fill"></div>
-            <span id="pre-truck" class="pre-truck"><Icon name="truck" size={30} /></span>
-          </div>
-        </div>
-        <div class="pre-row pre-foot">
-          <div class="pre-count"><span class="pre-n" id="pre-num">000</span><span class="pre-pct">%</span></div>
-          <span class="pre-note">North . South . East . West</span>
-        </div>
+        <img src="/images/logo.webp" alt="" class="pre-logo" />
+        <div class="pre-bar"><div class="pre-fill" id="pre-fill"></div></div>
+        <div class="pre-num"><span id="pre-num">000</span></div>
       </div>
+      <span class="pre-since">Since 1996</span>
     </div>
     <slot />
     <script is:inline>
@@ -83,9 +72,9 @@ const ld = {
         var html = document.documentElement, pre = document.getElementById('preloader');
         if (!html.classList.contains('is-loading')) { pre.remove(); return; }
         scrollTo(0, 0);
-        var num = document.getElementById('pre-num'), fill = document.getElementById('pre-fill'), truck = document.getElementById('pre-truck');
+        var num = document.getElementById('pre-num'), fill = document.getElementById('pre-fill');
         pre.style.setProperty('--p', '0');
-        var DURATION = 4600, start = performance.now(), last = start, p = 0, loaded = document.readyState === 'complete';
+        var DURATION = 3600, start = performance.now(), last = start, p = 0, loaded = document.readyState === 'complete';
         window.addEventListener('load', function () { loaded = true; });
         function ease(t) { return 0.5 - Math.cos(Math.PI * t) / 2; }
         function leave() {
@@ -96,7 +85,7 @@ const ld = {
             scrollTo(0, 0);
             html.classList.remove('is-loading');
             setTimeout(function () { pre.remove(); }, 1800);
-          }, 650);
+          }, 550);
         }
         function tick(t) {
           var dt = Math.min(t - last, 64); last = t;
@@ -106,8 +95,7 @@ const ld = {
           if (p > 99.85) p = 100;
           num.textContent = ('00' + Math.round(p)).slice(-3); pre.style.setProperty('--p', p.toFixed(1));
           fill.style.transform = 'scaleX(' + p / 100 + ')';
-          truck.style.left = p + '%';
-          if (p >= 100) { setTimeout(leave, 800); return; }
+          if (p >= 100) { setTimeout(leave, 500); return; }
           requestAnimationFrame(tick);
         }
         requestAnimationFrame(tick);
