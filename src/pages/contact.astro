@@ -12,7 +12,7 @@ const wa = `https://wa.me/${d.site.phoneHref.replace('+', '')}?text=${encodeURIC
 const maps = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Kasi Transport, ' + d.site.address)}`;
 const who = [
   { icon: 'truck', title: 'I need a quote', text: 'Send us the details of your job and we will come back with a quotation.', cta: 'Request a quote', quote: true },
-  { icon: 'users', title: 'I want to drive for Kasi', text: 'Tell us about your licence and experience.', cta: 'Apply as a driver', href: '/join-our-network#drivers' },
+  { icon: 'users', title: 'I want to drive for KST', text: 'Tell us about your licence and experience.', cta: 'Apply as a driver', href: '/join-our-network#drivers' },
   { icon: 'flow', title: 'I own lorries', text: 'Register your vehicles to join our transport network.', cta: 'Register as a partner', href: '/join-our-network#partners' },
 ];
 ---
@@ -87,7 +87,7 @@ const who = [
           <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>Our office</span>
           <h2 class="mt-6 max-w-[12ch] font-display text-[clamp(2.2rem,4.4vw,4rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">Find us in Petaling Jaya.</h2>
           <address class="mt-7 not-italic text-[1.05rem] leading-relaxed text-neutral-700">
-            <span class="font-display font-medium text-neutral-950">{d.site.name}</span><br />
+            <span class="font-display font-medium text-neutral-950">{d.site.legalName}</span><br />
             {d.site.address}, Malaysia
           </address>
           <p class="mt-4 text-sm text-neutral-500">{d.footer.regLabel} {d.site.registration}</p>

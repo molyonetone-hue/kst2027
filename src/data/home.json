@@ -1,7 +1,8 @@
 {
   "site": {
     "name": "Kasi Transport",
-    "registration": "003484520-D",
+    "registration": "202601047719 (1709814-M)",
+    "legalName": "KASI TRANSPORT (M) SDN. BHD.",
     "tagline": "North . South . East . West",
     "phone": "+60 14-233 7977",
     "phoneHref": "+60142337977",
@@ -350,7 +351,7 @@
     ]
   },
   "footer": {
-    "copyright": "© 2026 Kasi Transport. All rights reserved.",
+    "copyright": "© 2026 KASI TRANSPORT (M) SDN. BHD. All rights reserved.",
     "regLabel": "Reg. No."
   },
   "closing": {
@@ -365,7 +366,7 @@
         "icon": "truck"
       },
       {
-        "title": "Subcontract with Kasi",
+        "title": "Subcontract with KST",
         "text": "Own lorries or run a transport company? Register your interest and join the Kasi transport network.",
         "cta": "Register as a partner",
         "type": "link",
@@ -387,10 +388,10 @@
     "blurb": "Transportation & logistics solutions from Petaling Jaya, with transport roots since 1996.",
     "tag": "Partner With Us",
     "heading": "Let’s grow together.",
-    "aboutTitle": "About Kasi",
+    "aboutTitle": "About KST",
     "careersLabel": "Careers (drivers)",
     "careersWaText": "Hi Kasi Transport, I'm interested in a driver position.",
-    "sub": "Whether you need a dependable logistics partner or want to bring your vehicles into the Kasi network, tell us how we can work together."
+    "sub": "Whether you need a dependable logistics partner or want to bring your vehicles into the KST network, tell us how we can work together."
   },
   "quote": {
     "title": "Request a quote",

@@ -50,19 +50,23 @@
     "items": [
       {
         "title": "Precision",
-        "text": "Routes, schedules and documents are planned and checked, so nothing is left to chance."
+        "text": "Routes, schedules and documents are planned and checked, so nothing is left to chance.",
+        "icon": "target"
       },
       {
         "title": "Competence",
-        "text": "Experienced drivers and a team that knows the road, the load and the paperwork."
+        "text": "Experienced drivers and a team that knows the road, the load and the paperwork.",
+        "icon": "wrench"
       },
       {
         "title": "Reliability",
-        "text": "When we say we will be there, we are. Customers can plan their business around us."
+        "text": "When we say we will be there, we are. Customers can plan their business around us.",
+        "icon": "shield"
       },
       {
         "title": "Professionalism",
-        "text": "Clear communication, tidy paperwork and respectful dealings with customers, drivers and suppliers."
+        "text": "Clear communication, tidy paperwork and respectful dealings with customers, drivers and suppliers.",
+        "icon": "award"
       }
     ]
   },
@@ -72,23 +76,28 @@
     "images": [
       {
         "src": "/images/cta-fleet.webp",
-        "alt": "Kasi trucks lined up at dusk"
+        "alt": "KST trucks lined up at dusk",
+        "span": "lg:col-span-2 lg:row-span-2"
       },
       {
         "src": "/images/svc-linehaul.jpg",
-        "alt": "Linehaul truck at a loading bay"
+        "alt": "Linehaul truck at a loading bay",
+        "span": ""
       },
       {
         "src": "/images/svc-events.jpg",
-        "alt": "Loading production equipment"
+        "alt": "Loading production equipment",
+        "span": ""
       },
       {
         "src": "/images/svc-commercial.jpg",
-        "alt": "Unloading at a warehouse"
+        "alt": "Unloading at a warehouse",
+        "span": ""
       },
       {
         "src": "/images/svc-specialised.jpg",
-        "alt": "Specialised transport"
+        "alt": "Specialised transport",
+        "span": ""
       }
     ]
   },
@@ -164,7 +173,7 @@
     ]
   },
   "drive": {
-    "tag": "Grow with Kasi",
+    "tag": "Grow with KST",
     "title": "Drive your career forward.",
     "text": "Interested in driving for Kasi Transport? Tell us about your licence and experience, and our team will be in touch. Own or operate vehicles? You can register as a transport partner just below.",
     "image": "/images/svc-commercial.jpg",
