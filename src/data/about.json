@@ -121,14 +121,19 @@
         "bio": "Coordinates daily transport operations, driver schedules and job movements to keep deliveries and transport activities running smoothly."
       },
       {
+        "name": "Kovindran",
+        "role": "Logistics Coordinator",
+        "bio": "Coordinates transport schedules, driver assignments and daily job movements while keeping customers, drivers and operations aligned."
+      },
+      {
         "name": "Elavarasi",
         "role": "Finance & Administration",
         "bio": "Manages financial records, invoicing, payments and day-to-day administrative matters to support smooth business operations."
       },
       {
-        "name": "Kovindran",
-        "role": "Logistics Coordinator",
-        "bio": "Coordinates transport schedules, driver assignments and daily job movements while keeping customers, drivers and operations aligned."
+        "name": "Moly",
+        "role": "People, Brand & Communications",
+        "bio": "Supports HR activities while overseeing brand communications, social media, website content and company marketing materials."
       }
     ]
   },
