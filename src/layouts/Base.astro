@@ -59,15 +59,21 @@ const ld = {
   </head>
   <body>
     <div id="preloader" aria-hidden="true">
-      <div class="pre-bg"></div>
+      <div class="pre-cols"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="pre-frame"></div>
       <div class="pre-ui">
-        <img src="/images/logo.webp" alt="" class="pre-logo" />
-        <div class="pre-road">
-          <div class="pre-line"><div class="pre-fill" id="pre-fill"></div><span id="pre-truck" class="pre-truck"><Icon name="truck" size={28} /></span></div>
-          <div class="pre-row"><span>Petaling Jaya</span><span class="pre-count"><span id="pre-num">000</span>%</span></div>
+        <div class="pre-top"><span>[ Kasi Transport ]</span><span class="pre-hide">Est. 2005</span><span>3.1073° N / 101.6067° E</span></div>
+        <div class="pre-center">
+          <img src="/images/logo.webp" alt="" class="pre-logo" />
+          <div class="pre-road">
+            <div class="pre-line"><div class="pre-fill" id="pre-fill"></div><span id="pre-truck" class="pre-truck"><Icon name="truck" size={28} /></span></div>
+          </div>
+        </div>
+        <div class="pre-bottom">
+          <div class="pre-big"><span id="pre-num">000</span><small>%</small></div>
+          <div class="pre-side"><span>Loading</span><span>Since 1996</span></div>
         </div>
       </div>
-      <span class="pre-since">Since 1996</span>
     </div>
     <slot />
     <script is:inline>

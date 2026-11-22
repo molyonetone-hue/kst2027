@@ -43,26 +43,33 @@ h1,h2,h3,h4,.font-display { font-family: var(--font-display); }
 .mask-word-inner { display:inline-block; opacity:0; transform: translate3d(0,60%,0); animation: word-up 1.5s cubic-bezier(.33,.1,.25,1) calc(.55s + var(--i) * .11s) forwards; }
 @media (prefers-reduced-motion: reduce) { .hero-bg { animation:none; } .hero-in { opacity:1; animation:none; } .mask-word-inner { transform:none; animation:none; } }
 
-/* Preloader: the logo, still and large, with a hairline and a quiet counter; the screen lifts away with a curved edge */
+/* Preloader: framed, oversized type, a lorry on the road, then five blinds lift away */
 #preloader { display:none; position:fixed; inset:0; z-index:100; color:#fff; }
 html.is-loading #preloader { display:block; }
 html.is-loading { overflow:hidden; }
 html.is-loading .hero-bg, html.is-loading .hero-in, html.is-loading .hero-drop, html.is-loading .mask-word-inner { animation-play-state: paused; }
-.pre-bg { position:absolute; inset:0; background:#050b1f; border-radius:0; transition:transform 1.35s cubic-bezier(.76,0,.24,1), border-radius 1.35s cubic-bezier(.76,0,.24,1); will-change:transform; }
-.pre-bg::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 45% 40% at 50% 50%,rgba(47,107,255,.2),transparent 72%); opacity:0; animation:pre-fade 1.6s ease .1s forwards; border-radius:inherit; }
+.pre-cols { position:absolute; inset:0; display:flex; }
+.pre-cols i { flex:1 0 20.4%; margin-right:-.4%; background:#050b1f; transition:transform 1.1s cubic-bezier(.76,0,.24,1) calc(var(--k) * .08s); will-change:transform; }
+.pre-cols i:nth-child(1){--k:0} .pre-cols i:nth-child(2){--k:1} .pre-cols i:nth-child(3){--k:2} .pre-cols i:nth-child(4){--k:3} .pre-cols i:nth-child(5){--k:4}
 #preloader.is-done { pointer-events:none; }
-#preloader.is-done .pre-bg { transform:translate3d(0,-100%,0); border-radius:0 0 50% 50% / 0 0 22vh 22vh; }
-.pre-ui { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:clamp(2.25rem,5vw,3.5rem); transition:opacity .5s ease; }
-#preloader.is-leaving .pre-ui { opacity:0; }
-.pre-logo { width:clamp(200px,28vw,360px); height:auto; opacity:0; animation:pre-fade 1.4s ease .2s forwards; }
-.pre-road { width:min(560px,78vw); opacity:0; animation:pre-fade .9s ease .7s forwards; }
+#preloader.is-done .pre-cols i { transform:translate3d(0,-101%,0); }
+.pre-frame { position:absolute; inset:clamp(10px,1.6vw,20px); border:1px solid rgba(255,255,255,.16); opacity:0; animation:pre-fade 1s ease .2s forwards; transition:opacity .4s ease; pointer-events:none; }
+#preloader.is-leaving .pre-frame, #preloader.is-leaving .pre-ui { opacity:0 !important; animation:none; }
+.pre-ui { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; padding:clamp(1.6rem,3.4vw,2.8rem); transition:opacity .45s ease; }
+.pre-top, .pre-side { display:flex; justify-content:space-between; gap:1rem; font-family:var(--font-display); font-size:10.5px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.6); }
+.pre-top span { opacity:0; animation:pre-fade .9s ease .5s forwards; }
+.pre-center { display:flex; flex-direction:column; align-items:center; gap:clamp(2rem,4.5vw,3.25rem); }
+.pre-logo { width:clamp(210px,30vw,400px); height:auto; opacity:0; animation:pre-fade 1.3s ease .25s forwards; }
+.pre-road { width:min(520px,76vw); opacity:0; animation:pre-fade .9s ease .8s forwards; }
 .pre-line { position:relative; height:1px; background:repeating-linear-gradient(90deg,rgba(255,255,255,.3) 0 8px,transparent 8px 16px); }
 .pre-fill { position:absolute; left:0; right:0; top:-.5px; height:2px; background:#fff; transform-origin:left; transform:scaleX(0); box-shadow:0 0 12px rgba(111,155,255,.85); }
 .pre-truck { position:absolute; bottom:8px; left:0; transform:translateX(-100%); color:#fff; display:block; line-height:0; filter:drop-shadow(0 0 8px rgba(111,155,255,.8)); }
-.pre-row { display:flex; justify-content:space-between; margin-top:1.1rem; font-family:var(--font-display); font-size:11px; font-weight:500; letter-spacing:.28em; text-transform:uppercase; color:rgba(255,255,255,.5); font-variant-numeric:tabular-nums; }
-.pre-count { letter-spacing:.2em; }
-.pre-since { position:absolute; left:0; right:0; bottom:clamp(1.5rem,4vw,2.5rem); text-align:center; font-family:var(--font-display); font-size:10px; font-weight:500; letter-spacing:.36em; text-indent:.36em; text-transform:uppercase; color:rgba(255,255,255,.3); opacity:0; animation:pre-fade 1s ease 1.3s forwards; transition:opacity .4s ease; }
-#preloader.is-leaving .pre-since { opacity:0 !important; animation:none; }
+.pre-bottom { display:flex; justify-content:space-between; align-items:flex-end; gap:1.5rem; }
+.pre-big { display:flex; align-items:flex-start; font-family:var(--font-display); font-weight:700; font-size:clamp(5.5rem,21vw,17rem); line-height:.78; letter-spacing:-.05em; font-variant-numeric:tabular-nums; opacity:0; animation:pre-fade 1s ease 1s forwards; }
+.pre-big span { color:transparent; -webkit-text-stroke:1.5px rgba(255,255,255,.75); background:linear-gradient(90deg,#fff calc(var(--p,0) * 1%),transparent calc(var(--p,0) * 1%)); -webkit-background-clip:text; background-clip:text; }
+.pre-big small { margin:.1em 0 0 .08em; font-size:.17em; letter-spacing:0; font-weight:600; color:rgba(255,255,255,.6); line-height:1; }
+.pre-side { flex-direction:column; align-items:flex-end; text-align:right; gap:.5rem; padding-bottom:.3rem; opacity:0; animation:pre-fade 1s ease 1.2s forwards; }
+@media (max-width:640px){ .pre-hide { display:none; } }
 @keyframes pre-fade { to { opacity:1; } }
 
 /* Transform-only entrance: an opacity animation on an ancestor would break the nav's backdrop blur */
