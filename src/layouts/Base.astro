@@ -78,7 +78,6 @@ const ld = {
         var html = document.documentElement, pre = document.getElementById('preloader');
         if (!html.classList.contains('is-loading')) { pre.remove(); return; }
         scrollTo(0, 0);
-        if (window.CSS && typeof CSS.registerProperty === 'function') pre.classList.add('has-mask');
         var start = performance.now(), loaded = document.readyState === 'complete';
         window.addEventListener('load', function () { loaded = true; });
         // intro plays ~2.8s (longer only if the page is slow), the road lights flare, then it fades into the hero
@@ -89,7 +88,7 @@ const ld = {
             pre.classList.add('is-leaving');
             scrollTo(0, 0);
             html.classList.remove('is-loading');
-            setTimeout(function () { pre.remove(); }, 2600);
+            setTimeout(function () { pre.remove(); }, 2200);
           }, 500);
         }
         (function wait() {

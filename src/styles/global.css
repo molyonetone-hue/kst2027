@@ -44,17 +44,13 @@ h1,h2,h3,h4,.font-display { font-family: var(--font-display); }
 @media (prefers-reduced-motion: reduce) { .hero-bg { animation:none; } .hero-in { opacity:1; animation:none; } .mask-word-inner { transform:none; animation:none; } }
 
 /* Preloader: a night road. The camera drifts slowly forward, the logo fades in, the lights flare, then it fades into the hero */
-#preloader { display:none; position:fixed; inset:0; z-index:100; background:#00081e; color:#fff; overflow:hidden; transition:opacity 1.5s cubic-bezier(.45,0,.2,1); }
+#preloader { display:none; position:fixed; inset:0; z-index:100; background:#00081e; color:#fff; overflow:hidden; transition:opacity 1.9s cubic-bezier(.4,0,.25,1); }
 html.is-loading #preloader, #preloader.is-leaving { display:block; }
 html.is-loading { overflow:hidden; }
 html.is-loading .hero-bg, html.is-loading .hero-in, html.is-loading .hero-drop, html.is-loading .mask-word-inner { animation-play-state: paused; }
 #preloader.is-leaving { opacity:0; pointer-events:none; }
-/* Blend: where the browser can animate a mask, the home page opens from the vanishing point outward through a soft edge */
-@property --r { syntax:'<percentage>'; inherits:false; initial-value:0%; }
-#preloader.has-mask { -webkit-mask-image:radial-gradient(circle farthest-corner at 50% 62%, transparent calc(var(--r) - 34%), #000 var(--r)); mask-image:radial-gradient(circle farthest-corner at 50% 62%, transparent calc(var(--r) - 34%), #000 var(--r)); }
-#preloader.has-mask.is-leaving { --r:140%; opacity:0; transition:--r 2.2s cubic-bezier(.55,0,.2,1), opacity .7s ease 1.7s; }
 .pre-pic { transform-origin:50% 62%; transition:transform 2s cubic-bezier(.4,0,.2,1); }
-#preloader.is-leaving .pre-pic { transform:scale(1.1); }
+#preloader.is-leaving .pre-pic { transform:scale(1.08); transition-duration:2.4s; }
 #preloader.is-leaving .pre-brand { opacity:0; transform:translate3d(0,-8px,0); transition:opacity .6s ease, transform .9s ease; }
 .pre-pic, .pre-img { position:absolute; inset:0; width:100%; height:100%; display:block; }
 .pre-img { object-fit:cover; object-position:50% 100%; transform-origin:50% 62%; animation:pre-dolly 4.2s cubic-bezier(.3,.05,.35,1) forwards; transition:filter .7s ease; will-change:transform; }
