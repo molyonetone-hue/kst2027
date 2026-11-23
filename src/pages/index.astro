@@ -82,7 +82,7 @@ const crossBorder = ['Singapore', 'Thailand'];
       (function () {
         var wrap = document.getElementById('hero-wrap'), hero = document.getElementById('hero'), bg = document.getElementById('hero-parallax'), hv = document.getElementById('hero-video');
         var scrim = document.getElementById('hero-scrim'), navEl = document.getElementById('site-nav'), copy = document.getElementById('hero-copy'), h1 = document.getElementById('hero-h1'), steps = [document.getElementById('hero-eyebrow'), document.getElementById('hero-sub'), document.getElementById('hero-cta')];
-        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches, mq = window.matchMedia('(min-width: 0px)');
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches, mq = window.matchMedia('(min-width: 1024px)');
         if (hv) { hv.addEventListener('playing', function () { hv.style.opacity = '1'; }); if (reduce) hv.remove(); }
         function clamp(v) { return Math.min(1, Math.max(0, v)); }
         function ease(t) { return 1 - Math.pow(1 - t, 3); }
@@ -96,14 +96,6 @@ const crossBorder = ['Singapore', 'Thailand'];
           var hr = hero.getBoundingClientRect(), r = h1.getBoundingClientRect(), rel = r.top - hr.top;
           dx = vw / 2 - (r.left + r.width / 2); dy = vh / 2 - (rel + r.height / 2);
           s0 = Math.max(1, Math.min(1.7, (vw * 0.86) / r.width));
-          if (vw < 1024) {
-            // phones: measure the real text block (the box is wider than its longest line), then open big and centred
-            var lo = 1e9, hi = -1e9; [].forEach.call(h1.querySelectorAll('*'), function (e) { if (e.children.length) return; var q = e.getBoundingClientRect(); if (!q.width) return; lo = Math.min(lo, q.left); hi = Math.max(hi, q.right); });
-            var tr = hi > lo ? { left: lo, width: hi - lo } : { left: r.left, width: r.width }, tw = Math.max(1, tr.width);
-            s0 = Math.max(1, Math.min(1.9, (vw * 0.9) / tw));
-            var bc = r.left + r.width / 2, tc = tr.left + tr.width / 2;
-            dx = vw / 2 - (bc + (tc - bc) * s0);
-          }
           h1.classList.add('hp-ready'); render();
         }
         function render() {

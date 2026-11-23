@@ -220,7 +220,7 @@ html.is-loading .hero-bg, html.is-loading .hero-in, html.is-loading .hero-drop, 
 @media (prefers-reduced-motion: reduce){ .hero-video { display:none; } }
 
 /* Hero: pinned intro (desktop) */
-@media (prefers-reduced-motion: no-preference){
+@media (min-width:1024px) and (prefers-reduced-motion: no-preference){
   #hero-h1:not(.hp-ready){ visibility:hidden; }
   #hero.hp-on .hp-step { animation:none !important; opacity:1; }
 }
@@ -236,7 +236,7 @@ html.is-loading .hero-bg, html.is-loading .hero-in, html.is-loading .hero-drop, 
 
 
 /* Hero: dramatic text entrances (desktop pinned intro). Base = exit timing, .hp-sN = entrance timing */
-@media (prefers-reduced-motion: no-preference){
+@media (min-width:1024px) and (prefers-reduced-motion: no-preference){
   .hp-on .hp-eline { transform:scaleX(0); transform-origin:left; transition:transform .6s cubic-bezier(.65,0,.35,1) .2s; }
   .hp-on.hp-s1 .hp-eline { transform:scaleX(1); transition:transform 1.3s cubic-bezier(.65,0,.15,1); }
   .hp-on .hp-etext { opacity:0; transform:translate3d(-28px,0,0); transition:opacity .4s ease, transform .5s cubic-bezier(.65,0,.35,1); }
