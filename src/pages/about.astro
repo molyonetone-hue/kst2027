@@ -48,7 +48,7 @@ const eyebrow = 'flex items-center gap-3 font-display text-[12px] font-semibold 
         <div id="jt-sticky" data-nav-dark class="sticky top-0 h-[100svh] overflow-hidden bg-[#050b1f]">
           {a.journey.steps.map((s, i) => (
             <figure data-i={i} class:list={['jt-img absolute inset-0', i === 0 && 'is-on']}>
-              <img src={s.image} alt="" loading={i === 0 ? 'eager' : 'lazy'} class="h-full w-full object-cover" />
+              <img src={s.image} alt={`${s.year}: ${s.title}`} loading={i === 0 ? 'eager' : 'lazy'} class="h-full w-full object-cover" />
             </figure>
           ))}
           <div aria-hidden="true" class="absolute inset-0 z-10" style="background:linear-gradient(180deg,rgba(5,11,31,.55) 0%,rgba(5,11,31,.1) 30%,rgba(5,11,31,.55) 65%,rgba(5,11,31,.9) 100%),linear-gradient(90deg,rgba(5,11,31,.7) 0%,rgba(5,11,31,0) 65%)"></div>
@@ -136,7 +136,7 @@ const eyebrow = 'flex items-center gap-3 font-display text-[12px] font-semibold 
             <div class="group flex h-full flex-col">
               <div class="relative aspect-[4/5] overflow-hidden rounded-xl bg-[#e9ecf4]">
                 {p.photo
-                  ? <img src={p.photo} alt={p.name} loading="lazy" class="h-full w-full object-cover object-[50%_20%] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]" />
+                  ? <img src={p.photo} alt={`${p.name}, ${p.role}, Kasi Transport`} loading="lazy" class="h-full w-full object-cover object-[50%_20%] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]" />
                   : <div class="grid h-full w-full place-items-center bg-[linear-gradient(160deg,#eef1f8,#dfe4f0)] text-neutral-400"><Icon name="users" size={44} /></div>}
               </div>
               <div class="mt-4 font-display text-[1.1rem] font-medium leading-tight text-neutral-950">{p.name}</div>
@@ -177,7 +177,7 @@ const eyebrow = 'flex items-center gap-3 font-display text-[12px] font-semibold 
           <a href="/join-our-network#drivers" data-cta="about-driver" class="btn btn-brand group/btn mt-9">{a.drive.cta} <span class="transition-transform duration-300 group-hover/btn:translate-x-1"><Icon name="arrow" size={18} /></span></a>
         </div>
         <figure class="overflow-hidden rounded-xl bg-[#0a1748]">
-          <img src={a.drive.image} alt="" loading="lazy" class="aspect-[5/4] w-full object-cover" />
+          <img src={a.drive.image} alt="Unloading cargo at a warehouse" loading="lazy" class="aspect-[5/4] w-full object-cover" />
         </figure>
       </div>
     </section>

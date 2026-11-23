@@ -574,3 +574,7 @@ html.menu-locked { overflow:hidden; }
 .poster-wall::-webkit-scrollbar { display:none; }
 .poster-wall.is-drag { cursor:grabbing; user-select:none; }
 .poster-wall.is-drag img { pointer-events:none; }
+
+/* Light deterrent: no drag-saving or long-press saving of images and video (text stays selectable) */
+img, video { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; }
+img { user-select: none; -webkit-user-select: none; }

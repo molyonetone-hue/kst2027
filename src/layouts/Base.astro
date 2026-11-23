@@ -4,6 +4,9 @@ import d from '../data/home.json';
 import Icon from '../components/Icon.astro';
 const { title, description, path = '/' } = Astro.props;
 const site = 'https://kasitransport.com.my';
+const crumbNames = { '/about': 'About Us', '/what-we-do': 'Services', '/fleet': 'Our Trucks', '/join-our-network': 'Drivers & Partners', '/contact': 'Contact', '/privacy': 'Privacy' };
+const crumbs = path !== '/' && crumbNames[path] ? { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: site + '/' }, { '@type': 'ListItem', position: 2, name: crumbNames[path], item: site + path }] } : null;
+const web = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': site + '/#website', url: site + '/', name: d.site.name, inLanguage: 'en-MY', publisher: { '@id': site + '/#business' } };
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
@@ -19,7 +22,8 @@ const ld = {
   foundingDate: '2005',
   description,
   address: { '@type': 'PostalAddress', streetAddress: 'No. 237, Jalan Medan 15, Taman Medan', postalCode: '46000', addressLocality: 'Petaling Jaya', addressRegion: 'Selangor', addressCountry: 'MY' },
-  areaServed: [{ '@type': 'Place', name: 'Peninsular Malaysia' }],
+  areaServed: [{ '@type': 'Country', name: 'Malaysia' }, { '@type': 'Place', name: 'Peninsular Malaysia' }, { '@type': 'AdministrativeArea', name: 'Selangor' }, { '@type': 'City', name: 'Kuala Lumpur' }],
+  hasMap: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Kasi Transport, ' + d.site.address),
   knowsAbout: ['Linehaul', 'Contract logistics', 'Commercial transportation', 'Event and production logistics', 'Specialised transportation'],
   hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Transport services', itemListElement: d.services.items.map((i) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: i.title, description: i.text, provider: { '@id': site + '/#business' } } })) },
 };
@@ -34,17 +38,29 @@ const ld = {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0a1748" />
     <link rel="canonical" href={site + path} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_MY" />
     <meta property="og:site_name" content={d.site.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={site + '/images/hero-bg-prev.jpg'} />
     <meta property="og:url" content={site + path} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={site + '/images/hero-bg-prev.jpg'} />
     <link rel="preload" as="image" href="/images/preloader-desktop.webp" media="(min-width: 768px)" />
     <link rel="preload" as="image" href="/images/preloader-mobile.webp" media="(max-width: 767px)" />
     <link rel="preload" as="image" href={d.hero.image} fetchpriority="high" />
     <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    <script type="application/ld+json" set:html={JSON.stringify(web)} />
+    {crumbs && <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />}
+    <script is:inline>
+      // Images and video only: block the right-click menu and dragging them out. Text is unaffected.
+      document.addEventListener('contextmenu', function (e) { var t = e.target; if (t && t.closest && t.closest('img, picture, video')) e.preventDefault(); });
+      document.addEventListener('dragstart', function (e) { var t = e.target; if (t && t.tagName && (t.tagName === 'IMG' || t.tagName === 'VIDEO')) e.preventDefault(); });
+    </script>
     <script is:inline>
       try {
         // Every load or refresh starts at the top, so the hero intro always plays from the beginning
