@@ -143,6 +143,7 @@ const eyebrow = 'flex items-center gap-3 font-display text-[12px] font-semibold 
               <div class="mt-1 text-[11px] font-semibold uppercase leading-[1.45] tracking-[0.14em] text-brand lg:min-h-[2.9em]">{p.role}</div>
               <div class="mt-1 min-h-[1.25rem] font-display text-[13px] font-medium text-neutral-800">{p.company}</div>
               <p class="mt-3 max-w-[16rem] whitespace-pre-line text-[13px] leading-relaxed text-neutral-600">{p.bio}</p>
+              {p.link && <a href={p.link} target="_blank" rel="noopener" data-cta="team-partner-site" class="group/lnk mt-4 inline-flex items-center gap-2 font-display text-[13px] font-semibold text-brand underline-offset-4 hover:underline">{p.linkLabel || 'Visit website'} <span class="transition-transform duration-300 group-hover/lnk:translate-x-0.5 group-hover/lnk:-translate-y-0.5"><Icon name="arrowUpRight" size={15} /></span></a>}
             </div>
           ))}
         </div>
