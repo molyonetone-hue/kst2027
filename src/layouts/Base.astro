@@ -88,8 +88,8 @@ const ld = {
             pre.classList.add('is-leaving');
             scrollTo(0, 0);
             html.classList.remove('is-loading');
-            setTimeout(function () { pre.remove(); }, 1100);
-          }, 750);
+            setTimeout(function () { pre.remove(); }, 2000);
+          }, 500);
         }
         (function wait() {
           if (performance.now() - start >= 2800 && loaded) finish(); else setTimeout(wait, 80);

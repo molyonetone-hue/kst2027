@@ -44,11 +44,14 @@ h1,h2,h3,h4,.font-display { font-family: var(--font-display); }
 @media (prefers-reduced-motion: reduce) { .hero-bg { animation:none; } .hero-in { opacity:1; animation:none; } .mask-word-inner { transform:none; animation:none; } }
 
 /* Preloader: a night road. The camera drifts slowly forward, the logo fades in, the lights flare, then it fades into the hero */
-#preloader { display:none; position:fixed; inset:0; z-index:100; background:#00081e; color:#fff; overflow:hidden; transition:opacity .9s ease; }
+#preloader { display:none; position:fixed; inset:0; z-index:100; background:#00081e; color:#fff; overflow:hidden; transition:opacity 1.5s cubic-bezier(.45,0,.2,1); }
 html.is-loading #preloader { display:block; }
 html.is-loading { overflow:hidden; }
 html.is-loading .hero-bg, html.is-loading .hero-in, html.is-loading .hero-drop, html.is-loading .mask-word-inner { animation-play-state: paused; }
 #preloader.is-leaving { opacity:0; pointer-events:none; }
+.pre-pic { transform-origin:50% 62%; transition:transform 2s cubic-bezier(.4,0,.2,1); }
+#preloader.is-leaving .pre-pic { transform:scale(1.2); }
+#preloader.is-leaving .pre-brand { opacity:0; transform:translate3d(0,-8px,0); transition:opacity .6s ease, transform .9s ease; }
 .pre-pic, .pre-img { position:absolute; inset:0; width:100%; height:100%; display:block; }
 .pre-img { object-fit:cover; object-position:50% 100%; transform-origin:50% 62%; animation:pre-dolly 6s cubic-bezier(.3,.1,.3,1) forwards; transition:filter .7s ease; will-change:transform; }
 .pre-glow { position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .7s ease; background:radial-gradient(ellipse 70% 22% at 50% 62%,rgba(70,140,255,.75),rgba(30,90,255,.25) 45%,transparent 75%); mix-blend-mode:screen; }
