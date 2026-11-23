@@ -41,6 +41,8 @@ const ld = {
     <meta property="og:image" content={site + '/images/hero-bg-prev.jpg'} />
     <meta property="og:url" content={site + path} />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" as="image" href="/images/preloader-desktop.webp" media="(min-width: 768px)" />
+    <link rel="preload" as="image" href="/images/preloader-mobile.webp" media="(max-width: 767px)" />
     <link rel="preload" as="image" href={d.hero.image} fetchpriority="high" />
     <script type="application/ld+json" set:html={JSON.stringify(ld)} />
     <script is:inline>
@@ -59,20 +61,15 @@ const ld = {
   </head>
   <body>
     <div id="preloader" aria-hidden="true">
-      <div class="pre-cols"><i></i><i></i><i></i><i></i><i></i></div>
-      <div class="pre-frame"></div>
-      <div class="pre-ui">
-        <div class="pre-top"><span>[ Kasi Transport ]</span><span class="pre-hide">Est. 2005</span><span>3.1073° N / 101.6067° E</span></div>
-        <div class="pre-center">
-          <img src="/images/logo.webp" alt="" class="pre-logo" />
-          <div class="pre-road">
-            <div class="pre-line"><div class="pre-fill" id="pre-fill"></div><span id="pre-truck" class="pre-truck"><Icon name="truck" size={28} /></span></div>
-          </div>
-        </div>
-        <div class="pre-bottom">
-          <div class="pre-big"><span id="pre-num">000</span><small>%</small></div>
-          <div class="pre-side"><span>Loading</span><span>Since 1996</span></div>
-        </div>
+      <picture class="pre-pic">
+        <source media="(max-width: 767px)" srcset="/images/preloader-mobile.webp" />
+        <img src="/images/preloader-desktop.webp" alt="" class="pre-img" fetchpriority="high" />
+      </picture>
+      <div class="pre-glow"></div>
+      <div class="pre-brand">
+        <img src="/images/logo.webp" alt="" class="pre-logo" />
+        <p class="pre-tag">Moving businesses forward</p>
+        <p class="pre-dirs">North · South · East · West</p>
       </div>
     </div>
     <slot />
@@ -81,34 +78,22 @@ const ld = {
         var html = document.documentElement, pre = document.getElementById('preloader');
         if (!html.classList.contains('is-loading')) { pre.remove(); return; }
         scrollTo(0, 0);
-        var num = document.getElementById('pre-num'), fill = document.getElementById('pre-fill'), truck = document.getElementById('pre-truck');
-        pre.style.setProperty('--p', '0');
-        var DURATION = 4200, start = performance.now(), last = start, p = 0, loaded = document.readyState === 'complete';
+        var start = performance.now(), loaded = document.readyState === 'complete';
         window.addEventListener('load', function () { loaded = true; });
-        function ease(t) { return 0.5 - Math.cos(Math.PI * t) / 2; }
-        function leave() {
-          pre.classList.add('is-leaving');
+        // intro plays ~2.8s (longer only if the page is slow), the road lights flare, then it fades into the hero
+        function finish() {
+          pre.classList.add('is-boost');
           setTimeout(function () {
             try { sessionStorage.setItem('kst-pre', '1'); } catch (e) {}
-            pre.classList.add('is-done');
+            pre.classList.add('is-leaving');
             scrollTo(0, 0);
             html.classList.remove('is-loading');
-            setTimeout(function () { pre.remove(); }, 1800);
-          }, 600);
+            setTimeout(function () { pre.remove(); }, 1100);
+          }, 750);
         }
-        function tick(t) {
-          var dt = Math.min(t - last, 64); last = t;
-          var timed = ease(Math.min((t - start) / DURATION, 1)) * 100;
-          var target = loaded ? timed : Math.min(timed, 92);
-          p += (target - p) * (1 - Math.exp(-dt / 70));
-          if (p > 99.85) p = 100;
-          num.textContent = ('00' + Math.round(p)).slice(-3);
-          fill.style.transform = 'scaleX(' + p / 100 + ')';
-          truck.style.left = p + '%';
-          if (p >= 100) { setTimeout(leave, 500); return; }
-          requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
+        (function wait() {
+          if (performance.now() - start >= 2800 && loaded) finish(); else setTimeout(wait, 80);
+        })();
       })();
     </script>
     <script is:inline>
