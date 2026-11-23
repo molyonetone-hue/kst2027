@@ -108,12 +108,14 @@ const rows = [all.slice(0, 4), all.slice(4, 8), all.slice(8)];
 
     <!-- WHAT ARE YOU MOVING? -->
     <section data-reveal class="bg-[#0b0d12] py-20 text-white lg:py-32">
-      <div class="container-x grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-24">
-        <div class="lg:sticky lg:top-28 lg:self-start">
+      <div class="container-x grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-24">
+        <div class="max-lg:contents lg:sticky lg:top-28 lg:self-start">
+          <div class="max-lg:order-1">
           <span class:list={[eyebrow, 'text-white/70']}><span class="h-2 w-2 bg-white"></span>{f.helper.tag}</span>
           <h2 class="mt-6 max-w-[11ch] font-display text-[clamp(2.4rem,5vw,4.4rem)] font-medium leading-[1.02] tracking-tight text-white">{f.helper.title}</h2>
           <p class="mt-5 max-w-sm text-[1.05rem] leading-relaxed text-white/70">{f.helper.text}</p>
-          <div id="helper-out" class="mt-9 rounded-lg bg-white/[0.07] p-5 lg:p-7" aria-live="polite">
+          </div>
+          <div id="helper-out" class="mt-9 scroll-mt-28 rounded-lg bg-white/[0.07] p-5 max-lg:order-3 max-lg:mt-0 lg:p-7" aria-live="polite">
             <p id="helper-empty" class="flex items-center justify-between gap-4 text-[1.02rem] text-white/70"><span>{f.helper.empty}</span><span class="shrink-0 text-white/40"><Icon name="arrow" size={20} /></span></p>
             <div id="helper-res" hidden>
               <div class="font-display text-[12px] font-semibold uppercase tracking-[0.2em] text-white/60">{f.helper.suggest}</div>
@@ -121,7 +123,7 @@ const rows = [all.slice(0, 4), all.slice(4, 8), all.slice(8)];
             </div>
           </div>
         </div>
-        <div>
+        <div class="max-lg:order-2">
         <div class="flex items-center gap-3 pb-3 font-display text-[11px] font-semibold uppercase tracking-[0.22em] text-white/45"><span class="h-px w-8 bg-white/30"></span>Pick one<Icon name="arrow" size={14} /></div>
         <div id="helper" data-no-reveal role="radiogroup" aria-label={f.helper.title}>
           {f.helper.options.map((o) => (
@@ -231,6 +233,16 @@ const rows = [all.slice(0, 4), all.slice(4, 8), all.slice(8)];
             pills.appendChild(a);
           });
           empty.hidden = true; res.hidden = false;
+          // on phones the suggestions sit under the list: bring them into view if they are off screen
+          if (innerWidth < 1024) {
+            setTimeout(function () {
+              var r = out.getBoundingClientRect();
+              if (r.bottom > innerHeight - 12 || r.top < 80) {
+                if (window.__lenis) window.__lenis.scrollTo(out, { offset: -110, duration: 1.1 });
+                else out.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+            }, 60);
+          }
         });
       });
 
