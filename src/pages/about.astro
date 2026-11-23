@@ -44,7 +44,7 @@ const eyebrow = 'flex items-center gap-3 font-display text-[12px] font-semibold 
       </div>
 
       <!-- desktop: the whole screen changes with each milestone -->
-      <div id="jt-track" class="mt-12 lg:mt-24" style={`height:calc(100svh * ${1 + (a.journey.steps.length - 1) * 0.75})`}>
+      <div id="jt-track" class="mt-12 lg:mt-24" style={`height:calc(100svh * ${1 + (a.journey.steps.length - 1) * 1.1})`}>
         <div id="jt-sticky" data-nav-dark class="sticky top-0 h-[100svh] overflow-hidden bg-[#050b1f]">
           {a.journey.steps.map((s, i) => (
             <figure data-i={i} class:list={['jt-img absolute inset-0', i === 0 && 'is-on']}>
@@ -245,7 +245,17 @@ const eyebrow = 'flex items-center gap-3 font-display text-[12px] font-semibold 
         var sync = function () {
           tk2 = false;
           var p = Math.min(0.9999, Math.max(0, -track.getBoundingClientRect().top / span()));
-          show(Math.floor(p * n));
+          tgt = Math.floor(p * n);
+          if (!tm) advance();
+        };
+        // one milestone at a time, with a short pause between, so a fast scroll never flashes past them
+        var tgt = 0, tm = null, lastAt = 0;
+        var advance = function () {
+          tm = null; if (cur === tgt) return;
+          var wait = Math.max(0, 1100 - (performance.now() - lastAt));
+          if (wait > 0) { tm = setTimeout(advance, wait); return; }
+          lastAt = performance.now(); show(cur + (tgt > cur ? 1 : -1));
+          if (cur !== tgt) tm = setTimeout(advance, 1100);
         };
         addEventListener('scroll', function () { if (!tk2) { tk2 = true; requestAnimationFrame(sync); } }, { passive: true });
         addEventListener('resize', sync); sync();

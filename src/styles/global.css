@@ -576,3 +576,9 @@ html.menu-locked { overflow:hidden; }
 .ab-js .ab-hl.ab-self { color:var(--color-brand); transition:opacity .7s ease calc(.3s + var(--i) * .014s), transform .9s cubic-bezier(.16,1,.3,1) calc(.3s + var(--i) * .014s), filter .7s ease calc(.3s + var(--i) * .014s), color .8s ease 1.1s; }
 .ab-js .ab-logo.ab-self { opacity:1; transform:none; transition:opacity .7s ease calc(.7s + var(--i) * .08s), transform .8s cubic-bezier(.16,1,.3,1) calc(.7s + var(--i) * .08s); }
 .ab-js .ab-x.ab-self { opacity:1; transform:none; transition:opacity .7s ease var(--xd,.8s), transform .9s cubic-bezier(.16,1,.3,1) var(--xd,.8s); }
+
+/* Poster carousel: native swipe/drag scrolling */
+.poster-wall { scrollbar-width:none; -ms-overflow-style:none; cursor:grab; overscroll-behavior-x:contain; }
+.poster-wall::-webkit-scrollbar { display:none; }
+.poster-wall.is-drag { cursor:grabbing; user-select:none; }
+.poster-wall.is-drag img { pointer-events:none; }

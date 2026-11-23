@@ -421,8 +421,8 @@ const crossBorder = ['Singapore', 'Thailand'];
         <span class="h-px flex-1 bg-neutral-200"></span>
         <span class="hidden shrink-0 sm:block">{d.record.moreText}</span>
       </div>
-      <div class="poster-wall client-fade mt-6 overflow-hidden" aria-label={d.record.listTitle}>
-        <div class="marquee-track items-center" style={`animation-duration:${Math.max(60, posters.length * 8)}s`}>
+      <div class="poster-wall client-fade mt-6 overflow-x-auto overflow-y-hidden" aria-label={d.record.listTitle} tabindex="0" role="region">
+        <div class="flex w-max items-center">
           {[0, 1].map((c) => posters.map((e) => (
             <figure class="group relative mx-2 shrink-0 overflow-hidden rounded-lg border border-neutral-200 bg-soft" aria-hidden={c > 0 ? 'true' : undefined}>
               <img src={e.image} width={e.w} height={e.h} alt={c === 0 ? `${e.name}${e.year ? ' ' + e.year : ''}` : ''} loading="eager" decoding="async" fetchpriority="low" class="block h-64 w-auto max-w-none transition-transform duration-700 group-hover:scale-[1.03] lg:h-72" />
@@ -431,6 +431,36 @@ const crossBorder = ['Singapore', 'Thailand'];
           )))}
         </div>
       </div>
+      <script is:inline>
+        (function () {
+          // Posters drift on their own; touch swipe or mouse drag takes over, then the drift resumes
+          var w = document.querySelector('.poster-wall'); if (!w) return;
+          var tr = w.firstElementChild, reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+          var pos = 0, last = performance.now(), hold = 0, visible = false, hover = false, drag = null;
+          var half = function () { return tr.scrollWidth / 2; };
+          var touch = function () { hold = performance.now() + 2600; pos = w.scrollLeft; };
+          w.addEventListener('touchstart', touch, { passive: true });
+          w.addEventListener('touchmove', touch, { passive: true });
+          w.addEventListener('wheel', touch, { passive: true });
+          w.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') return; drag = { x: e.clientX, l: w.scrollLeft }; w.classList.add('is-drag'); w.setPointerCapture(e.pointerId); });
+          w.addEventListener('pointermove', function (e) { if (!drag) return; w.scrollLeft = drag.l - (e.clientX - drag.x); pos = w.scrollLeft; hold = performance.now() + 2600; });
+          var end = function () { if (!drag) return; drag = null; w.classList.remove('is-drag'); };
+          w.addEventListener('pointerup', end); w.addEventListener('pointercancel', end);
+          w.addEventListener('mouseenter', function () { hover = true; }); w.addEventListener('mouseleave', function () { hover = false; });
+          w.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { w.scrollLeft += 260; touch(); } else if (e.key === 'ArrowLeft') { w.scrollLeft -= 260; touch(); } });
+          new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: 0.05 }).observe(w);
+          function loop(t) {
+            var dt = Math.min((t - last) / 1000, 0.05); last = t;
+            var h = half();
+            if (h > 0) {
+              if (!reduce && visible && !hover && !drag && t > hold) { pos += 42 * dt; w.scrollLeft = pos; } else if (t <= hold || drag || hover) { pos = w.scrollLeft; }
+              if (w.scrollLeft >= h) { w.scrollLeft -= h; pos = w.scrollLeft; } else if (w.scrollLeft <= 0 && (drag || t <= hold)) { w.scrollLeft = h - 1; pos = w.scrollLeft; }
+            }
+            requestAnimationFrame(loop);
+          }
+          requestAnimationFrame(loop);
+        })();
+      </script>
       <div class="container-x mt-16 flex flex-col items-start justify-between gap-4 border-t border-neutral-300 pt-8 sm:flex-row sm:items-center lg:mt-20">
         <p class="font-display text-lg font-medium tracking-tight text-neutral-950">Looking to drive with us?</p>
         <a href="/join-our-network#drivers" class="btn btn-brand group/btn w-fit">Apply as a driver <span class="transition-transform duration-300 group-hover/btn:translate-x-1"><Icon name="arrow" size={18} /></span></a>
