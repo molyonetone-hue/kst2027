@@ -10,7 +10,19 @@
     "address": "No. 237, Jalan Medan 15, Taman Medan, 46000 Petaling Jaya, Selangor",
     "logo": "/images/logo.webp",
     "profileUrl": "",
-    "profileLabel": "Download company profile"
+    "profileLabel": "Download company profile",
+    "social": [
+      {
+        "label": "Instagram",
+        "icon": "instagram",
+        "url": "https://www.instagram.com/kasitransportmy/"
+      },
+      {
+        "label": "Facebook",
+        "icon": "facebook",
+        "url": "https://www.facebook.com/kasitransportmy/"
+      }
+    ]
   },
   "nav": [
     {

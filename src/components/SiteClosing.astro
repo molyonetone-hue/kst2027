@@ -41,6 +41,13 @@ const to = (h: string) => (h.startsWith('#') && h !== '#contact' && !home ? '/' 
             <a href="/" aria-label={d.site.name} class="flex h-9 items-center"><img src={d.site.logo} alt={d.site.name} class="h-9 w-auto" /></a>
             <p class="mt-4 max-w-[17rem] text-[15px] leading-relaxed">{d.closing.blurb}</p>
             <p class="mt-4 font-display text-xs font-semibold uppercase tracking-[0.2em] text-[#6f9bff]">{d.site.tagline}</p>
+            {d.site.social?.length > 0 && (
+              <ul class="mt-6 flex items-center gap-3" aria-label="Follow us">
+                {d.site.social.map((s) => (
+                  <li><a href={s.url} target="_blank" rel="noopener noreferrer" aria-label={`${d.site.name} on ${s.label}`} class="flex h-10 w-10 items-center justify-center rounded-[4px] border border-white/20 text-white/80 transition-colors hover:border-white hover:bg-white hover:text-[#0a1748]"><Icon name={s.icon} size={18} /></a></li>
+                ))}
+              </ul>
+            )}
           </div>
           <div>
             <h4 class="flex h-9 items-center font-display text-xs font-semibold uppercase tracking-[0.2em] text-white">{d.closing.companyTitle}</h4>

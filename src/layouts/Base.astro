@@ -23,6 +23,7 @@ const ld = {
   description,
   address: { '@type': 'PostalAddress', streetAddress: 'No. 237, Jalan Medan 15, Taman Medan', postalCode: '46000', addressLocality: 'Petaling Jaya', addressRegion: 'Selangor', addressCountry: 'MY' },
   areaServed: [{ '@type': 'Country', name: 'Malaysia' }, { '@type': 'Place', name: 'Peninsular Malaysia' }, { '@type': 'AdministrativeArea', name: 'Selangor' }, { '@type': 'City', name: 'Kuala Lumpur' }],
+  sameAs: (d.site.social || []).map((s) => s.url),
   hasMap: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Kasi Transport, ' + d.site.address),
   knowsAbout: ['Linehaul', 'Contract logistics', 'Commercial transportation', 'Event and production logistics', 'Specialised transportation'],
   hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Transport services', itemListElement: d.services.items.map((i) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: i.title, description: i.text, provider: { '@id': site + '/#business' } } })) },

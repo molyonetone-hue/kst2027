@@ -118,7 +118,8 @@
         "company": "Founder, Birdzo Parcel",
         "bio": "Works with Kasi Transport as a strategic business partner, bringing parcel forwarding and distribution experience from his own business, Birdzo Parcel.",
         "link": "https://birdzoparcel.com/",
-        "linkLabel": "Visit Birdzo Parcel"
+        "linkLabel": "Visit Birdzo Parcel",
+        "photo": "/images/team-saravin.webp"
       },
       {
         "name": "Sathiakumar",
@@ -126,7 +127,8 @@
         "company": "Co-Founder, Birdzo Parcel",
         "bio": "Works closely with Kasi Transport on parcel forwarding, distribution opportunities and strategic collaborations through Birdzo Parcel.",
         "link": "https://birdzoparcel.com/",
-        "linkLabel": "Visit Birdzo Parcel"
+        "linkLabel": "Visit Birdzo Parcel",
+        "photo": "/images/team-sathia.webp"
       },
       {
         "name": "Nazia",

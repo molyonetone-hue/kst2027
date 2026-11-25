@@ -22,14 +22,22 @@ const who = [
   <section data-reveal data-nav-dark class="relative isolate flex min-h-[88svh] items-end overflow-hidden bg-[#050b1f] text-white">
     <img src="/images/svc-commercial.jpg" alt="" fetchpriority="high" class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_62%]" />
     <div aria-hidden="true" class="absolute inset-0 -z-10" style="background:linear-gradient(180deg,rgba(5,11,31,.72) 0%,rgba(5,11,31,.5) 40%,rgba(5,11,31,.9) 100%),radial-gradient(ellipse 70% 60% at 0% 100%,rgba(5,11,31,.8),transparent 70%)"></div>
-    <div class="container-x w-full pb-16 pt-40 lg:pb-24">
-      <span class:list={[eyebrow, 'text-white/70']}><span class="h-2 w-2 bg-white"></span>Contact</span>
-      <h1 class="mt-6 max-w-[13ch] font-display text-[clamp(2.8rem,7vw,6.2rem)] font-medium leading-[1] tracking-tight">Talk to our team.</h1>
-      <p class="mt-7 max-w-xl text-[15px] leading-relaxed text-white/70 lg:text-lg">The fastest way is WhatsApp. You can also call or email us, and we will reply as soon as we can.</p>
-      <div class="mt-9 flex flex-wrap items-center gap-3">
-        <a href={wa} target="_blank" rel="noopener" data-cta="contact-whatsapp" class="btn group/btn bg-white text-neutral-950 hover:bg-neutral-200"><Icon name="whatsapp" size={18} /> WhatsApp us <span class="transition-transform duration-300 group-hover/btn:translate-x-1"><Icon name="arrow" size={18} /></span></a>
-        <a href="#contact" data-quote data-cta="contact-quote" class="btn border border-white/50 bg-white/5 text-white hover:bg-white/15">Request a quote</a>
+    <div class="container-x grid w-full items-end gap-12 pb-16 pt-40 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] lg:gap-16 lg:pb-24">
+      <div>
+        <span class:list={[eyebrow, 'text-white/70']}><span class="h-2 w-2 bg-white"></span>Contact</span>
+        <h1 class="mt-6 max-w-[13ch] font-display text-[clamp(2.8rem,7vw,6.2rem)] font-medium leading-[1] tracking-tight">Talk to our team.</h1>
+        <p class="mt-7 max-w-xl text-[15px] leading-relaxed text-white/70 lg:text-lg">The fastest way is WhatsApp. You can also call or email us, and we will reply as soon as we can.</p>
+        <div class="mt-9 flex flex-wrap items-center gap-3">
+          <a href={wa} target="_blank" rel="noopener" data-cta="contact-whatsapp" class="btn group/btn bg-white text-neutral-950 hover:bg-neutral-200"><Icon name="whatsapp" size={18} /> WhatsApp us <span class="transition-transform duration-300 group-hover/btn:translate-x-1"><Icon name="arrow" size={18} /></span></a>
+          <a href="#contact" data-quote data-cta="contact-quote" class="btn border border-white/50 bg-white/5 text-white hover:bg-white/15">Request a quote</a>
+        </div>
       </div>
+      <aside aria-label="Quick contact" class="hidden rounded-xl border border-white/15 bg-white/[0.06] p-3 backdrop-blur-xl lg:block">
+        <p class="px-4 pb-2 pt-3 font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-white/55">Reach us directly</p>
+        <a href={wa} target="_blank" rel="noopener" data-cta="contact-panel-whatsapp" class="group flex items-center gap-4 rounded-lg px-4 py-4 transition-colors hover:bg-white/10"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-white/25 text-white"><Icon name="whatsapp" size={22} /></span><span class="min-w-0"><span class="block text-[12px] text-white/55">WhatsApp</span><span class="block font-display text-lg font-medium">{d.site.phone}</span></span><span class="ml-auto text-white/50 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"><Icon name="arrow" size={18} /></span></a>
+        <a href={`tel:${d.site.phoneHref}`} data-cta="contact-panel-call" class="group flex items-center gap-4 rounded-lg px-4 py-4 transition-colors hover:bg-white/10"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-white/25 text-white"><Icon name="phone" size={20} /></span><span class="min-w-0"><span class="block text-[12px] text-white/55">Call</span><span class="block font-display text-lg font-medium">{d.site.phone}</span></span><span class="ml-auto text-white/50 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"><Icon name="arrow" size={18} /></span></a>
+        <a href={`mailto:${d.site.email}`} data-cta="contact-panel-email" class="group flex items-center gap-4 rounded-lg px-4 py-4 transition-colors hover:bg-white/10"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-white/25 text-white"><Icon name="mail" size={20} /></span><span class="min-w-0"><span class="block text-[12px] text-white/55">Email</span><span class="block break-all font-display text-[1.02rem] font-medium">{d.site.email}</span></span><span class="ml-auto text-white/50 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"><Icon name="arrow" size={18} /></span></a>
+      </aside>
     </div>
   </section>
 
@@ -37,28 +45,38 @@ const who = [
     <!-- WAYS TO REACH US -->
     <section data-reveal class="py-20 lg:py-32">
       <div class="container-x">
-        <div class="grid gap-4 lg:grid-cols-3 lg:gap-5">
-          <a href={wa} target="_blank" rel="noopener" data-cta="contact-card-whatsapp" class="group relative rounded-xl border border-neutral-200 bg-[#f6f7fa] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:bg-white active:bg-[#eceff3] lg:p-9">
-            <span aria-hidden="true" class="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-full border border-neutral-300 text-brand transition-colors duration-300 group-hover:border-brand group-hover:bg-brand group-hover:text-white lg:right-7 lg:top-7"><Icon name="arrowUpRight" size={18} /></span>
-            <span class="grid h-12 w-12 place-items-center rounded-lg border border-neutral-300 bg-white text-brand lg:h-16 lg:w-16 lg:bg-transparent"><Icon name="whatsapp" size={30} /></span>
-            <h2 class="mt-5 font-display text-[1.5rem] lg:mt-7 lg:text-[1.7rem] font-medium leading-none tracking-tight text-neutral-950">WhatsApp</h2>
-            <p class="mt-3 text-[15px] text-neutral-600">Quickest reply. Send us your details or a photo.</p>
-            <span class="mt-4 inline-flex items-center gap-2 lg:mt-5 font-display text-[1.05rem] font-medium text-brand">{d.site.phone} <span class="transition-transform duration-300 group-hover:translate-x-1"><Icon name="arrow" size={18} /></span></span>
-          </a>
-          <a href={`tel:${d.site.phoneHref}`} data-cta="contact-card-call" class="group relative rounded-xl border border-neutral-200 bg-[#f6f7fa] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:bg-white active:bg-[#eceff3] lg:p-9">
-            <span aria-hidden="true" class="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-full border border-neutral-300 text-brand lg:hidden"><Icon name="arrowUpRight" size={18} /></span>
-            <span class="grid h-12 w-12 place-items-center rounded-lg border border-neutral-300 bg-white text-brand lg:h-16 lg:w-16 lg:bg-transparent"><Icon name="phone" size={28} /></span>
-            <h2 class="mt-5 font-display text-[1.5rem] lg:mt-7 lg:text-[1.7rem] font-medium leading-none tracking-tight text-neutral-950">Call</h2>
-            <p class="mt-3 text-[15px] text-neutral-600">Prefer to speak to someone? Give us a call.</p>
-            <span class="mt-4 inline-flex items-center gap-2 lg:mt-5 font-display text-[1.05rem] font-medium text-brand">{d.site.phone} <span class="transition-transform duration-300 group-hover:translate-x-1"><Icon name="arrow" size={18} /></span></span>
-          </a>
-          <a href={`mailto:${d.site.email}`} data-cta="contact-card-email" class="group relative rounded-xl border border-neutral-200 bg-[#f6f7fa] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:bg-white active:bg-[#eceff3] lg:p-9">
-            <span aria-hidden="true" class="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-full border border-neutral-300 text-brand lg:hidden"><Icon name="arrowUpRight" size={18} /></span>
-            <span class="grid h-12 w-12 place-items-center rounded-lg border border-neutral-300 bg-white text-brand lg:h-16 lg:w-16 lg:bg-transparent"><Icon name="mail" size={28} /></span>
-            <h2 class="mt-5 font-display text-[1.5rem] lg:mt-7 lg:text-[1.7rem] font-medium leading-none tracking-tight text-neutral-950">Email</h2>
-            <p class="mt-3 text-[15px] text-neutral-600">Good for documents, tenders and longer requests.</p>
-            <span class="mt-4 inline-flex items-center gap-2 lg:mt-5 break-all font-display text-[1.05rem] font-medium text-brand">{d.site.email} <span class="shrink-0 transition-transform duration-300 group-hover:translate-x-1"><Icon name="arrow" size={18} /></span></span>
-          </a>
+        <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>Get in touch</span>
+        <h2 class="mt-6 max-w-[16ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">Choose the way that suits you.</h2>
+        <div class="mt-12 grid grid-cols-1 gap-5 lg:mt-20 lg:grid-cols-3 lg:gap-0 lg:px-4">
+          {[
+            { href: wa, ext: true, cta: 'contact-card-whatsapp', icon: 'whatsapp', img: '/images/cta-fleet.webp', tag: 'Fastest reply', title: 'WhatsApp us', text: 'Send your details or a photo of the load. It is the quickest way to get a quote.', value: d.site.phone, tilt: 'lg:-rotate-[2.2deg] lg:translate-y-3', z: 'lg:z-10' },
+            { href: `tel:${d.site.phoneHref}`, cta: 'contact-card-call', icon: 'phone', img: '/images/svc-linehaul.jpg', tag: 'Speak to us', title: 'Call', text: 'Prefer to speak to someone? Give us a call.', value: d.site.phone, tilt: 'lg:rotate-[1.2deg] lg:-translate-y-3 lg:-ml-5', z: 'lg:z-20' },
+            { href: `mailto:${d.site.email}`, cta: 'contact-card-email', icon: 'mail', img: '/images/svc-commercial.jpg', tag: 'In writing', title: 'Email', text: 'Good for documents, tenders and longer requests.', value: d.site.email, tilt: 'lg:-rotate-[1.6deg] lg:translate-y-2 lg:-ml-5', z: 'lg:z-10' },
+          ].map((c) => (
+            <a href={c.href} target={c.ext ? '_blank' : undefined} rel={c.ext ? 'noopener' : undefined} data-cta={c.cta} class:list={['group relative flex flex-col overflow-hidden rounded-xl bg-[#0a1748] text-white shadow-[0_18px_50px_-22px_rgba(5,11,31,.55)] transition-all duration-500 hover:z-30 hover:rotate-0 hover:translate-y-0 hover:shadow-[0_28px_70px_-24px_rgba(5,11,31,.7)]', c.tilt, c.z]}>
+              <div class="relative aspect-[16/10] overflow-hidden">
+                <img src={c.img} alt="" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
+                <div aria-hidden="true" class="absolute inset-0" style="background:linear-gradient(180deg,rgba(10,23,72,.1),rgba(10,23,72,.55))"></div>
+                <span class="absolute left-4 top-4 rounded-[4px] border border-white/40 bg-[#0a1748]/50 px-2.5 py-1 font-display text-[10.5px] font-semibold uppercase tracking-[0.18em] text-white/90 backdrop-blur-md">{c.tag}</span>
+              </div>
+              <div class="flex flex-1 flex-col p-6 lg:p-8">
+                <div class="flex items-center gap-3"><span class="grid h-11 w-11 place-items-center rounded-lg border border-white/30"><Icon name={c.icon} size={22} /></span><h3 class="font-display text-[1.6rem] font-medium leading-none tracking-tight lg:text-[1.8rem]">{c.title}</h3></div>
+                <p class="mt-4 max-w-[19rem] text-[15px] leading-relaxed text-white/70">{c.text}</p>
+                <span class="mt-6 flex items-center justify-between gap-3 border-t border-white/15 pt-4 font-display text-[1.05rem] font-medium"><span class="break-all">{c.value}</span><span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white text-[#0a1748] transition-transform duration-300 group-hover:translate-x-1"><Icon name="arrow" size={17} /></span></span>
+              </div>
+            </a>
+          ))}
+          {d.site.social?.length > 0 && (
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-3 lg:mt-24 lg:gap-5 lg:px-0">
+              {d.site.social.map((so) => (
+                <a href={so.url} target="_blank" rel="noopener noreferrer" data-cta={`contact-social-${so.label.toLowerCase()}`} class="group flex items-center gap-5 rounded-xl border border-neutral-200 bg-[#f6f7fa] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:bg-white lg:p-7">
+                  <span class="grid h-14 w-14 shrink-0 place-items-center rounded-lg border border-neutral-300 bg-white text-brand transition-colors duration-300 group-hover:border-brand group-hover:bg-brand group-hover:text-white"><Icon name={so.icon} size={26} /></span>
+                  <span class="min-w-0"><span class="block font-display text-[1.25rem] font-medium leading-tight tracking-tight text-neutral-950">{so.label}</span><span class="mt-1 block truncate text-[14px] text-neutral-600">{so.url.replace('https://www.', '')}</span></span>
+                  <span aria-hidden="true" class="ml-auto grid h-10 w-10 shrink-0 place-items-center rounded-full border border-neutral-300 text-brand transition-colors duration-300 group-hover:border-brand group-hover:bg-brand group-hover:text-white"><Icon name="arrowUpRight" size={18} /></span>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -70,7 +88,7 @@ const who = [
         <h2 class="mt-6 max-w-[14ch] font-display text-[clamp(2.2rem,4.6vw,4.2rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">Pick what fits you.</h2>
         <div class="mt-12 grid gap-4 lg:mt-20 lg:grid-cols-3 lg:gap-5">
           {who.map((w, i) => (
-            <div class="rounded-xl border border-neutral-200 bg-white p-6 lg:p-9">
+            <div class="group relative overflow-hidden rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-500 hover:-translate-y-1 hover:border-brand/40 lg:p-9"><span aria-hidden="true" class="pointer-events-none absolute -right-3 -top-4 select-none font-display text-[7rem] font-bold leading-none tracking-tighter text-transparent transition-all duration-500 group-hover:-translate-y-1" style="-webkit-text-stroke:1px rgba(10,23,72,.14)">{String(i + 1).padStart(2, '0')}</span><span aria-hidden="true" class="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-brand transition-transform duration-500 group-hover:scale-x-100"></span>
               <span class="grid h-14 w-14 place-items-center rounded-lg border border-neutral-300 text-brand"><Icon name={w.icon} size={26} /></span>
               <h3 class="mt-8 font-display text-[clamp(1.5rem,2.4vw,2.1rem)] font-medium leading-tight tracking-tight text-neutral-950">{w.title}</h3>
               <p class="mt-3 max-w-[19rem] text-[15px] leading-relaxed text-neutral-600">{w.text}</p>
@@ -89,12 +107,15 @@ const who = [
         <div>
           <span class:list={[eyebrow, 'text-neutral-700']}><span class="h-2 w-2 bg-brand"></span>Our office</span>
           <h2 class="mt-6 max-w-[12ch] font-display text-[clamp(2.2rem,4.4vw,4rem)] font-medium leading-[1.02] tracking-tight text-neutral-950">Find us in Petaling Jaya.</h2>
-          <div class="mt-7 rounded-xl border border-neutral-200 bg-[#f6f7fa] p-6 lg:p-8">
-          <address class="not-italic text-[1.05rem] leading-relaxed text-neutral-700">
-            <span class="font-display font-medium text-neutral-950">{d.site.legalName}</span><br />
-            {d.site.address}, Malaysia
-          </address>
-          <p class="mt-4 text-sm text-neutral-500">{d.footer.regLabel} {d.site.registration}</p>
+          <div class="relative isolate mt-7 overflow-hidden rounded-xl bg-[#0a1748] p-7 text-white lg:p-10">
+            <div aria-hidden="true" class="absolute inset-0 -z-10" style="background:radial-gradient(ellipse 80% 80% at 100% 0%,rgba(63,111,255,.45),transparent 62%)"></div>
+            <span aria-hidden="true" class="pointer-events-none absolute -bottom-5 -right-1 -z-10 select-none font-display text-[8rem] font-bold leading-none tracking-tighter text-transparent" style="-webkit-text-stroke:1px rgba(255,255,255,.14)">PJ</span>
+            <span class="flex h-11 w-11 items-center justify-center rounded-lg border border-white/30"><Icon name="pin" size={22} /></span>
+            <address class="mt-6 not-italic text-[1.05rem] leading-relaxed text-white/80">
+              <span class="font-display text-lg font-medium text-white">{d.site.legalName}</span><br />
+              {d.site.address}, Malaysia
+            </address>
+            <p class="mt-4 text-sm text-white/50">{d.footer.regLabel} {d.site.registration}</p>
           </div>
           <a href={maps} target="_blank" rel="noopener" data-cta="contact-directions" class="btn btn-brand group/btn mt-8"><Icon name="pin" size={18} /> Get directions <span class="transition-transform duration-300 group-hover/btn:translate-x-1"><Icon name="arrow" size={18} /></span></a>
         </div>
