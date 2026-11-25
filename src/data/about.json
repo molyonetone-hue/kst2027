@@ -22,25 +22,25 @@
         "year": "1996",
         "title": "Our transport roots",
         "text": "The transport experience behind Kasi Transport begins on the road in 1996, well before the company was formally established. Those years shaped the way we plan routes and schedules, and how we look after the drivers who run them.",
-        "image": "/images/svc-linehaul.jpg"
+        "image": "/images/timeline-1996-v4.webp"
       },
       {
         "year": "2005",
         "title": "Kasi Transport is established",
         "text": "Kasirajan officially establishes Kasi Transport in Petaling Jaya, turning years of road experience into a registered transport business. From the start, the focus is on precision, competence and reliability.",
-        "image": "/images/svc-commercial.jpg"
+        "image": "/images/timeline-2005-v4.webp"
       },
       {
         "year": "2022–23",
         "title": "Into large-scale live events",
         "text": "From Yuvan Live in Malaysia in 2022 to Coldplay, BLACKPINK, Jay Chou and A.R. Rahman in 2023, plus festivals such as Pinkfish, Good Vibes and Peakstorm, Kasi Transport moves production equipment around venue access and tight show schedules.",
-        "image": "/images/svc-events.jpg"
+        "image": "/images/timeline-2022-v2.webp"
       },
       {
         "year": "Today",
         "title": "Commercial linehaul and a growing network",
         "text": "Today Kasi Transport supports scheduled linehaul and parcel distribution for corporate customers, alongside commercial transport, event logistics and specialised loads. The work is carried by company-operated trucks and employed drivers, backed by a growing network of independent transport partners.",
-        "image": "/images/cta-fleet.webp"
+        "image": "/images/timeline-today-v5.webp"
       }
     ]
   },
@@ -184,7 +184,7 @@
     "tag": "Grow with KST",
     "title": "Drive your career forward.",
     "text": "Interested in driving for Kasi Transport? Tell us about your licence and experience, and our team will be in touch. Own or operate vehicles? You can register as a transport partner just below.",
-    "image": "/images/svc-commercial.jpg",
+    "image": "/images/career-drive-v2.webp",
     "cta": "Apply as a driver",
     "waText": "Hi Kasi Transport, I'm interested in a driver position."
   }

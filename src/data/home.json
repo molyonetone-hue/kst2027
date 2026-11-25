@@ -107,29 +107,29 @@
         "title": "Linehaul & Contract Logistics",
         "text": "Scheduled hub-to-hub transfers and recurring transport.",
         "flagship": true,
-        "image": "/images/svc-linehaul.jpg",
+        "image": "/images/svc-linehaul-v2.webp",
         "pos": "42% 50%",
         "icon": "road"
       },
       {
         "title": "Commercial Transportation",
         "text": "Cargo deliveries and stock movements between business locations.",
-        "image": "/images/svc-commercial.jpg",
-        "pos": "62% 50%",
+        "image": "/images/svc-commercial-v2.webp",
+        "pos": "40% 50%",
         "icon": "box"
       },
       {
         "title": "Event & Production Logistics",
         "text": "Equipment transport planned around venue access and production schedules.",
-        "image": "/images/svc-events.jpg",
-        "pos": "38% 50%",
+        "image": "/images/svc-events-v2.webp",
+        "pos": "40% 50%",
         "icon": "music"
       },
       {
         "title": "Specialised Transportation",
         "text": "Transport enquiries for loads with specific vehicle or handling needs.",
-        "image": "/images/svc-specialised.jpg",
-        "pos": "55% 50%",
+        "image": "/images/svc-specialised-v2.webp",
+        "pos": "30% 50%",
         "icon": "crane"
       }
     ],
