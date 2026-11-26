@@ -25,7 +25,7 @@
           "Dedicated transportation",
           "Long-term transport arrangements"
         ],
-        "image": "/images/svc-linehaul-v2.webp",
+        "image": "/images/svc-linehaul-v4.webp",
         "icon": "road"
       },
       {
@@ -39,7 +39,7 @@
           "Dedicated vehicles",
           "Business deliveries"
         ],
-        "image": "/images/svc-commercial-v2.webp",
+        "image": "/images/svc-commercial-v4.webp",
         "icon": "box"
       },
       {
@@ -53,7 +53,7 @@
           "Production equipment movements",
           "Exhibitions and roadshows"
         ],
-        "image": "/images/svc-events-v2.webp",
+        "image": "/images/svc-events-v3.webp",
         "icon": "music"
       },
       {
@@ -67,7 +67,7 @@
           "Moving and relocation",
           "Other specialised configurations"
         ],
-        "image": "/images/svc-specialised-v2.webp",
+        "image": "/images/svc-specialised-v3.webp",
         "icon": "crane"
       }
     ]
